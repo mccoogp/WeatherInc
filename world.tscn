@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgo4cwa032h0v"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_3gon6"]
+[ext_resource type="PackedScene" uid="uid://cacfd62pudml6" path="res://district.tscn" id="2_41llr"]
+[ext_resource type="Script" path="res://FoodLabel.gd" id="3_0itcl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1erbk"]
+font_size = 34
+
+[node name="world" type="Node2D" node_paths=PackedStringArray("districts")]
+script = ExtResource("1_3gon6")
+districts = [NodePath("District"), NodePath("District2"), NodePath("District3"), NodePath("District4"), NodePath("District5"), NodePath("District6"), NodePath("District7"), NodePath("District8"), NodePath("District9")]
+
+[node name="District" parent="." instance=ExtResource("2_41llr")]
+position = Vector2(83, 86)
+
+[node name="District2" parent="." instance=ExtResource("2_41llr")]
+position = Vector2(240, 78)
+DistrictNumber = 2
+
+[node name="District3" parent="." instance=ExtResource("2_41llr")]
+position = Vector2(398, 85)
+DistrictNumber = 3
+
+[node name="District4" parent="." instance=ExtResource("2_41llr")]
+position = Vector2(87, 238)
+DistrictNumber = 4
+
+[node name="District5" parent="." instance=ExtResource("2_41llr")]
+position = Vector2(254, 241)
+DistrictNumber = 5
+water = true
+
+[node name="District6" parent="." instance=ExtResource("2_41llr")]
+position = Vector2(417, 248)
+DistrictNumber = 6
+water = true
+
+[node name="District7" parent="." instance=ExtResource("2_41llr")]
+position = Vector2(83, 397)
+DistrictNumber = 7
+water = true
+
+[node name="District8" parent="." instance=ExtResource("2_41llr")]
+position = Vector2(253, 399)
+DistrictNumber = 8
+water = true
+
+[node name="District9" parent="." instance=ExtResource("2_41llr")]
+position = Vector2(420, 398)
+DistrictNumber = 9
+
+[node name="Label" type="Label" parent="."]
+offset_left = 19.0
+offset_top = 22.0
+offset_right = 204.0
+offset_bottom = 76.0
+text = "Food = 1000"
+label_settings = SubResource("LabelSettings_1erbk")
+script = ExtResource("3_0itcl")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 402.0
+offset_top = 39.0
+offset_right = 595.0
+offset_bottom = 62.0
+text = "Press space for next step"
