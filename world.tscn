@@ -12,42 +12,42 @@ script = ExtResource("1_3gon6")
 districts = [NodePath("District"), NodePath("District2"), NodePath("District3"), NodePath("District4"), NodePath("District5"), NodePath("District6"), NodePath("District7"), NodePath("District8"), NodePath("District9")]
 
 [node name="District" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(83, 86)
+position = Vector2(80, 80)
 
 [node name="District2" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(240, 78)
+position = Vector2(240, 80)
 DistrictNumber = 2
 
 [node name="District3" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(398, 85)
+position = Vector2(400, 80)
 DistrictNumber = 3
 
 [node name="District4" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(87, 238)
+position = Vector2(80, 240)
 DistrictNumber = 4
 
 [node name="District5" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(254, 241)
+position = Vector2(240, 240)
 DistrictNumber = 5
 water = true
 
 [node name="District6" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(417, 248)
+position = Vector2(400, 240)
 DistrictNumber = 6
 water = true
 
 [node name="District7" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(83, 397)
+position = Vector2(80, 400)
 DistrictNumber = 7
 water = true
 
 [node name="District8" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(253, 399)
+position = Vector2(240, 400)
 DistrictNumber = 8
 water = true
 
 [node name="District9" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(420, 398)
+position = Vector2(400, 400)
 DistrictNumber = 9
 
 [node name="Label" type="Label" parent="."]
