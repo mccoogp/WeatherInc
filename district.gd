@@ -6,6 +6,14 @@ extends Node2D
 var production =[]
 var clicked = false
 
+@export var center: Vector2
+@export var zoom: float
+
+@export var image: Texture
+
+func _ready() -> void:
+	$Main.texture = image
+
 func _input(event):
 	if "food" in production:
 		$FoodImage.scale = Vector2(0.003, 0.003)

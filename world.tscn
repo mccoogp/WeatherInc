@@ -1,8 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://dgo4cwa032h0v"]
+[gd_scene load_steps=8 format=3 uid="uid://dgo4cwa032h0v"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_3gon6"]
 [ext_resource type="PackedScene" uid="uid://cacfd62pudml6" path="res://district.tscn" id="2_41llr"]
-[ext_resource type="Script" path="res://FoodLabel.gd" id="3_0itcl"]
+[ext_resource type="Texture2D" uid="uid://csgnvamjyfsfx" path="res://icon.svg" id="3_w2861"]
+[ext_resource type="Texture2D" uid="uid://ci40uw4qw76ht" path="res://Box.png" id="4_r5mvf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_j4inj"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_afd1u"]
+font_size = 29
 
 [sub_resource type="LabelSettings" id="LabelSettings_1erbk"]
 font_size = 34
@@ -12,56 +19,98 @@ script = ExtResource("1_3gon6")
 districts = [NodePath("District"), NodePath("District2"), NodePath("District3"), NodePath("District4"), NodePath("District5"), NodePath("District6"), NodePath("District7"), NodePath("District8"), NodePath("District9")]
 
 [node name="District" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(80, 80)
+position = Vector2(83, 86)
+center = Vector2(180, 160)
+zoom = 4.0
+image = ExtResource("3_w2861")
 
 [node name="District2" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(240, 80)
+position = Vector2(240, 78)
 DistrictNumber = 2
+zoom = 1.0
+image = ExtResource("3_w2861")
 
 [node name="District3" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(400, 80)
+position = Vector2(413, 84)
 DistrictNumber = 3
+image = ExtResource("3_w2861")
 
 [node name="District4" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(80, 240)
+position = Vector2(87, 238)
 DistrictNumber = 4
+image = ExtResource("3_w2861")
 
 [node name="District5" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(240, 240)
+position = Vector2(254, 241)
 DistrictNumber = 5
 water = true
+image = ExtResource("3_w2861")
 
 [node name="District6" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(400, 240)
+position = Vector2(417, 248)
 DistrictNumber = 6
 water = true
+image = ExtResource("3_w2861")
 
 [node name="District7" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(80, 400)
+position = Vector2(83, 397)
 DistrictNumber = 7
 water = true
+image = ExtResource("3_w2861")
 
 [node name="District8" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(240, 400)
+position = Vector2(253, 399)
 DistrictNumber = 8
 water = true
+image = ExtResource("3_w2861")
 
 [node name="District9" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(400, 400)
+position = Vector2(420, 398)
 DistrictNumber = 9
-
-[node name="Label" type="Label" parent="."]
-offset_left = 19.0
-offset_top = 22.0
-offset_right = 204.0
-offset_bottom = 76.0
-text = "Food = 1000"
-label_settings = SubResource("LabelSettings_1erbk")
-script = ExtResource("3_0itcl")
+image = ExtResource("3_w2861")
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 402.0
-offset_top = 39.0
-offset_right = 595.0
-offset_bottom = 62.0
+offset_left = 676.0
+offset_top = 7.0
+offset_right = 965.0
+offset_bottom = 41.0
+size_flags_horizontal = 6
 text = "Press space for next step"
+label_settings = SubResource("LabelSettings_j4inj")
+
+[node name="DistrictMenu" type="Sprite2D" parent="."]
+position = Vector2(-49, 63)
+scale = Vector2(0.167396, 0.167396)
+texture = ExtResource("4_r5mvf")
+
+[node name="Industry" type="Sprite2D" parent="DistrictMenu"]
+position = Vector2(-204.254, -102.127)
+scale = Vector2(2.09574, 2.09574)
+texture = ExtResource("3_w2861")
+
+[node name="Label" type="Label" parent="DistrictMenu/Industry"]
+anchors_preset = -1
+anchor_left = -0.00206733
+anchor_top = -0.00117993
+anchor_right = -1.68176
+anchor_bottom = -1.2043
+offset_left = -204.424
+offset_top = -70.838
+offset_right = 529.576
+offset_bottom = 214.162
+text = "Industry: None"
+label_settings = SubResource("LabelSettings_afd1u")
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(420, 297)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 205.0
+offset_top = 8.0
+offset_right = 401.0
+offset_bottom = 62.0
+text = "Phase = 1"
+label_settings = SubResource("LabelSettings_1erbk")
