@@ -11,7 +11,7 @@
 font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_afd1u"]
-font_size = 29
+font_size = 86
 
 [sub_resource type="LabelSettings" id="LabelSettings_1erbk"]
 font_size = 34
@@ -82,28 +82,33 @@ label_settings = SubResource("LabelSettings_j4inj")
 
 [node name="DistrictMenu" type="Sprite2D" parent="."]
 position = Vector2(-49, 63)
-scale = Vector2(0.167396, 0.167396)
-texture = ExtResource("4_r5mvf")
+scale = Vector2(0.08, 0.08)
 script = ExtResource("5_s2cnt")
 
 [node name="Industry" type="Sprite2D" parent="DistrictMenu" node_paths=PackedStringArray("menu")]
-position = Vector2(-204.254, -102.127)
+position = Vector2(-166.754, -102.127)
 scale = Vector2(2.09574, 2.09574)
-texture = ExtResource("3_w2861")
+texture = ExtResource("4_r5mvf")
 script = ExtResource("6_ttn6t")
 menu = NodePath("..")
 
+[node name="Sprite2D" type="Sprite2D" parent="DistrictMenu/Industry"]
+position = Vector2(-161.993, -105.256)
+scale = Vector2(2.28327, 2.28327)
+texture = ExtResource("3_w2861")
+
 [node name="Label" type="Label" parent="DistrictMenu/Industry"]
 anchors_preset = -1
-anchor_left = -1.68176
-anchor_top = -1.2043
+anchor_left = -2.06342
+anchor_top = -1.35004
 anchor_right = -1.68176
-anchor_bottom = -1.2043
-offset_left = -204.424
-offset_top = -70.838
-offset_right = 529.576
-offset_bottom = 214.162
-text = "Industry: None"
+anchor_bottom = -1.2042
+offset_left = 1750.18
+offset_top = 1275.51
+offset_right = 2484.18
+offset_bottom = 1560.51
+text = "Industry: 
+None"
 label_settings = SubResource("LabelSettings_afd1u")
 horizontal_alignment = 2
 vertical_alignment = 1

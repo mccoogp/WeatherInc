@@ -21,7 +21,7 @@ var camerazoom = 1
 func _input(event):
 	
 	if event is InputEventKey and event.pressed:
-		if Input.is_key_pressed(KEY_SPACE):
+		if Input.is_key_pressed(KEY_SPACE) and zoom == -1:
 			
 			phase += 1
 			
@@ -46,7 +46,7 @@ func _input(event):
 		else:
 			if event is InputEventMouseButton:
 				if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-					if districts[zoom].clicked == false:
+					if districts[zoom].clicked == false and $DistrictMenu.anyclicked == false:
 						cameracenter =  Vector2(420, 297)
 						camerazoom = 1
 						zoom = -1
@@ -69,9 +69,9 @@ func _process(delta: float) -> void:
 	
 	if zoom == -1:
 		$DistrictMenu.visible = false
-		$DistrictMenu.position = $Camera2D.position + Vector2(-429, -204)/$Camera2D.zoom.x   
-		$DistrictMenu.scale = Vector2(0.307,0.307)/$Camera2D.zoom.x
+		$DistrictMenu.position = $Camera2D.position + Vector2(-409, -184)/$Camera2D.zoom.x   
+		$DistrictMenu.scale = Vector2(0.15,0.15)/$Camera2D.zoom.x
 	else:
 		$DistrictMenu.visible = true
-		$DistrictMenu.position = $Camera2D.position + Vector2(-429, -204)/$Camera2D.zoom.x   
-		$DistrictMenu.scale = Vector2(0.307,0.307)/$Camera2D.zoom.x
+		$DistrictMenu.position = $Camera2D.position + Vector2(-409, -184)/$Camera2D.zoom.x   
+		$DistrictMenu.scale = Vector2(0.15,0.15)/$Camera2D.zoom.x
