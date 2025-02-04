@@ -69,9 +69,9 @@ func _process(delta: float) -> void:
 	
 	if zoom == -1:
 		$DistrictMenu.visible = false
-		$DistrictMenu.position = $Camera2D.position + Vector2(-479, -234)/$Camera2D.zoom.x   
-		$DistrictMenu.scale = Vector2(0.167,0.167)/$Camera2D.zoom.x
+		$DistrictMenu.position = $Camera2D.position + Vector2(-429, -204)/$Camera2D.zoom.x   
+		$DistrictMenu.scale = Vector2(0.307,0.307)/$Camera2D.zoom.x
 	else:
 		$DistrictMenu.visible = true
-		$DistrictMenu.position = $Camera2D.position + Vector2(-479, -234)/$Camera2D.zoom.x   
-		$DistrictMenu.scale = Vector2(0.167,0.167)/$Camera2D.zoom.x
+		$DistrictMenu.position = $Camera2D.position + Vector2(-429, -204)/$Camera2D.zoom.x   
+		$DistrictMenu.scale = Vector2(0.307,0.307)/$Camera2D.zoom.x
