@@ -17,26 +17,49 @@ var zoom = -1
 var cameracenter =  Vector2(420, 297)
 var camerazoom = 1
 
-
-func _input(event):
+func popularity_down(district):
+	'''
+	removes 5-15% of your popularity in the given inputed district number
+	'''
+	districts[district].popularity *= randf_range(8.5,9.5)/10
 	
+
+func popularity_up(district):
+	'''
+	gains 5-15% of the population you are not popular amoung in the given inputed district number
+	'''
+	districts[district].popularity += (100-districts[district].popularity)* randf_range(0.5,1.5)/10
+	
+	
+func _input(event):
+	'''
+	Actives everytime an input is made
+	'''
 	if event is InputEventKey and event.pressed:
 		if Input.is_key_pressed(KEY_SPACE):
-			
+			'''
+			Goes to next phase of game when space is pressed
+			'''
 			phase += 1
 			
 			if phase == 5:
+				'''
+				phase 5 is the resolving backround info phase so population is reset to 0 and recaluclated
+				'''
 				totalpop = 0
 				foodprod = 0
 				for district in 9:
 					totalpop += districts[district].population
+					#the .population thing is accessing the population varible from district.gd
 					if "food" in districts[district].production:
-						foodprod += 3000
+						#checks wether the district produces food
+						foodprod = districts[district].productivity * 3000
 				food += foodprod - totalpop
 				phase = 1
 			$Label.text = "Phase = " + str(phase)
 	if phase == 3:
 		if zoom == -1:
+			#zoom = -1 means its not zoomed in
 			for district in 9:
 				if districts[district].clicked == true:
 					zoom = district
