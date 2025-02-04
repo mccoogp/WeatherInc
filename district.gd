@@ -1,11 +1,8 @@
 extends Node2D
 
-
 @export var DistrictNumber = 1
 @export var water = false
 @export var population = 1000
-@export var popularity = randi_range(45,65)
-@export var productivity = 1
 var production =[]
 var clicked = false
 
