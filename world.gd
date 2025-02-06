@@ -58,10 +58,10 @@ func _process(delta: float) -> void:
 	
 	#print($Camera2D.zoom, $Camera2D.position)
 	#print(camerazoom, cameracenter)
-	$Camera2D.position.x += (cameracenter.x - $Camera2D.position.x)/20
-	$Camera2D.position.y += (cameracenter.y - $Camera2D.position.y)/20
-	$Camera2D.zoom.x += (camerazoom - $Camera2D.zoom.x)/40
-	$Camera2D.zoom.y += (camerazoom - $Camera2D.zoom.y)/40
+	$Camera2D.position.x += (cameracenter.x - $Camera2D.position.x)/15
+	$Camera2D.position.y += (cameracenter.y - $Camera2D.position.y)/15
+	$Camera2D.zoom.x += (camerazoom - $Camera2D.zoom.x)/30
+	$Camera2D.zoom.y += (camerazoom - $Camera2D.zoom.y)/30
 	
 	$Label2.position = $Camera2D.position + Vector2(256, -290)/$Camera2D.zoom.y
 	$Label2.scale = Vector2(1,1)/$Camera2D.zoom.x
