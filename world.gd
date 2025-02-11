@@ -22,6 +22,7 @@ func popularity_down(district):
 	removes 5-15% of your popularity in the given inputed district number
 	'''
 	districts[district].popularity *= randf_range(8.5,9.5)/10
+	
 func popularity_up(district):
 	'''
 	gains 5-15% of the population you are not popular amoung in the given inputed district number
@@ -63,6 +64,13 @@ func _input(event):
 						for district in 9:
 							if districts[district].clicked == true:
 								districts[district].clicked = false
+					if districts[zoom].clicked == true:
+						if districts[zoom].product == []:
+							districts[zoom].product = ["food"]
+						elif districts[zoom].product == ["food"]:
+							districts[zoom].product = ["factory"]
+						elif districts[zoom].product == ["factory"]:
+							districts[zoom].product = []
 				
 func _process(delta: float) -> void:
 	
