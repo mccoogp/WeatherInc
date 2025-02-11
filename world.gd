@@ -17,7 +17,17 @@ var zoom = -1
 var cameracenter =  Vector2(420, 297)
 var camerazoom = 1
 
-
+func popularity_down(district):
+	'''
+	removes 5-15% of your popularity in the given inputed district number
+	'''
+	districts[district].popularity *= randf_range(8.5,9.5)/10
+func popularity_up(district):
+	'''
+	gains 5-15% of the population you are not popular amoung in the given inputed district number
+	'''
+	districts[district].popularity += (100-districts[district].popularity)* randf_range(0.5,1.5)/10
+	
 func _input(event):
 	
 	if event is InputEventKey and event.pressed:
