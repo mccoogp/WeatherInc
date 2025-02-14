@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dgo4cwa032h0v"]
+[gd_scene load_steps=11 format=3 uid="uid://dgo4cwa032h0v"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_3gon6"]
 [ext_resource type="PackedScene" uid="uid://cacfd62pudml6" path="res://district.tscn" id="2_41llr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ci40uw4qw76ht" path="res://Box.png" id="4_r5mvf"]
 [ext_resource type="Script" path="res://district_menu.gd" id="5_s2cnt"]
 [ext_resource type="Script" path="res://industry_menu_clicked.gd" id="6_ttn6t"]
+[ext_resource type="Script" path="res://popularity.gd" id="7_b887d"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_j4inj"]
 font_size = 24
@@ -109,6 +110,34 @@ offset_right = 2484.18
 offset_bottom = 1560.51
 text = "Industry: 
 None"
+label_settings = SubResource("LabelSettings_afd1u")
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Popularity" type="Sprite2D" parent="DistrictMenu" node_paths=PackedStringArray("menu")]
+position = Vector2(-162.5, 1012.5)
+scale = Vector2(2.096, 2.096)
+texture = ExtResource("4_r5mvf")
+script = ExtResource("7_b887d")
+menu = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="DistrictMenu/Popularity"]
+position = Vector2(53.6737, -59.6374)
+scale = Vector2(5.43118, 0.831471)
+texture = ExtResource("3_w2861")
+
+[node name="Label" type="Label" parent="DistrictMenu/Popularity"]
+anchors_preset = -1
+anchor_left = -2.06342
+anchor_top = -1.35004
+anchor_right = -1.68176
+anchor_bottom = -1.2042
+offset_left = 1682.93
+offset_top = 1160.84
+offset_right = 2416.93
+offset_bottom = 1445.84
+text = "Estimated Votes"
 label_settings = SubResource("LabelSettings_afd1u")
 horizontal_alignment = 2
 vertical_alignment = 1
