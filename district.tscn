@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cacfd62pudml6"]
+[gd_scene load_steps=4 format=3 uid="uid://cacfd62pudml6"]
 
 [ext_resource type="Script" path="res://district.gd" id="1_gpufd"]
 [ext_resource type="Texture2D" uid="uid://csgnvamjyfsfx" path="res://icon.svg" id="2_7h7nu"]
 [ext_resource type="Script" path="res://districtsprite.gd" id="3_mvpsf"]
-[ext_resource type="Texture2D" uid="uid://bw37rreujxxbo" path="res://Testpng.png" id="4_vph5b"]
 
 [node name="District" type="Node2D"]
 scale = Vector2(100, 100)
@@ -16,12 +15,6 @@ texture = ExtResource("2_7h7nu")
 script = ExtResource("3_mvpsf")
 district = NodePath("..")
 
-[node name="FoodImage" type="Sprite2D" parent="."]
-position = Vector2(0.37, 0.34)
-scale = Vector2(0.00345703, 0.00345703)
-texture = ExtResource("2_7h7nu")
-
-[node name="FactoryImage" type="Sprite2D" parent="."]
-position = Vector2(0.38, 0.4)
-scale = Vector2(0.00028869, 0.000478333)
-texture = ExtResource("4_vph5b")
+[node name="ProductionImage" type="Sprite2D" parent="."]
+position = Vector2(0.300001, 0.309999)
+scale = Vector2(0.0118939, 0.011857)

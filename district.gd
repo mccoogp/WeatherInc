@@ -16,11 +16,6 @@ func _ready() -> void:
 	$Main.texture = image
 
 func _input(event):
-	if "food" in product:
-		$FoodImage.scale = Vector2(0.003, 0.003)
-	else:
-		$FoodImage.scale = Vector2(0, 0)
-	if "factory" in product:
-		$FactoryImage.scale = Vector2(0.0004, 0.0004)
-	else:
-		$FactoryImage.scale = Vector2(0, 0)
+	$ProductionImage.texture = null
+	for prod in product:
+		$ProductionImage.texture = load("res://icons/" + prod + ".png")

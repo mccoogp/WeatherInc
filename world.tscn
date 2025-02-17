@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dgo4cwa032h0v"]
+[gd_scene load_steps=12 format=3 uid="uid://dgo4cwa032h0v"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_3gon6"]
 [ext_resource type="PackedScene" uid="uid://cacfd62pudml6" path="res://district.tscn" id="2_41llr"]
@@ -12,10 +12,13 @@
 font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_afd1u"]
-font_size = 86
+font_size = 70
 
 [sub_resource type="LabelSettings" id="LabelSettings_1erbk"]
 font_size = 34
+
+[sub_resource type="LabelSettings" id="LabelSettings_7wjru"]
+font_size = 40
 
 [node name="world" type="Node2D" node_paths=PackedStringArray("districts")]
 script = ExtResource("1_3gon6")
@@ -87,16 +90,15 @@ scale = Vector2(0.08, 0.08)
 script = ExtResource("5_s2cnt")
 
 [node name="Industry" type="Sprite2D" parent="DistrictMenu" node_paths=PackedStringArray("menu")]
-position = Vector2(-166.754, -102.127)
-scale = Vector2(2.09574, 2.09574)
+position = Vector2(-162.5, 737.5)
+scale = Vector2(2.09574, 5.09574)
 texture = ExtResource("4_r5mvf")
 script = ExtResource("6_ttn6t")
 menu = NodePath("..")
 
 [node name="Sprite2D" type="Sprite2D" parent="DistrictMenu/Industry"]
-position = Vector2(-161.993, -105.256)
-scale = Vector2(2.28327, 2.28327)
-texture = ExtResource("3_w2861")
+position = Vector2(-113.325, -220.773)
+scale = Vector2(11.5878, 6.53666)
 
 [node name="Label" type="Label" parent="DistrictMenu/Industry"]
 anchors_preset = -1
@@ -104,19 +106,19 @@ anchor_left = -2.06342
 anchor_top = -1.35004
 anchor_right = -1.68176
 anchor_bottom = -1.2042
-offset_left = 1750.18
-offset_top = 1275.51
-offset_right = 2484.18
-offset_bottom = 1560.51
+offset_left = 1748.44
+offset_top = 1330.24
+offset_right = 2482.44
+offset_bottom = 1615.24
+scale = Vector2(1.00283, 0.803758)
 text = "Industry: 
 None"
 label_settings = SubResource("LabelSettings_afd1u")
 horizontal_alignment = 2
-vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Popularity" type="Sprite2D" parent="DistrictMenu" node_paths=PackedStringArray("menu")]
-position = Vector2(-162.5, 1012.5)
+position = Vector2(-137.5, 875)
 scale = Vector2(2.096, 2.096)
 texture = ExtResource("4_r5mvf")
 script = ExtResource("7_b887d")
@@ -153,3 +155,13 @@ offset_right = 401.0
 offset_bottom = 62.0
 text = "Phase = 1"
 label_settings = SubResource("LabelSettings_1erbk")
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 1371.0
+offset_top = 2.0
+offset_right = 1904.0
+offset_bottom = 161.0
+scale = Vector2(0.839998, 0.839998)
+text = "Possible Industries:
+Meat: "
+label_settings = SubResource("LabelSettings_7wjru")

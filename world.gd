@@ -9,13 +9,23 @@ var totalpop = 0
 var foodprod = 0
 var phase = 1
 var food = 10000
+var money = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
 
+
 var zoom = -1
 var cameracenter =  Vector2(420, 297)
 var camerazoom = 1
+
+var posprod = ["none", "grain", "meat", "fish", "factory", "oil", "research"]
+var curprod = 0
+var checkprod = false
+
+
+var frame = 0
+
 
 func popularity_down(district):
 	'''
@@ -31,65 +41,164 @@ func popularity_up(district):
 	
 func _input(event):
 	
-	if event is InputEventKey and event.pressed:
-		if Input.is_key_pressed(KEY_SPACE) and zoom == -1:
-			
-			phase += 1
-			
-			if phase == 5:
-				totalpop = 0
-				foodprod = 0
-				for district in 9:
-					totalpop += districts[district].population
-					if "food" in districts[district].production:
-						foodprod += 3000
-				food += foodprod - totalpop
-				phase = 1
-			$Label.text = "Phase = " + str(phase)
-	if phase == 3:
-		if zoom == -1:
-			for district in 9:
-				if districts[district].clicked == true:
-					zoom = district
-					cameracenter = districts[district].center
-					camerazoom = districts[district].zoom
-					districts[district].clicked = false
-		else:
-			if event is InputEventMouseButton:
-				if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-					if districts[zoom].clicked == false and $DistrictMenu.anyclicked == false:
-						cameracenter =  Vector2(420, 297)
-						camerazoom = 1
-						zoom = -1
-						for district in 9:
-							if districts[district].clicked == true:
-								districts[district].clicked = false
-					if districts[zoom].clicked == true:
-						if districts[zoom].product == []:
-							districts[zoom].product = ["food"]
-						elif districts[zoom].product == ["food"]:
-							districts[zoom].product = ["factory"]
-						elif districts[zoom].product == ["factory"]:
-							districts[zoom].product = []
+	
+	if frame == 0:
+		if event is InputEventKey and event.pressed:
+			if Input.is_key_pressed(KEY_SPACE) and zoom == -1:
 				
+				phase += 1
+				
+				if phase == 5:
+					totalpop = 0
+					foodprod = 0
+					for district in 9:
+						totalpop += districts[district].population
+						if "food" in districts[district].production:
+							foodprod += 3000
+					food += foodprod - totalpop
+					phase = 1
+				$Label.text = "Phase = " + str(phase)
+		if phase == 3:
+			if zoom == -1:
+				curprod = 0
+				for district in 9:
+					if districts[district].clicked == true:
+						zoom = district
+						cameracenter = districts[district].center
+						camerazoom = districts[district].zoom
+						districts[district].clicked = false
+			else:
+				if event is InputEventKey and event.pressed:
+					if Input.is_key_pressed(KEY_RIGHT):
+						curprod += 1
+					if Input.is_key_pressed(KEY_LEFT):
+						curprod -= 1
+					if Input.is_key_pressed(KEY_LEFT) or Input.is_key_pressed(KEY_RIGHT):
+						if curprod == len(posprod):
+							curprod = 0
+						if curprod == 0:
+							$DistrictMenu/Industry/Sprite2D.texture = null
+							$DistrictMenu/Industry/Label.text = "Industry:
+							None"
+							$DistrictMenu/Popularity.extra = 0
+						else:
+							$DistrictMenu/Industry/Sprite2D.texture = load("res://icons/" + posprod[curprod] + ".png")
+							$DistrictMenu/Industry/Label.text = "Industry:
+								" + posprod[curprod]
+							if posprod[curprod] in districts[zoom].product:
+								$DistrictMenu/Industry/Label.text += "
+								Press x to remove"
+								$DistrictMenu/Popularity.extra = 1
+							else:
+								if len(districts[zoom].product) == 0:
+									$DistrictMenu/Industry/Label.text += "
+									Press enter to confirm"
+									$DistrictMenu/Popularity.extra = 1
+								else:
+									$DistrictMenu/Industry/Label.text += "
+									No available space"
+									$DistrictMenu/Popularity.extra = 1
+								if posprod[curprod] == "fish":
+									$DistrictMenu/Industry/Label.text += "
+									Requires: Water access"
+									$DistrictMenu/Popularity.extra += 1
+								if posprod[curprod] == "factory":
+									$DistrictMenu/Industry/Label.text += "
+									Cost: $100,000"
+									$DistrictMenu/Popularity.extra += 1
+								if posprod[curprod] == "oil":
+									$DistrictMenu/Industry/Label.text += "
+									Requires: 1 factory"
+									$DistrictMenu/Popularity.extra += 1
+								if posprod[curprod] == "research":
+									$DistrictMenu/Industry/Label.text += "
+									Cost: $500,000
+									Requires 1 factory"
+									$DistrictMenu/Popularity.extra += 2
+									
+					if curprod > 0:
+						if Input.is_key_pressed(KEY_X):
+							if posprod[curprod] in districts[zoom].product:
+								if checkprod == false:
+									$DistrictMenu/Industry/Label.text += "
+									Are you sure?"
+									checkprod = true
+									$DistrictMenu/Popularity.extra += 1
+								else:
+									districts[zoom].product.erase(posprod[curprod])
+									checkprod = false
+									$DistrictMenu/Industry/Label.text = "Industry:
+									" + posprod[curprod]
+									if len(districts[zoom].product) == 0:
+										$DistrictMenu/Industry/Label.text += "
+										Press enter to confirm"
+										$DistrictMenu/Popularity.extra = 1
+									else:
+										$DistrictMenu/Industry/Label.text += "
+										No available space"
+										$DistrictMenu/Popularity.extra = 1
+									if posprod[curprod] == "factory":
+										$DistrictMenu/Industry/Label.text += "
+										Cost: $100,000"
+										$DistrictMenu/Popularity.extra += 1
+									if posprod[curprod] == "oil":
+										$DistrictMenu/Industry/Label.text += "
+										Requires: 1 factory"
+										$DistrictMenu/Popularity.extra += 1
+									if posprod[curprod] == "research":
+										$DistrictMenu/Industry/Label.text += "
+										Cost: $500,000
+										Requires 1 factory"
+										$DistrictMenu/Popularity.extra += 2
+						if Input.is_key_pressed(KEY_ENTER):
+							if len(districts[zoom].product) == 0:
+								districts[zoom].product.append(posprod[curprod])
+								$DistrictMenu/Industry/Label.text = "Industry:
+								" + posprod[curprod]
+								$DistrictMenu/Industry/Label.text += "
+								Press x to remove"
+				if event is InputEventMouseButton:
+					if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+						if districts[zoom].clicked == false and $DistrictMenu.anyclicked == false:
+							cameracenter =  Vector2(420, 297)
+							camerazoom = 1
+							zoom = -1
+							for district in 9:
+								if districts[district].clicked == true:
+									districts[district].clicked = false
+						if $DistrictMenu.industry_clicked == true:
+							frame = 1
+							$Camera2D.position = Vector2(1920, 297)
+							$Camera2D.zoom = Vector2(1,1)
+							
+	if frame == 1:
+		if event is InputEventKey and event.pressed:
+			if Input.is_key_pressed(KEY_BACKSPACE):
+				frame = 0
+				$Camera2D.position = Vector2(420, 297)
+				$Camera2D.zoom = Vector2(1,1)
+				 
+
 func _process(delta: float) -> void:
+	if frame == 0:
+		#print($Camera2D.zoom, $Camera2D.position)
+		#print(camerazoom, cameracenter)
+		$Camera2D.position.x += (cameracenter.x - $Camera2D.position.x)/15
+		$Camera2D.position.y += (cameracenter.y - $Camera2D.position.y)/15
+		$Camera2D.zoom.x += (camerazoom - $Camera2D.zoom.x)/30
+		$Camera2D.zoom.y += (camerazoom - $Camera2D.zoom.y)/30
+		
+		$Label2.position = $Camera2D.position + Vector2(256, -290)/$Camera2D.zoom.y
+		$Label2.scale = Vector2(1,1)/$Camera2D.zoom.x
+		
+		
+		if zoom == -1:
+			$DistrictMenu.visible = false
+			$DistrictMenu.position = $Camera2D.position + Vector2(-409, -184)/$Camera2D.zoom.x   
+			$DistrictMenu.scale = Vector2(0.15,0.15)/$Camera2D.zoom.x
+		else:
+			$DistrictMenu.visible = true
+			$DistrictMenu.position = $Camera2D.position + Vector2(-409, -184)/$Camera2D.zoom.x   
+			$DistrictMenu.scale = Vector2(0.15,0.15)/$Camera2D.zoom.x
+		
 	
-	#print($Camera2D.zoom, $Camera2D.position)
-	#print(camerazoom, cameracenter)
-	$Camera2D.position.x += (cameracenter.x - $Camera2D.position.x)/15
-	$Camera2D.position.y += (cameracenter.y - $Camera2D.position.y)/15
-	$Camera2D.zoom.x += (camerazoom - $Camera2D.zoom.x)/30
-	$Camera2D.zoom.y += (camerazoom - $Camera2D.zoom.y)/30
-	
-	$Label2.position = $Camera2D.position + Vector2(256, -290)/$Camera2D.zoom.y
-	$Label2.scale = Vector2(1,1)/$Camera2D.zoom.x
-	
-	
-	if zoom == -1:
-		$DistrictMenu.visible = false
-		$DistrictMenu.position = $Camera2D.position + Vector2(-409, -184)/$Camera2D.zoom.x   
-		$DistrictMenu.scale = Vector2(0.15,0.15)/$Camera2D.zoom.x
-	else:
-		$DistrictMenu.visible = true
-		$DistrictMenu.position = $Camera2D.position + Vector2(-409, -184)/$Camera2D.zoom.x   
-		$DistrictMenu.scale = Vector2(0.15,0.15)/$Camera2D.zoom.x
