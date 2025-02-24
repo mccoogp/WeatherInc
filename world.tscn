@@ -1,18 +1,26 @@
-[gd_scene load_steps=12 format=3 uid="uid://dgo4cwa032h0v"]
+[gd_scene load_steps=17 format=3 uid="uid://dgo4cwa032h0v"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_3gon6"]
 [ext_resource type="PackedScene" uid="uid://cacfd62pudml6" path="res://district.tscn" id="2_41llr"]
+[ext_resource type="Texture2D" uid="uid://b42u6galvg4kj" path="res://ogpc_map/mapfr.png" id="2_yw1kr"]
 [ext_resource type="Texture2D" uid="uid://csgnvamjyfsfx" path="res://icon.svg" id="3_w2861"]
+[ext_resource type="Texture2D" uid="uid://ccq87xsoyvug2" path="res://ogpc_map/map1.png" id="4_nrn2x"]
 [ext_resource type="Texture2D" uid="uid://ci40uw4qw76ht" path="res://Box.png" id="4_r5mvf"]
+[ext_resource type="Texture2D" uid="uid://chk56xbm72gq8" path="res://ogpc_map/map2.png" id="5_java2"]
 [ext_resource type="Script" path="res://district_menu.gd" id="5_s2cnt"]
 [ext_resource type="Script" path="res://industry_menu_clicked.gd" id="6_ttn6t"]
 [ext_resource type="Script" path="res://popularity.gd" id="7_b887d"]
+[ext_resource type="Script" path="res://label_2.gd" id="7_vefmc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_j4inj"]
 font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_afd1u"]
 font_size = 70
+
+[sub_resource type="LabelSettings" id="LabelSettings_1rgr7"]
+font_size = 70
+font_color = Color(1, 1, 3.226, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_1erbk"]
 font_size = 34
@@ -24,56 +32,59 @@ font_size = 40
 script = ExtResource("1_3gon6")
 districts = [NodePath("District"), NodePath("District2"), NodePath("District3"), NodePath("District4"), NodePath("District5"), NodePath("District6"), NodePath("District7"), NodePath("District8"), NodePath("District9")]
 
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(417, 309)
+scale = Vector2(0.720001, 0.716921)
+texture = ExtResource("2_yw1kr")
+
 [node name="District" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(83, 86)
-center = Vector2(180, 160)
-zoom = 2.5
-image = ExtResource("3_w2861")
+position = Vector2(23, 91)
+scale = Vector2(67, 67)
+water = true
+center = Vector2(60, 150)
+zoom = 1.75
+image = ExtResource("4_nrn2x")
 
 [node name="District2" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(240, 78)
+position = Vector2(194, 17)
+scale = Vector2(67, 67)
 DistrictNumber = 2
-zoom = 1.0
-image = ExtResource("3_w2861")
+water = true
+center = Vector2(200, 50)
+zoom = 3.0
+image = ExtResource("5_java2")
 
 [node name="District3" parent="." instance=ExtResource("2_41llr")]
 position = Vector2(413, 84)
 DistrictNumber = 3
-image = ExtResource("3_w2861")
 
 [node name="District4" parent="." instance=ExtResource("2_41llr")]
 position = Vector2(87, 238)
 DistrictNumber = 4
-image = ExtResource("3_w2861")
 
 [node name="District5" parent="." instance=ExtResource("2_41llr")]
 position = Vector2(254, 241)
 DistrictNumber = 5
 water = true
-image = ExtResource("3_w2861")
 
 [node name="District6" parent="." instance=ExtResource("2_41llr")]
 position = Vector2(417, 248)
 DistrictNumber = 6
 water = true
-image = ExtResource("3_w2861")
 
 [node name="District7" parent="." instance=ExtResource("2_41llr")]
 position = Vector2(83, 397)
 DistrictNumber = 7
 water = true
-image = ExtResource("3_w2861")
 
 [node name="District8" parent="." instance=ExtResource("2_41llr")]
 position = Vector2(253, 399)
 DistrictNumber = 8
 water = true
-image = ExtResource("3_w2861")
 
 [node name="District9" parent="." instance=ExtResource("2_41llr")]
 position = Vector2(420, 398)
 DistrictNumber = 9
-image = ExtResource("3_w2861")
 
 [node name="Label2" type="Label" parent="."]
 offset_left = 676.0
@@ -117,6 +128,14 @@ label_settings = SubResource("LabelSettings_afd1u")
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
+[node name="Label2" type="Label" parent="DistrictMenu/Industry"]
+offset_left = -256.472
+offset_top = -149.635
+offset_right = 392.528
+offset_bottom = -53.6348
+label_settings = SubResource("LabelSettings_1rgr7")
+script = ExtResource("7_vefmc")
+
 [node name="Popularity" type="Sprite2D" parent="DistrictMenu" node_paths=PackedStringArray("menu")]
 position = Vector2(-137.5, 875)
 scale = Vector2(2.096, 2.096)
@@ -149,19 +168,19 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(420, 297)
 
 [node name="Label" type="Label" parent="."]
-offset_left = 205.0
-offset_top = 8.0
-offset_right = 401.0
-offset_bottom = 62.0
+offset_left = 733.0
+offset_top = 55.0
+offset_right = 929.0
+offset_bottom = 109.0
 text = "Phase = 1"
 label_settings = SubResource("LabelSettings_1erbk")
 
 [node name="Label3" type="Label" parent="."]
-offset_left = 1371.0
+offset_left = 1370.0
 offset_top = 2.0
-offset_right = 1904.0
+offset_right = 1903.0
 offset_bottom = 161.0
 scale = Vector2(0.839998, 0.839998)
 text = "Possible Industries:
-Meat: "
+Meat: blah blah blah"
 label_settings = SubResource("LabelSettings_7wjru")

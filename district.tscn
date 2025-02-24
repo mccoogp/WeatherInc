@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cacfd62pudml6"]
+[gd_scene load_steps=3 format=3 uid="uid://cacfd62pudml6"]
 
 [ext_resource type="Script" path="res://district.gd" id="1_gpufd"]
-[ext_resource type="Texture2D" uid="uid://csgnvamjyfsfx" path="res://icon.svg" id="2_7h7nu"]
 [ext_resource type="Script" path="res://districtsprite.gd" id="3_mvpsf"]
 
 [node name="District" type="Node2D"]
@@ -11,7 +10,6 @@ script = ExtResource("1_gpufd")
 [node name="Main" type="Sprite2D" parent="." node_paths=PackedStringArray("district")]
 position = Vector2(0.71, 0.71)
 scale = Vector2(0.0107812, 0.0107812)
-texture = ExtResource("2_7h7nu")
 script = ExtResource("3_mvpsf")
 district = NodePath("..")
 

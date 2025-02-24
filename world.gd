@@ -9,7 +9,7 @@ var totalpop = 0
 var foodprod = 0
 var phase = 1
 var food = 10000
-var money = 0
+var money = 150000
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -22,6 +22,7 @@ var camerazoom = 1
 var posprod = ["none", "grain", "meat", "fish", "factory", "oil", "research"]
 var curprod = 0
 var checkprod = false
+var factories = 0
 
 
 var frame = 0
@@ -81,6 +82,7 @@ func _input(event):
 							$DistrictMenu/Industry/Label.text = "Industry:
 							None"
 							$DistrictMenu/Popularity.extra = 0
+							$DistrictMenu/Industry/Label2.text = ""
 						else:
 							$DistrictMenu/Industry/Sprite2D.texture = load("res://icons/" + posprod[curprod] + ".png")
 							$DistrictMenu/Industry/Label.text = "Industry:
@@ -89,6 +91,7 @@ func _input(event):
 								$DistrictMenu/Industry/Label.text += "
 								Press x to remove"
 								$DistrictMenu/Popularity.extra = 1
+								$DistrictMenu/Industry/Label2.text = ""
 							else:
 								if len(districts[zoom].product) == 0:
 									$DistrictMenu/Industry/Label.text += "
@@ -101,21 +104,44 @@ func _input(event):
 								if posprod[curprod] == "fish":
 									$DistrictMenu/Industry/Label.text += "
 									Requires: Water access"
-									$DistrictMenu/Popularity.extra += 1
+									if districts[zoom].water == true:
+										$DistrictMenu/Industry/Label2.text = "Reuirements met"
+										$DistrictMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+									else:
+										$DistrictMenu/Industry/Label2.text = "Reuirements not met"
+										$DistrictMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+									$DistrictMenu/Popularity.extra += 2
 								if posprod[curprod] == "factory":
 									$DistrictMenu/Industry/Label.text += "
 									Cost: $100,000"
-									$DistrictMenu/Popularity.extra += 1
+									$DistrictMenu/Popularity.extra += 2
+									if money >= 100000:
+										$DistrictMenu/Industry/Label2.text = "Reuirements met"
+										$DistrictMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+									else:
+										$DistrictMenu/Industry/Label2.text = "Reuirements not met"
+										$DistrictMenu/Industry/Label2.get_label_settings().font_color = Color.RED
 								if posprod[curprod] == "oil":
 									$DistrictMenu/Industry/Label.text += "
 									Requires: 1 factory"
-									$DistrictMenu/Popularity.extra += 1
+									$DistrictMenu/Popularity.extra += 2
+									if factories >= 1:
+										$DistrictMenu/Industry/Label2.text = "Reuirements met"
+										$DistrictMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+									else:
+										$DistrictMenu/Industry/Label2.text = "Reuirements not met"
+										$DistrictMenu/Industry/Label2.get_label_settings().font_color = Color.RED
 								if posprod[curprod] == "research":
 									$DistrictMenu/Industry/Label.text += "
 									Cost: $500,000
 									Requires 1 factory"
-									$DistrictMenu/Popularity.extra += 2
-									
+									if money >= 500000 and factories >= 1:
+										$DistrictMenu/Industry/Label2.text = "Reuirements met"
+										$DistrictMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+									else:
+										$DistrictMenu/Industry/Label2.text = "Reuirements not met"
+										$DistrictMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+									$DistrictMenu/Popularity.extra += 3
 					if curprod > 0:
 						if Input.is_key_pressed(KEY_X):
 							if posprod[curprod] in districts[zoom].product:
@@ -177,7 +203,7 @@ func _input(event):
 				frame = 0
 				$Camera2D.position = Vector2(420, 297)
 				$Camera2D.zoom = Vector2(1,1)
-				 
+				$DistrictMenu.industry_clicked = false
 
 func _process(delta: float) -> void:
 	if frame == 0:
