@@ -12,6 +12,7 @@ var food = 10000
 var money = 150000
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$Label4.text = "Food = " + str(food) + "\nMoney = " + str(money)
 	pass
 
 
@@ -49,16 +50,17 @@ func _input(event):
 				
 				phase += 1
 				
-				if phase == 5:
+				if phase == 6:
 					totalpop = 0
 					foodprod = 0
 					for district in 9:
 						totalpop += districts[district].population
-						if "food" in districts[district].production:
-							foodprod += 3000
+						if "grain" in districts[district].product or "meat" in districts[district].product or "fish" in districts[district].product:
+							foodprod += 3 * districts[district].productivity * districts[district].population
 					food += foodprod - totalpop
 					phase = 1
 				$Label.text = "Phase = " + str(phase)
+				$Label4.text = "Food = " + str(food) + "\nMoney = " + str(money)
 		if phase == 3:
 			if zoom == -1:
 				curprod = 0
@@ -147,7 +149,7 @@ func _input(event):
 							if posprod[curprod] in districts[zoom].product:
 								if checkprod == false:
 									$DistrictMenu/Industry/Label.text += "
-									Are you sure?"
+									Press X to confirm"
 									checkprod = true
 									$DistrictMenu/Popularity.extra += 1
 								else:
