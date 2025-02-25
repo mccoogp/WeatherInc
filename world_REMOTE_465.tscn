@@ -12,7 +12,6 @@
 [ext_resource type="Script" path="res://industry_menu_clicked.gd" id="6_ttn6t"]
 [ext_resource type="Script" path="res://popularity.gd" id="7_b887d"]
 [ext_resource type="Script" path="res://label_2.gd" id="7_vefmc"]
-[ext_resource type="PackedScene" uid="uid://begnb2n0ndp25" path="res://news.tscn" id="12_k216x"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_j4inj"]
 font_size = 24
@@ -35,7 +34,6 @@ script = ExtResource("1_3gon6")
 districts = [NodePath("District"), NodePath("District2"), NodePath("District3"), NodePath("District4"), NodePath("District5"), NodePath("District6"), NodePath("District7"), NodePath("District8"), NodePath("District9")]
 
 [node name="Background" type="Sprite2D" parent="."]
-texture_filter = 1
 position = Vector2(417, 309)
 scale = Vector2(0.720001, 0.716921)
 texture = ExtResource("2_yw1kr")
@@ -95,7 +93,6 @@ position = Vector2(420, 398)
 DistrictNumber = 9
 
 [node name="Label2" type="Label" parent="."]
-texture_filter = 2
 offset_left = 676.0
 offset_top = 7.0
 offset_right = 965.0
@@ -199,16 +196,3 @@ scale = Vector2(0.839998, 0.839998)
 text = "Possible Industries:
 Meat: blah blah blah"
 label_settings = SubResource("LabelSettings_7wjru")
-<<<<<<< HEAD
-
-[node name="Label4" type="Label" parent="."]
-offset_left = 688.0
-offset_top = 67.0
-offset_right = 979.0
-offset_bottom = 142.0
-
-[node name="HUD" type="CanvasLayer" parent="."]
-
-[node name="News" parent="HUD" instance=ExtResource("12_k216x")]
-=======
->>>>>>> 2d8af20c4503bfe11f3276bd8dffbfb88914dff3
