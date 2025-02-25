@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dgo4cwa032h0v"]
+[gd_scene load_steps=19 format=3 uid="uid://dgo4cwa032h0v"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_3gon6"]
 [ext_resource type="PackedScene" uid="uid://cacfd62pudml6" path="res://district.tscn" id="2_41llr"]
@@ -105,6 +105,7 @@ text = "Press space for next step"
 label_settings = SubResource("LabelSettings_j4inj")
 
 [node name="Label" type="Label" parent="Label2"]
+layout_mode = 0
 offset_left = 53.0
 offset_top = -41.0
 offset_right = 249.0
@@ -113,6 +114,7 @@ text = "Phase = 1"
 label_settings = SubResource("LabelSettings_1erbk")
 
 [node name="Label4" type="Label" parent="Label2"]
+layout_mode = 0
 offset_left = 12.0
 offset_top = 60.0
 offset_right = 303.0
@@ -199,10 +201,7 @@ scale = Vector2(0.839998, 0.839998)
 text = "Possible Industries:
 Meat: blah blah blah"
 label_settings = SubResource("LabelSettings_7wjru")
-<<<<<<< HEAD
 
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="News" parent="HUD" instance=ExtResource("12_k216x")]
-=======
->>>>>>> 2d8af20c4503bfe11f3276bd8dffbfb88914dff3
+[node name="News" parent="CanvasLayer" instance=ExtResource("12_k216x")]
