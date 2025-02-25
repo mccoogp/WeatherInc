@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bw83k6s3dh6ys"]
+
+[ext_resource type="FontFile" uid="uid://dhwvo5v6y25wn" path="res://labels/font.tres" id="1_c6fl8"]
+
+[resource]
+line_spacing = 10.0
+font = ExtResource("1_c6fl8")
+font_size = 40
