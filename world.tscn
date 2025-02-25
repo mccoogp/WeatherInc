@@ -201,12 +201,6 @@ Meat: blah blah blah"
 label_settings = SubResource("LabelSettings_7wjru")
 <<<<<<< HEAD
 
-[node name="Label4" type="Label" parent="."]
-offset_left = 688.0
-offset_top = 67.0
-offset_right = 979.0
-offset_bottom = 142.0
-
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="News" parent="HUD" instance=ExtResource("12_k216x")]
