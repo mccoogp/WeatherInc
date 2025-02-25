@@ -48,9 +48,8 @@ func _input(event):
 	if frame == 0:
 		if event is InputEventKey and event.pressed:
 			if Input.is_key_pressed(KEY_SPACE) and zoom == -1:
-				
 				phase += 1
-				
+				$CanvasLayer/News.hide()
 				if phase == 5:
 					factories = 0
 					totalpop = 0
@@ -73,6 +72,7 @@ func _input(event):
 					food += foodprod - totalpop
 					money += foodprod
 					phase = 1
+					$CanvasLayer/News.show()
 
 		if phase == 3:
 			if zoom == -1:
