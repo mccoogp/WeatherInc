@@ -4,8 +4,11 @@ extends Node2D
 @export var water = false
 @export var population = 1000
 @export var productivity = 1
+@export var tax = 1
+@export var newtax = 1
+@export var popularity = 50
 var setup = 1
-var product = []
+var product = [] 
 var clicked = false
 
 @export var center: Vector2

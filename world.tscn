@@ -189,6 +189,18 @@ horizontal_alignment = 2
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="Tax_Label" type="Label" parent="DistrictMenu"]
+anchors_preset = -1
+anchor_left = -699.83
+anchor_top = 1309.88
+anchor_right = -699.83
+anchor_bottom = 1309.88
+offset_left = 74.83
+offset_top = -171.878
+offset_right = 153.83
+offset_bottom = 67.1219
+scale = Vector2(17, 1)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(420, 297)
 

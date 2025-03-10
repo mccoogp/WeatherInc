@@ -55,11 +55,20 @@ func _input(event):
 					totalpop = 0
 					foodprod = 0
 					for district in 9:
+						if districts[district].tax < districts[district].newtax:
+							for a in range(int((districts[district].newtax-districts[district].tax)/0.5)):
+								popularity_down(districts[district])
+						if districts[district].tax > districts[district].newtax:
+							for a in range(int((districts[district].tax-districts[district].newtax)/0.5)):
+								popularity_up(districts[district])		
+						districts[district].tax = districts[district].newtax
+					for district in 9:
 						totalpop += districts[district].population
 						if "grain" in districts[district].product:
 							foodprod += 3 * districts[district].productivity * districts[district].population
 						if "meat" in districts[district].product or "fish" in districts[district].product:
 							foodprod += 5 * districts[district].productivity * districts[district].population * districts[district].setup
+							money += foodprod * districts[district].tax
 							districts[district].setup = 1
 						if "factory" in districts[district].product:
 							factories += 1
@@ -70,7 +79,6 @@ func _input(event):
 						if "research" in districts[district].product:
 							districts[district].setup = 1
 					food += foodprod - totalpop
-					money += foodprod
 					phase = 1
 					$CanvasLayer/News.show()
 
@@ -101,6 +109,7 @@ func _input(event):
 							None"
 							$DistrictMenu/Popularity.extra = 0
 							$DistrictMenu/Industry/Label2.text = ""
+							$DistrictMenu/Tax_Label.text = "Tax: " + str(districts[zoom].tax)
 						else:
 							$DistrictMenu/Industry/Sprite2D.texture = load("res://icons/" + posprod[curprod] + ".png")
 							$DistrictMenu/Industry/Label.text = "Industry:
@@ -162,6 +171,12 @@ func _input(event):
 									$DistrictMenu/Popularity.extra += 3
 								else:
 									$DistrictMenu/Industry/Label2.text = ""
+					if Input.is_key_pressed(KEY_UP):
+						districts[zoom].newtax += 0.5
+						$DistrictMenu/Tax_Label.text = "Tax: " + str(districts[zoom].tax)
+					if Input.is_key_pressed(KEY_UP):
+						districts[zoom].newtax -= 0.5
+						$DistrictMenu/Tax_Label.text = "Tax: " + str(districts[zoom].tax)				
 					if curprod > 0:
 						if Input.is_key_pressed(KEY_X):
 							if posprod[curprod] in districts[zoom].product:
