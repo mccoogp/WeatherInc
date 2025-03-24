@@ -1,7 +1,7 @@
 extends Sprite2D
 
 @export var menu: Node2D
-var extra = 0
+@export var extra = 0
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:

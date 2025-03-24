@@ -34,13 +34,13 @@ func popularity_down(district):
 	'''
 	removes 5-15% of your popularity in the given inputed district number
 	'''
-	districts[district].popularity *= randf_range(8.5,9.5)/10
+	district.popularity *= randf_range(8.5,9.5)/10
 	
 func popularity_up(district):
 	'''
 	gains 5-15% of the population you are not popular amoung in the given inputed district number
 	'''
-	districts[district].popularity += (100-districts[district].popularity)* randf_range(0.5,1.5)/10
+	district.popularity += (100-districts[district].popularity)* randf_range(0.5,1.5)/10
 	
 func _input(event):
 	
@@ -55,6 +55,8 @@ func _input(event):
 					totalpop = 0
 					foodprod = 0
 					for district in 9:
+						if districts[district].newtax > 100:
+							districts[district].newtax = 100
 						if districts[district].tax < districts[district].newtax:
 							for a in range(int((districts[district].newtax-districts[district].tax)/0.5)):
 								popularity_down(districts[district])
@@ -65,10 +67,13 @@ func _input(event):
 					for district in 9:
 						totalpop += districts[district].population
 						if "grain" in districts[district].product:
-							foodprod += 3 * districts[district].productivity * districts[district].population
+							var district_foodprod = 3 * districts[district].productivity * districts[district].population
+							foodprod += district_foodprod
+							money += district_foodprod * districts[district].tax
 						if "meat" in districts[district].product or "fish" in districts[district].product:
-							foodprod += 5 * districts[district].productivity * districts[district].population * districts[district].setup
-							money += foodprod * districts[district].tax
+							var district_foodprod = 5 * districts[district].productivity * districts[district].population * districts[district].setup
+							foodprod += district_foodprod
+							money += district_foodprod * districts[district].tax
 							districts[district].setup = 1
 						if "factory" in districts[district].product:
 							factories += 1
@@ -79,6 +84,7 @@ func _input(event):
 						if "research" in districts[district].product:
 							districts[district].setup = 1
 					food += foodprod - totalpop
+					print("adding money")
 					phase = 1
 					$CanvasLayer/News.show()
 
@@ -173,10 +179,11 @@ func _input(event):
 									$DistrictMenu/Industry/Label2.text = ""
 					if Input.is_key_pressed(KEY_UP):
 						districts[zoom].newtax += 0.5
-						$DistrictMenu/Tax_Label.text = "Tax: " + str(districts[zoom].tax)
-					if Input.is_key_pressed(KEY_UP):
+						$DistrictMenu/Tax_Label.text = "Tax: " + str(districts[zoom].newtax)
+					if Input.is_key_pressed(KEY_DOWN):
 						districts[zoom].newtax -= 0.5
-						$DistrictMenu/Tax_Label.text = "Tax: " + str(districts[zoom].tax)				
+						print((districts[zoom]).newtax)
+						$DistrictMenu/Tax_Label.text = "Tax: " + str(districts[zoom].newtax)			
 					if curprod > 0:
 						if Input.is_key_pressed(KEY_X):
 							if posprod[curprod] in districts[zoom].product:
@@ -295,5 +302,6 @@ func _process(delta: float) -> void:
 			$DistrictMenu.visible = true
 			$DistrictMenu.position = $Camera2D.position + Vector2(-409, -184)/$Camera2D.zoom.x   
 			$DistrictMenu.scale = Vector2(0.15,0.15)/$Camera2D.zoom.x
+			$DistrictMenu/Tax_Label.text = "Tax: " + str(districts[zoom].newtax)
 		
 	
