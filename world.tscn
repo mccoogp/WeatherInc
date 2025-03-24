@@ -193,16 +193,16 @@ horizontal_alignment = 2
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Tax_Label" type="Label" parent="DistrictMenu"]
+[node name="Tax_Label" type="Label" parent="DistrictMenu/Popularity"]
 anchors_preset = -1
 anchor_left = -605.0
 anchor_top = 1245.65
 anchor_right = -605.0
 anchor_bottom = 1245.65
-offset_left = -20.0
-offset_top = -107.647
-offset_right = -15.0
-offset_bottom = 131.353
+offset_left = 725767.0
+offset_top = -1.49465e+06
+offset_right = 725772.0
+offset_bottom = -1.49442e+06
 scale = Vector2(4, 4)
 label_settings = SubResource("LabelSettings_luws0")
 script = ExtResource("13_6327v")
