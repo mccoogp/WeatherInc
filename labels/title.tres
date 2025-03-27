@@ -5,4 +5,4 @@
 [resource]
 line_spacing = 10.0
 font = ExtResource("1_c6fl8")
-font_size = 40
+font_size = 15

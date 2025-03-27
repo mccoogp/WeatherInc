@@ -10,6 +10,7 @@ var foodprod = 0
 var phase = 1
 var food = 10000
 var money = 50000
+var temp = 60
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -84,8 +85,16 @@ func _input(event):
 						if "research" in districts[district].product:
 							districts[district].setup = 1
 					food += foodprod - totalpop
-					print("adding money")
+					
+
 					phase = 1
+					
+					#news stuff
+					$CanvasLayer/News/ScrollContainer/TextureRect/VBoxContainer/Production_title/Temp.text = "Average surface\ntempurature: " + str(temp) + "°F"
+					if foodprod >= totalpop:
+						$CanvasLayer/News/ScrollContainer/TextureRect/VBoxContainer/Production_title/Food_calc.text = str(foodprod) + "\n-" + str(totalpop) + "\n________\n+" + str(foodprod - totalpop)
+					else:
+						$CanvasLayer/News/ScrollContainer/TextureRect/VBoxContainer/Production_title/Food_calc.text = str(foodprod) + "\n-" + str(totalpop) + "\n________\n-" + str(foodprod - totalpop)
 					$CanvasLayer/News.show()
 
 		if phase == 3:
