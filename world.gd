@@ -124,7 +124,7 @@ func _input(event):
 							None"
 							$DistrictMenu/Popularity.extra = 0
 							$DistrictMenu/Industry/Label2.text = ""
-							$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].tax)
+							$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].tax) + "%"
 						else:
 							$DistrictMenu/Industry/Sprite2D.texture = load("res://icons/" + posprod[curprod] + ".png")
 							$DistrictMenu/Industry/Label.text = "Industry:
@@ -188,11 +188,11 @@ func _input(event):
 									$DistrictMenu/Industry/Label2.text = ""
 					if Input.is_key_pressed(KEY_UP):
 						districts[zoom].newtax += 0.5
-						$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax)
+						$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax) + "%"
 					if Input.is_key_pressed(KEY_DOWN):
 						districts[zoom].newtax -= 0.5
 						print((districts[zoom]).newtax)
-						$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax)			
+						$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax) + "%"		
 					if curprod > 0:
 						if Input.is_key_pressed(KEY_X):
 							if posprod[curprod] in districts[zoom].product:
@@ -317,5 +317,5 @@ func _process(delta: float) -> void:
 			$DistrictMenu.visible = true
 			$DistrictMenu.position = $Camera2D.position + Vector2(-409, -184)/$Camera2D.zoom.x   
 			$DistrictMenu.scale = Vector2(0.15,0.15)/$Camera2D.zoom.x
-			$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax)
+			$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax) + "%"
 	

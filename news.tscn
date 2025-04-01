@@ -98,6 +98,7 @@ position = Vector2(455, 66)
 texture = ExtResource("6_wc150")
 
 [node name="Food_calc" type="Label" parent="ScrollContainer/TextureRect/VBoxContainer/Production_title"]
+layout_mode = 0
 offset_left = 19.0
 offset_top = 96.0
 offset_right = 96.0
@@ -107,6 +108,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Temp" type="Label" parent="ScrollContainer/TextureRect/VBoxContainer/Production_title"]
+layout_mode = 0
 offset_left = 112.0
 offset_top = 50.0
 offset_right = 234.0
