@@ -43,6 +43,21 @@ func popularity_up(district):
 	'''
 	district.popularity += (100-districts[district].popularity)* randf_range(0.5,1.5)/10
 	
+func disaster(temp):
+	'''
+	creates a random number and if the current temp is higher then a random disaster is triggered
+	'''
+	var disasters = ["tornado", "drought", "acid rain", "flood"]
+	var disease = ['Influenza']
+	var ran = randi_range(50,300)
+	if ran < temp:
+		if randi_range(0,1) == 0:
+			return disasters[randi_range(0,len(disasters)-1)]
+		else:
+			return disease[randi_range(0,len(disease)-1)]
+	else:
+		return('none')
+	
 func _input(event):
 	
 	
@@ -55,6 +70,8 @@ func _input(event):
 					factories = 0
 					totalpop = 0
 					foodprod = 0
+					
+					#taxes
 					for district in 9:
 						if districts[district].newtax > 100:
 							districts[district].newtax = 100
@@ -65,6 +82,8 @@ func _input(event):
 							for a in range(int((districts[district].tax-districts[district].newtax)/0.5)):
 								popularity_up(districts[district])		
 						districts[district].tax = districts[district].newtax
+					
+					#production	
 					for district in 9:
 						totalpop += districts[district].population
 						if "grain" in districts[district].product:
@@ -86,6 +105,16 @@ func _input(event):
 							districts[district].setup = 1
 					food += foodprod - totalpop
 					
+					#disasters
+					for district in 9:
+						var thing = disaster(temp)
+						if thing == "none":
+							pass
+						elif thing == "tornado":
+							pass
+							
+							
+								
 
 					phase = 1
 					
@@ -191,6 +220,8 @@ func _input(event):
 						$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax) + "%"
 					if Input.is_key_pressed(KEY_DOWN):
 						districts[zoom].newtax -= 0.5
+						if districts[zoom].newtax < 0:
+							districts[zoom].newtax = 0
 						print((districts[zoom]).newtax)
 						$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax) + "%"		
 					if curprod > 0:
