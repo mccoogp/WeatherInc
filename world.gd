@@ -302,11 +302,11 @@ func _process(delta: float) -> void:
 		
 		if zoom == -1:
 			$DistrictMenu.visible = false
-			$DistrictMenu.position = $Camera2D.position + Vector2(-409, -184)/$Camera2D.zoom.x   
+			$DistrictMenu.position = $Camera2D.position + Vector2(-479, -184)/$Camera2D.zoom.x   
 			$DistrictMenu.scale = Vector2(0.15,0.15)/$Camera2D.zoom.x
 		else:
 			$DistrictMenu.visible = true
-			$DistrictMenu.position = $Camera2D.position + Vector2(-409, -184)/$Camera2D.zoom.x   
+			$DistrictMenu.position = $Camera2D.position + Vector2(-479, -184)/$Camera2D.zoom.x   
 			$DistrictMenu.scale = Vector2(0.15,0.15)/$Camera2D.zoom.x
 			$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax)
 	

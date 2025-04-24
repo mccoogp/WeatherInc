@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://begnb2n0ndp25"]
+[gd_scene load_steps=7 format=3 uid="uid://s2poj2l4nlfc"]
 
 [ext_resource type="Script" path="res://scroll_container.gd" id="1_esmcc"]
 [ext_resource type="Texture2D" uid="uid://d37hrhx7v44rg" path="res://tan background.jpg" id="1_iok06"]
