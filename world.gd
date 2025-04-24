@@ -72,7 +72,7 @@ func _input(event):
 					foodprod = 0
 					
 					#taxes
-					for district in 9:
+					for district in 16:
 						if districts[district].newtax > 100:
 							districts[district].newtax = 100
 						if districts[district].tax < districts[district].newtax:
@@ -84,7 +84,7 @@ func _input(event):
 						districts[district].tax = districts[district].newtax
 					
 					#production	
-					for district in 9:
+					for district in 16:
 						totalpop += districts[district].population
 						if "grain" in districts[district].product:
 							var district_foodprod = 3 * districts[district].productivity * districts[district].population
@@ -106,7 +106,7 @@ func _input(event):
 					food += foodprod - totalpop
 					
 					#disasters
-					for district in 9:
+					for district in 16:
 						var thing = disaster(temp)
 						if thing == "none":
 							pass
@@ -129,7 +129,7 @@ func _input(event):
 		if phase == 3:
 			if zoom == -1:
 				curprod = 0
-				for district in 9:
+				for district in 16:
 					if districts[district].clicked == true:
 						zoom = district
 						cameracenter = districts[district].center
@@ -301,7 +301,7 @@ func _input(event):
 							cameracenter =  Vector2(420, 297)
 							camerazoom = 1
 							zoom = -1
-							for district in 9:
+							for district in 16:
 								if districts[district].clicked == true:
 									districts[district].clicked = false
 							$DistrictMenu/Industry/Sprite2D.texture = null

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dgo4cwa032h0v"]
+[gd_scene load_steps=29 format=3 uid="uid://dgo4cwa032h0v"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_3gon6"]
 [ext_resource type="PackedScene" uid="uid://cacfd62pudml6" path="res://district.tscn" id="2_41llr"]
@@ -20,6 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://dq6yda8lu7x8d" path="res://ogpc_map/map9.png" id="12_7bvj4"]
 [ext_resource type="PackedScene" uid="uid://s2poj2l4nlfc" path="res://news.tscn" id="12_k216x"]
 [ext_resource type="Script" path="res://tax_label.gd" id="13_6327v"]
+[ext_resource type="Texture2D" uid="uid://b1yqgep36wrhs" path="res://ogpc_map/map10.png" id="13_thahp"]
+[ext_resource type="Texture2D" uid="uid://lbnmtd3bb3gc" path="res://ogpc_map/map11.png" id="14_e5fce"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_j4inj"]
 font_size = 24
@@ -43,7 +45,7 @@ font_size = 40
 [node name="world" type="Node2D" node_paths=PackedStringArray("districts")]
 scale = Vector2(0.84, 0.84)
 script = ExtResource("1_3gon6")
-districts = [NodePath("District"), NodePath("District2"), NodePath("District3"), NodePath("District4"), NodePath("District5"), NodePath("District6"), NodePath("District7"), NodePath("District8"), NodePath("District9")]
+districts = [NodePath("District"), NodePath("District2"), NodePath("District3"), NodePath("District4"), NodePath("District5"), NodePath("District6"), NodePath("District7"), NodePath("District8"), NodePath("District9"), NodePath("District10"), NodePath("District11"), NodePath("District12"), NodePath("District13"), NodePath("District14"), NodePath("District15"), NodePath("District16")]
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -136,6 +138,7 @@ zoom = 2.7
 image = ExtResource("11_fs5wx")
 
 [node name="District9" parent="." instance=ExtResource("2_41llr")]
+visible = false
 texture_filter = 1
 position = Vector2(429.762, 300)
 scale = Vector2(67, 67)
@@ -143,6 +146,39 @@ DistrictNumber = 9
 center = Vector2(490, 340)
 zoom = 2.3
 image = ExtResource("12_7bvj4")
+
+[node name="District10" parent="." instance=ExtResource("2_41llr")]
+visible = false
+texture_filter = 1
+position = Vector2(613.095, 261.905)
+scale = Vector2(67, 67)
+DistrictNumber = 10
+center = Vector2(629, 290)
+zoom = 3.2
+image = ExtResource("13_thahp")
+
+[node name="District11" parent="." instance=ExtResource("2_41llr")]
+texture_filter = 1
+position = Vector2(790.476, 247.619)
+scale = Vector2(67, 67)
+center = Vector2(820, 300)
+zoom = 2.5
+image = ExtResource("14_e5fce")
+
+[node name="District12" parent="." instance=ExtResource("2_41llr")]
+visible = false
+
+[node name="District13" parent="." instance=ExtResource("2_41llr")]
+visible = false
+
+[node name="District14" parent="." instance=ExtResource("2_41llr")]
+visible = false
+
+[node name="District15" parent="." instance=ExtResource("2_41llr")]
+visible = false
+
+[node name="District16" parent="." instance=ExtResource("2_41llr")]
+visible = false
 
 [node name="Label2" type="Label" parent="."]
 texture_filter = 2
