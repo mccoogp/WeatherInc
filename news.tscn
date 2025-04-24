@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://s2poj2l4nlfc"]
+[gd_scene load_steps=10 format=3 uid="uid://begnb2n0ndp25"]
 
 [ext_resource type="Script" path="res://scroll_container.gd" id="1_esmcc"]
 [ext_resource type="Texture2D" uid="uid://d37hrhx7v44rg" path="res://tan background.jpg" id="1_iok06"]
 [ext_resource type="LabelSettings" uid="uid://bw83k6s3dh6ys" path="res://labels/title.tres" id="2_i62pv"]
 [ext_resource type="Script" path="res://update_btn.gd" id="3_gt6nm"]
+[ext_resource type="Texture2D" uid="uid://dj424tw2qv7j0" path="res://icons/grain.png" id="4_dw5ri"]
+[ext_resource type="Texture2D" uid="uid://d4hn8p3qer7pl" path="res://icons/research.png" id="5_g0iih"]
+[ext_resource type="Texture2D" uid="uid://blgwak8ty3to5" path="res://icons/oil.png" id="6_wc150"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yleyt"]
 
@@ -14,6 +17,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -17.0
+offset_top = -25.0
+offset_right = -17.0
+offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -70,6 +77,47 @@ layout_mode = 2
 text = "Georgia Wabbam, Shazzam, news, news, news, news, news, news, news, news, news, news, news, news, news, news, news, "
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="Production_title" type="Label" parent="ScrollContainer/TextureRect/VBoxContainer"]
+layout_mode = 2
+text = "Numbers"
+label_settings = ExtResource("2_i62pv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Food indicator" type="Sprite2D" parent="ScrollContainer/TextureRect/VBoxContainer/Production_title"]
+position = Vector2(59, 64)
+texture = ExtResource("4_dw5ri")
+
+[node name="Research indicator" type="Sprite2D" parent="ScrollContainer/TextureRect/VBoxContainer/Production_title"]
+position = Vector2(288, 64)
+texture = ExtResource("5_g0iih")
+
+[node name="Energy indicator" type="Sprite2D" parent="ScrollContainer/TextureRect/VBoxContainer/Production_title"]
+position = Vector2(455, 66)
+texture = ExtResource("6_wc150")
+
+[node name="Food_calc" type="Label" parent="ScrollContainer/TextureRect/VBoxContainer/Production_title"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 96.0
+offset_right = 96.0
+offset_bottom = 137.0
+label_settings = ExtResource("2_i62pv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Temp" type="Label" parent="ScrollContainer/TextureRect/VBoxContainer/Production_title"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 50.0
+offset_right = 234.0
+offset_bottom = 92.0
+text = "Average surface
+tempurature: 60°F"
+label_settings = ExtResource("2_i62pv")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="UpdateToggle" type="Button" parent="."]
 layout_direction = 1

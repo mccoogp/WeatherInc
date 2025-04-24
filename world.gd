@@ -10,6 +10,7 @@ var foodprod = 0
 var phase = 1
 var food = 10000
 var money = 50000
+var temp = 60
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -42,6 +43,21 @@ func popularity_up(district):
 	'''
 	district.popularity += (100-districts[district].popularity)* randf_range(0.5,1.5)/10
 	
+func disaster(temp):
+	'''
+	creates a random number and if the current temp is higher then a random disaster is triggered
+	'''
+	var disasters = ["tornado", "drought", "acid rain", "flood"]
+	var disease = ['Influenza']
+	var ran = randi_range(50,300)
+	if ran < temp:
+		if randi_range(0,1) == 0:
+			return disasters[randi_range(0,len(disasters)-1)]
+		else:
+			return disease[randi_range(0,len(disease)-1)]
+	else:
+		return('none')
+	
 func _input(event):
 	
 	
@@ -54,6 +70,8 @@ func _input(event):
 					factories = 0
 					totalpop = 0
 					foodprod = 0
+					
+					#taxes
 					for district in 9:
 						if districts[district].newtax > 100:
 							districts[district].newtax = 100
@@ -64,6 +82,8 @@ func _input(event):
 							for a in range(int((districts[district].tax-districts[district].newtax)/0.5)):
 								popularity_up(districts[district])		
 						districts[district].tax = districts[district].newtax
+					
+					#production	
 					for district in 9:
 						totalpop += districts[district].population
 						if "grain" in districts[district].product:
@@ -84,8 +104,26 @@ func _input(event):
 						if "research" in districts[district].product:
 							districts[district].setup = 1
 					food += foodprod - totalpop
-					print("adding money")
+					
+					#disasters
+					for district in 9:
+						var thing = disaster(temp)
+						if thing == "none":
+							pass
+						elif thing == "tornado":
+							pass
+							
+							
+								
+
 					phase = 1
+					
+					#news stuff
+					$CanvasLayer/News/ScrollContainer/TextureRect/VBoxContainer/Production_title/Temp.text = "Average surface\ntempurature: " + str(temp) + "°F"
+					if foodprod >= totalpop:
+						$CanvasLayer/News/ScrollContainer/TextureRect/VBoxContainer/Production_title/Food_calc.text = str(foodprod) + "\n-" + str(totalpop) + "\n________\n+" + str(foodprod - totalpop)
+					else:
+						$CanvasLayer/News/ScrollContainer/TextureRect/VBoxContainer/Production_title/Food_calc.text = str(foodprod) + "\n-" + str(totalpop) + "\n________\n-" + str(foodprod - totalpop)
 					$CanvasLayer/News.show()
 
 		if phase == 3:
@@ -115,7 +153,7 @@ func _input(event):
 							None"
 							$DistrictMenu/Popularity.extra = 0
 							$DistrictMenu/Industry/Label2.text = ""
-							$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].tax)
+							$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].tax) + "%"
 						else:
 							$DistrictMenu/Industry/Sprite2D.texture = load("res://icons/" + posprod[curprod] + ".png")
 							$DistrictMenu/Industry/Label.text = "Industry:
@@ -179,11 +217,13 @@ func _input(event):
 									$DistrictMenu/Industry/Label2.text = ""
 					if Input.is_key_pressed(KEY_UP):
 						districts[zoom].newtax += 0.5
-						$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax)
+						$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax) + "%"
 					if Input.is_key_pressed(KEY_DOWN):
 						districts[zoom].newtax -= 0.5
+						if districts[zoom].newtax < 0:
+							districts[zoom].newtax = 0
 						print((districts[zoom]).newtax)
-						$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax)			
+						$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax) + "%"		
 					if curprod > 0:
 						if Input.is_key_pressed(KEY_X):
 							if posprod[curprod] in districts[zoom].product:
@@ -308,5 +348,5 @@ func _process(delta: float) -> void:
 			$DistrictMenu.visible = true
 			$DistrictMenu.position = $Camera2D.position + Vector2(-479, -184)/$Camera2D.zoom.x   
 			$DistrictMenu.scale = Vector2(0.15,0.15)/$Camera2D.zoom.x
-			$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax)
+			$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax) + "%"
 	
