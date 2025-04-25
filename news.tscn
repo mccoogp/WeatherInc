@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://s2poj2l4nlfc"]
+[gd_scene load_steps=11 format=3 uid="uid://s2poj2l4nlfc"]
 
 [ext_resource type="Script" path="res://scroll_container.gd" id="1_esmcc"]
 [ext_resource type="Texture2D" uid="uid://d37hrhx7v44rg" path="res://tan background.jpg" id="1_iok06"]
+[ext_resource type="Script" path="res://news.gd" id="1_kqrqo"]
 [ext_resource type="LabelSettings" uid="uid://bw83k6s3dh6ys" path="res://labels/title.tres" id="2_i62pv"]
 [ext_resource type="Script" path="res://update_btn.gd" id="3_gt6nm"]
 [ext_resource type="Texture2D" uid="uid://dj424tw2qv7j0" path="res://icons/grain.png" id="4_dw5ri"]
@@ -23,6 +24,7 @@ offset_right = -17.0
 offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_kqrqo")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_direction = 1
@@ -122,10 +124,10 @@ vertical_alignment = 1
 [node name="UpdateToggle" type="Button" parent="."]
 layout_direction = 1
 layout_mode = 0
-offset_left = 1016.0
-offset_top = 11.0
-offset_right = 1141.0
-offset_bottom = 51.0
+offset_left = 1000.0
+offset_top = 36.0
+offset_right = 1125.0
+offset_bottom = 76.0
 theme_override_styles/focus = SubResource("StyleBoxTexture_yleyt")
 theme_override_styles/hover = SubResource("StyleBoxTexture_uy5r5")
 text = "Updates"

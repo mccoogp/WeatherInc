@@ -38,3 +38,4 @@ func _process(delta: float) -> void:
 func _on_update_toggle_button_down() -> void:
 	var scroll_container = get_node("TextureRect")
 	scroll_container.visible = !scroll_container.visible	
+	$"..".clicked = true

@@ -62,69 +62,7 @@ func _input(event):
 	
 	
 	if frame == 0:
-		if event is InputEventKey and event.pressed:
-			if Input.is_key_pressed(KEY_SPACE) and zoom == -1:
-				phase += 1
-				$CanvasLayer/News.hide()
-				if phase == 5:
-					factories = 0
-					totalpop = 0
-					foodprod = 0
-					
-					#taxes
-					for district in 16:
-						if districts[district].newtax > 100:
-							districts[district].newtax = 100
-						if districts[district].tax < districts[district].newtax:
-							for a in range(int((districts[district].newtax-districts[district].tax)/0.5)):
-								popularity_down(districts[district])
-						if districts[district].tax > districts[district].newtax:
-							for a in range(int((districts[district].tax-districts[district].newtax)/0.5)):
-								popularity_up(districts[district])		
-						districts[district].tax = districts[district].newtax
-					
-					#production	
-					for district in 16:
-						totalpop += districts[district].population
-						if "grain" in districts[district].product:
-							var district_foodprod = 3 * districts[district].productivity * districts[district].population
-							foodprod += district_foodprod
-							money += district_foodprod * districts[district].tax
-						if "meat" in districts[district].product or "fish" in districts[district].product:
-							var district_foodprod = 5 * districts[district].productivity * districts[district].population * districts[district].setup
-							foodprod += district_foodprod
-							money += district_foodprod * districts[district].tax
-							districts[district].setup = 1
-						if "factory" in districts[district].product:
-							factories += 1
-							activatefact = true
-							districts[district].setup = 1
-						if "oil" in districts[district].product:
-							districts[district].setup = 1
-						if "research" in districts[district].product:
-							districts[district].setup = 1
-					food += foodprod - totalpop
-					
-					#disasters
-					for district in 16:
-						var thing = disaster(temp)
-						if thing == "none":
-							pass
-						elif thing == "tornado":
-							pass
-							
-							
-								
 
-					phase = 1
-					
-					#news stuff
-					$CanvasLayer/News/ScrollContainer/TextureRect/VBoxContainer/Production_title/Temp.text = "Average surface\ntempurature: " + str(temp) + "°F"
-					if foodprod >= totalpop:
-						$CanvasLayer/News/ScrollContainer/TextureRect/VBoxContainer/Production_title/Food_calc.text = str(foodprod) + "\n-" + str(totalpop) + "\n________\n+" + str(foodprod - totalpop)
-					else:
-						$CanvasLayer/News/ScrollContainer/TextureRect/VBoxContainer/Production_title/Food_calc.text = str(foodprod) + "\n-" + str(totalpop) + "\n________\n-" + str(foodprod - totalpop)
-					$CanvasLayer/News.show()
 
 		if phase == 3:
 			if zoom == -1:
@@ -350,3 +288,67 @@ func _process(delta: float) -> void:
 			$DistrictMenu.scale = Vector2(0.15,0.15)/$Camera2D.zoom.x
 			$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax) + "%"
 	
+
+	if $CanvasLayer/News.clicked == true:
+		$CanvasLayer/News.clicked = false
+		phase += 1
+		$CanvasLayer/News.hide()
+		if phase == 5:
+			factories = 0
+			totalpop = 0
+			foodprod = 0
+			
+			#taxes
+			for district in 16:
+				if districts[district].newtax > 100:
+					districts[district].newtax = 100
+				if districts[district].tax < districts[district].newtax:
+					for a in range(int((districts[district].newtax-districts[district].tax)/0.5)):
+						popularity_down(districts[district])
+				if districts[district].tax > districts[district].newtax:
+					for a in range(int((districts[district].tax-districts[district].newtax)/0.5)):
+						popularity_up(districts[district])		
+				districts[district].tax = districts[district].newtax
+			
+			#production	
+			for district in 16:
+				totalpop += districts[district].population
+				if "grain" in districts[district].product:
+					var district_foodprod = 3 * districts[district].productivity * districts[district].population
+					foodprod += district_foodprod
+					money += district_foodprod * districts[district].tax
+				if "meat" in districts[district].product or "fish" in districts[district].product:
+					var district_foodprod = 5 * districts[district].productivity * districts[district].population * districts[district].setup
+					foodprod += district_foodprod
+					money += district_foodprod * districts[district].tax
+					districts[district].setup = 1
+				if "factory" in districts[district].product:
+					factories += 1
+					activatefact = true
+					districts[district].setup = 1
+				if "oil" in districts[district].product:
+					districts[district].setup = 1
+				if "research" in districts[district].product:
+					districts[district].setup = 1
+			food += foodprod - totalpop
+			
+			#disasters
+			for district in 16:
+				var thing = disaster(temp)
+				if thing == "none":
+					pass
+				elif thing == "tornado":
+					pass
+					
+					
+						
+
+			phase = 1
+			
+			#news stuff
+			$CanvasLayer/News/ScrollContainer/TextureRect/VBoxContainer/Production_title/Temp.text = "Average surface\ntempurature: " + str(temp) + "°F"
+			if foodprod >= totalpop:
+				$CanvasLayer/News/ScrollContainer/TextureRect/VBoxContainer/Production_title/Food_calc.text = str(foodprod) + "\n-" + str(totalpop) + "\n________\n+" + str(foodprod - totalpop)
+			else:
+				$CanvasLayer/News/ScrollContainer/TextureRect/VBoxContainer/Production_title/Food_calc.text = str(foodprod) + "\n-" + str(totalpop) + "\n________\n-" + str(foodprod - totalpop)
+			$CanvasLayer/News.show()
