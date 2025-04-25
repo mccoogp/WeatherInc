@@ -10,6 +10,7 @@ extends Node2D
 var setup = 1
 var product = [] 
 var clicked = false
+var votes = 0
 
 @export var center: Vector2
 @export var zoom: float

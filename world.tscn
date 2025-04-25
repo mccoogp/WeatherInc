@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dgo4cwa032h0v"]
+[gd_scene load_steps=27 format=3 uid="uid://dgo4cwa032h0v"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_3gon6"]
 [ext_resource type="PackedScene" uid="uid://cacfd62pudml6" path="res://district.tscn" id="2_41llr"]
@@ -22,12 +22,6 @@
 [ext_resource type="Script" path="res://tax_label.gd" id="13_6327v"]
 [ext_resource type="Texture2D" uid="uid://b1yqgep36wrhs" path="res://ogpc_map/map10.png" id="13_thahp"]
 [ext_resource type="Texture2D" uid="uid://lbnmtd3bb3gc" path="res://ogpc_map/map11.png" id="14_e5fce"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_j4inj"]
-font_size = 24
-
-[sub_resource type="LabelSettings" id="LabelSettings_1erbk"]
-font_size = 34
 
 [sub_resource type="LabelSettings" id="LabelSettings_afd1u"]
 font_size = 70
@@ -67,6 +61,7 @@ position = Vector2(194, 17)
 scale = Vector2(67, 67)
 DistrictNumber = 2
 water = true
+population = 10000
 center = Vector2(200, 50)
 zoom = 3.0
 image = ExtResource("5_java2")
@@ -156,45 +151,20 @@ zoom = 2.5
 image = ExtResource("14_e5fce")
 
 [node name="District12" parent="." instance=ExtResource("2_41llr")]
-visible = false
 
 [node name="District13" parent="." instance=ExtResource("2_41llr")]
-visible = false
 
 [node name="District14" parent="." instance=ExtResource("2_41llr")]
-visible = false
 
 [node name="District15" parent="." instance=ExtResource("2_41llr")]
-visible = false
 
 [node name="District16" parent="." instance=ExtResource("2_41llr")]
-visible = false
 
-[node name="Label2" type="Label" parent="."]
-texture_filter = 2
-offset_left = 676.0
-offset_top = 7.0
-offset_right = 965.0
-offset_bottom = 41.0
-size_flags_horizontal = 6
-text = "Press space for next step"
-label_settings = SubResource("LabelSettings_j4inj")
-
-[node name="Label" type="Label" parent="Label2"]
-layout_mode = 0
-offset_left = 53.0
-offset_top = -41.0
-offset_right = 249.0
-offset_bottom = 13.0
-text = "Phase = 1"
-label_settings = SubResource("LabelSettings_1erbk")
-
-[node name="Label4" type="Label" parent="Label2"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 60.0
-offset_right = 303.0
-offset_bottom = 135.0
+[node name="Label4" type="Label" parent="."]
+offset_left = 803.571
+offset_top = 11.9048
+offset_right = 1094.57
+offset_bottom = 86.9048
 
 [node name="DistrictMenu" type="Sprite2D" parent="."]
 position = Vector2(-90.4762, 63.0953)

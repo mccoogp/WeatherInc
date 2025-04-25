@@ -11,10 +11,10 @@ var phase = 1
 var food = 10000
 var money = 50000
 var temp = 60
-
+var year = 1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Label2/Label4.text = "Food = " + str(food) + "\nMoney = " + str(money)
+	$Label4.text = "Food = " + str(food) + "\nMoney = " + str(money)
 	pass
 
 
@@ -30,6 +30,31 @@ var activatefact = false
 
 var frame = 0
 
+func ElectResults(random = 0):
+	var totalpopulation = 0
+	var populations = []
+
+	for district in 16:
+		totalpopulation += districts[district].population
+		populations.append( [districts[district].population, district] )
+		districts[district].votes = 2
+
+	
+	
+	for i in 504:
+		populations.sort()
+		districts[populations[-1][1]].votes += 1
+		populations[-1][0] -= totalpopulation/504
+		populations.sort()
+	
+	var totalvotes = 0
+	
+	for district in 16:
+		if districts[district].popularity + randf_range(-1,1) * random > 50:
+			totalvotes += districts[district].votes
+	
+	return totalvotes
+		
 
 func popularity_down(district):
 	'''
@@ -64,7 +89,7 @@ func _input(event):
 	if frame == 0:
 
 
-		if phase == 3:
+		if phase == 2:
 			if zoom == -1:
 				curprod = 0
 				for district in 16:
@@ -265,10 +290,9 @@ func _input(event):
 				$DistrictMenu.industry_clicked = false
 
 func _process(delta: float) -> void:
-	$Label2/Label.text = "Phase = " + str(phase)
-	$Label2/Label4.text = "Food = " + str(food) + "\nMoney = " + str(money)
+	$Label4.text = "Food = " + str(food) + "\nMoney = " + str(money)
 	if activatefact:
-		$Label2/Label4.text += "\nFactories = " + str(factories)
+		$Label4.text += "\nFactories = " + str(factories)
 	if frame == 0:
 		#print($Camera2D.zoom, $Camera2D.position)
 		#print(camerazoom, cameracenter)
@@ -277,8 +301,8 @@ func _process(delta: float) -> void:
 		$Camera2D.zoom.x += (camerazoom - $Camera2D.zoom.x)/30
 		$Camera2D.zoom.y += (camerazoom - $Camera2D.zoom.y)/30
 		
-		$Label2.position = $Camera2D.position + Vector2(256, -290)/$Camera2D.zoom.y
-		$Label2.scale = Vector2(1,1)/$Camera2D.zoom.x
+		$Label4.position = $Camera2D.position + Vector2(256, -290)/$Camera2D.zoom.y
+		$Label4.scale = Vector2(1,1)/$Camera2D.zoom.x
 		
 		
 		if zoom == -1:
@@ -297,7 +321,14 @@ func _process(delta: float) -> void:
 		phase += 1
 		if phase == 2:
 			$CanvasLayer/News.hide = true
-		if phase == 5:
+			
+		if phase == 3:
+			if year % 4 == 0:
+				print(ElectResults(5))
+			else:
+				phase += 1
+		if phase == 4:
+			year += 1
 			factories = 0
 			totalpop = 0
 			foodprod = 0
@@ -346,11 +377,12 @@ func _process(delta: float) -> void:
 			else:
 				for district in 16:
 					districts[district].population *= food/totalpop
+				food = 0
 			food /= 2
 			
 			print(totalpop)
-			
-			
+
+
 			#disasters
 			for district in 16:
 				var thing = disaster(temp)
