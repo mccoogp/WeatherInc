@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dgo4cwa032h0v"]
+[gd_scene load_steps=22 format=3 uid="uid://dgo4cwa032h0v"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_3gon6"]
 [ext_resource type="PackedScene" uid="uid://cacfd62pudml6" path="res://district.tscn" id="2_41llr"]
@@ -33,6 +33,9 @@ font_size = 45
 
 [sub_resource type="LabelSettings" id="LabelSettings_7wjru"]
 font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_aqbte"]
+font_size = 32
 
 [node name="world" type="Node2D" node_paths=PackedStringArray("districts")]
 script = ExtResource("1_3gon6")
@@ -223,3 +226,18 @@ label_settings = SubResource("LabelSettings_7wjru")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="News" parent="CanvasLayer" instance=ExtResource("12_k216x")]
+
+[node name="Skill Tree Screen" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="Skill Tree Screen"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -35.0
+offset_right = 35.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Skill Tree"
+label_settings = SubResource("LabelSettings_aqbte")
+horizontal_alignment = 1
+vertical_alignment = 1
