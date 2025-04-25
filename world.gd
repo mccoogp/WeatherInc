@@ -292,7 +292,8 @@ func _process(delta: float) -> void:
 	if $CanvasLayer/News.clicked == true:
 		$CanvasLayer/News.clicked = false
 		phase += 1
-		$CanvasLayer/News.hide()
+		if phase == 2:
+			$CanvasLayer/News.hide = true
 		if phase == 5:
 			factories = 0
 			totalpop = 0
@@ -342,7 +343,7 @@ func _process(delta: float) -> void:
 					
 					
 						
-
+			$CanvasLayer/News.hide = false
 			phase = 1
 			
 			#news stuff
