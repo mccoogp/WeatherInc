@@ -57,7 +57,6 @@ scale = Vector2(0.720001, 0.716921)
 texture = ExtResource("2_yw1kr")
 
 [node name="District" parent="." instance=ExtResource("2_41llr")]
-visible = false
 position = Vector2(23, 91)
 scale = Vector2(67, 67)
 water = true
@@ -67,7 +66,6 @@ zoom = 1.75
 image = ExtResource("4_nrn2x")
 
 [node name="District2" parent="." instance=ExtResource("2_41llr")]
-visible = false
 position = Vector2(194, 17)
 scale = Vector2(67, 67)
 DistrictNumber = 2
@@ -77,7 +75,6 @@ zoom = 3.0
 image = ExtResource("5_java2")
 
 [node name="District3" parent="." instance=ExtResource("2_41llr")]
-visible = false
 texture_filter = 1
 position = Vector2(399, 9)
 scale = Vector2(67, 67)
@@ -87,7 +84,6 @@ zoom = 3.5
 image = ExtResource("6_dnp75")
 
 [node name="District4" parent="." instance=ExtResource("2_41llr")]
-visible = false
 texture_filter = 1
 position = Vector2(648, 15)
 scale = Vector2(66.9433, 67)
@@ -97,7 +93,6 @@ zoom = 2.5
 image = ExtResource("7_q7djm")
 
 [node name="District5" parent="." instance=ExtResource("2_41llr")]
-visible = false
 texture_filter = 1
 position = Vector2(290.476, 188.095)
 scale = Vector2(67, 67)
@@ -108,7 +103,6 @@ zoom = 2.5
 image = ExtResource("8_wxhan")
 
 [node name="District6" parent="." instance=ExtResource("2_41llr")]
-visible = false
 texture_filter = 1
 position = Vector2(565.477, 109.524)
 scale = Vector2(67, 67)
@@ -119,7 +113,6 @@ zoom = 2.5
 image = ExtResource("9_cjij6")
 
 [node name="District7" parent="." instance=ExtResource("2_41llr")]
-visible = false
 texture_filter = 1
 position = Vector2(29.7619, 347.619)
 scale = Vector2(67, 67)
@@ -130,7 +123,6 @@ zoom = 2.5
 image = ExtResource("10_6le1u")
 
 [node name="District8" parent="." instance=ExtResource("2_41llr")]
-visible = false
 texture_filter = 1
 position = Vector2(296.429, 353.572)
 scale = Vector2(67, 67)
@@ -141,7 +133,6 @@ zoom = 2.7
 image = ExtResource("11_fs5wx")
 
 [node name="District9" parent="." instance=ExtResource("2_41llr")]
-visible = false
 texture_filter = 1
 position = Vector2(429.762, 300)
 scale = Vector2(67, 67)
@@ -151,7 +142,6 @@ zoom = 2.3
 image = ExtResource("12_7bvj4")
 
 [node name="District10" parent="." instance=ExtResource("2_41llr")]
-visible = false
 texture_filter = 1
 position = Vector2(613.095, 261.905)
 scale = Vector2(67, 67)
@@ -162,7 +152,7 @@ image = ExtResource("13_thahp")
 
 [node name="District11" parent="." instance=ExtResource("2_41llr")]
 texture_filter = 1
-position = Vector2(790.476, 247.619)
+position = Vector2(790.476, 248.81)
 scale = Vector2(67, 67)
 center = Vector2(820, 300)
 zoom = 2.5
@@ -306,7 +296,6 @@ Meat: blah blah blah"
 label_settings = SubResource("LabelSettings_7wjru")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="News" parent="CanvasLayer" instance=ExtResource("12_k216x")]
 

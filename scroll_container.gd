@@ -22,6 +22,7 @@ func _ready() -> void:
 		body_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		vbox.add_child(title_label)
 		vbox.add_child(body_label)
+
 		
 
 func load_json_data(path : String):
@@ -32,9 +33,11 @@ func load_json_data(path : String):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	var scroll_container = get_node("TextureRect")
+	scroll_container.visible = !$"..".hide
 
 
 func _on_update_toggle_button_down() -> void:
-	var scroll_container = get_node("TextureRect")
-	scroll_container.visible = !scroll_container.visible	
+	
+	
+	$"..".clicked = true
