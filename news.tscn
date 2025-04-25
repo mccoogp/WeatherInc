@@ -128,6 +128,7 @@ offset_left = 1000.0
 offset_top = 36.0
 offset_right = 1125.0
 offset_bottom = 76.0
+focus_mode = 0
 theme_override_styles/focus = SubResource("StyleBoxTexture_yleyt")
 theme_override_styles/hover = SubResource("StyleBoxTexture_uy5r5")
 text = "Updates"

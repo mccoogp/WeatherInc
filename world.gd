@@ -171,6 +171,7 @@ func _input(event):
 									checkprod = true
 									$DistrictMenu/Popularity.extra += 1
 								else:
+									districts[zoom].popularity *= randf_range(8.5,9.5)/10
 									districts[zoom].product.erase(posprod[curprod])
 									checkprod = false
 									$DistrictMenu/Industry/Label.text = "Industry:
@@ -187,6 +188,7 @@ func _input(event):
 										$DistrictMenu/Industry/Label.text += "
 										Cost: $100,000"
 										$DistrictMenu/Popularity.extra += 1
+										districts[zoom].popularity += (100-districts[zoom].popularity)* randf_range(0.5,1.5)/10
 									if posprod[curprod] == "oil":
 										$DistrictMenu/Industry/Label.text += "
 										Requires: 1 factory"
@@ -196,6 +198,7 @@ func _input(event):
 										Cost: $500,000
 										Requires: 1 factory"
 										$DistrictMenu/Popularity.extra += 2
+									
 						if Input.is_key_pressed(KEY_ENTER):
 							if len(districts[zoom].product) == 0:
 								var changed = false
@@ -331,7 +334,22 @@ func _process(delta: float) -> void:
 					districts[district].setup = 1
 				if "research" in districts[district].product:
 					districts[district].setup = 1
-			food += foodprod - totalpop
+			
+			
+			food += foodprod
+			if food >= totalpop * 1.2:
+				food -= totalpop *1.2
+				for district in 16:
+					districts[district].population *= randf_range(100,110)/100
+			elif food >= totalpop:
+				food -= totalpop
+			else:
+				for district in 16:
+					districts[district].population *= food/totalpop
+			food /= 2
+			
+			print(totalpop)
+			
 			
 			#disasters
 			for district in 16:
@@ -340,6 +358,7 @@ func _process(delta: float) -> void:
 					pass
 				elif thing == "tornado":
 					pass
+			
 					
 					
 						
