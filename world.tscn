@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dgo4cwa032h0v"]
+[gd_scene load_steps=29 format=3 uid="uid://dgo4cwa032h0v"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_3gon6"]
 [ext_resource type="PackedScene" uid="uid://cacfd62pudml6" path="res://district.tscn" id="2_41llr"]
@@ -11,9 +11,17 @@
 [ext_resource type="Texture2D" uid="uid://stjlvyolph21" path="res://ogpc_map/map3.png" id="6_dnp75"]
 [ext_resource type="Script" path="res://industry_menu_clicked.gd" id="6_ttn6t"]
 [ext_resource type="Script" path="res://popularity.gd" id="7_b887d"]
+[ext_resource type="Texture2D" uid="uid://c1gfgth63xvrd" path="res://ogpc_map/map4.png" id="7_q7djm"]
 [ext_resource type="Script" path="res://label_2.gd" id="7_vefmc"]
-[ext_resource type="PackedScene" uid="uid://begnb2n0ndp25" path="res://news.tscn" id="12_k216x"]
+[ext_resource type="Texture2D" uid="uid://dvbbn3i485v5s" path="res://ogpc_map/map5.png" id="8_wxhan"]
+[ext_resource type="Texture2D" uid="uid://chaglsycfa0sp" path="res://ogpc_map/map6.png" id="9_cjij6"]
+[ext_resource type="Texture2D" uid="uid://b1x425kpot6kk" path="res://ogpc_map/map7.png" id="10_6le1u"]
+[ext_resource type="Texture2D" uid="uid://bepn0r0vs8tg5" path="res://ogpc_map/map8.png" id="11_fs5wx"]
+[ext_resource type="Texture2D" uid="uid://dq6yda8lu7x8d" path="res://ogpc_map/map9.png" id="12_7bvj4"]
+[ext_resource type="PackedScene" uid="uid://s2poj2l4nlfc" path="res://news.tscn" id="12_k216x"]
 [ext_resource type="Script" path="res://tax_label.gd" id="13_6327v"]
+[ext_resource type="Texture2D" uid="uid://b1yqgep36wrhs" path="res://ogpc_map/map10.png" id="13_thahp"]
+[ext_resource type="Texture2D" uid="uid://lbnmtd3bb3gc" path="res://ogpc_map/map11.png" id="14_e5fce"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_j4inj"]
 font_size = 24
@@ -38,8 +46,9 @@ font_size = 40
 font_size = 32
 
 [node name="world" type="Node2D" node_paths=PackedStringArray("districts")]
+scale = Vector2(0.84, 0.84)
 script = ExtResource("1_3gon6")
-districts = [NodePath("District"), NodePath("District2"), NodePath("District3"), NodePath("District4"), NodePath("District5"), NodePath("District6"), NodePath("District7"), NodePath("District8"), NodePath("District9")]
+districts = [NodePath("District"), NodePath("District2"), NodePath("District3"), NodePath("District4"), NodePath("District5"), NodePath("District6"), NodePath("District7"), NodePath("District8"), NodePath("District9"), NodePath("District10"), NodePath("District11"), NodePath("District12"), NodePath("District13"), NodePath("District14"), NodePath("District15"), NodePath("District16")]
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -48,6 +57,7 @@ scale = Vector2(0.720001, 0.716921)
 texture = ExtResource("2_yw1kr")
 
 [node name="District" parent="." instance=ExtResource("2_41llr")]
+visible = false
 position = Vector2(23, 91)
 scale = Vector2(67, 67)
 water = true
@@ -57,6 +67,7 @@ zoom = 1.75
 image = ExtResource("4_nrn2x")
 
 [node name="District2" parent="." instance=ExtResource("2_41llr")]
+visible = false
 position = Vector2(194, 17)
 scale = Vector2(67, 67)
 DistrictNumber = 2
@@ -66,6 +77,8 @@ zoom = 3.0
 image = ExtResource("5_java2")
 
 [node name="District3" parent="." instance=ExtResource("2_41llr")]
+visible = false
+texture_filter = 1
 position = Vector2(399, 9)
 scale = Vector2(67, 67)
 DistrictNumber = 3
@@ -74,32 +87,101 @@ zoom = 3.5
 image = ExtResource("6_dnp75")
 
 [node name="District4" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(87, 238)
+visible = false
+texture_filter = 1
+position = Vector2(648, 15)
+scale = Vector2(66.9433, 67)
 DistrictNumber = 4
+center = Vector2(620, 20)
+zoom = 2.5
+image = ExtResource("7_q7djm")
 
 [node name="District5" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(254, 241)
+visible = false
+texture_filter = 1
+position = Vector2(290.476, 188.095)
+scale = Vector2(67, 67)
 DistrictNumber = 5
 water = true
+center = Vector2(280, 220)
+zoom = 2.5
+image = ExtResource("8_wxhan")
 
 [node name="District6" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(417, 248)
+visible = false
+texture_filter = 1
+position = Vector2(565.477, 109.524)
+scale = Vector2(67, 67)
 DistrictNumber = 6
 water = true
+center = Vector2(540, 125)
+zoom = 2.5
+image = ExtResource("9_cjij6")
 
 [node name="District7" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(83, 397)
+visible = false
+texture_filter = 1
+position = Vector2(29.7619, 347.619)
+scale = Vector2(67, 67)
 DistrictNumber = 7
 water = true
+center = Vector2(30, 370)
+zoom = 2.5
+image = ExtResource("10_6le1u")
 
 [node name="District8" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(253, 399)
+visible = false
+texture_filter = 1
+position = Vector2(296.429, 353.572)
+scale = Vector2(67, 67)
 DistrictNumber = 8
 water = true
+center = Vector2(310, 370)
+zoom = 2.7
+image = ExtResource("11_fs5wx")
 
 [node name="District9" parent="." instance=ExtResource("2_41llr")]
-position = Vector2(420, 398)
+visible = false
+texture_filter = 1
+position = Vector2(429.762, 300)
+scale = Vector2(67, 67)
 DistrictNumber = 9
+center = Vector2(490, 340)
+zoom = 2.3
+image = ExtResource("12_7bvj4")
+
+[node name="District10" parent="." instance=ExtResource("2_41llr")]
+visible = false
+texture_filter = 1
+position = Vector2(613.095, 261.905)
+scale = Vector2(67, 67)
+DistrictNumber = 10
+center = Vector2(629, 290)
+zoom = 3.2
+image = ExtResource("13_thahp")
+
+[node name="District11" parent="." instance=ExtResource("2_41llr")]
+texture_filter = 1
+position = Vector2(790.476, 247.619)
+scale = Vector2(67, 67)
+center = Vector2(820, 300)
+zoom = 2.5
+image = ExtResource("14_e5fce")
+
+[node name="District12" parent="." instance=ExtResource("2_41llr")]
+visible = false
+
+[node name="District13" parent="." instance=ExtResource("2_41llr")]
+visible = false
+
+[node name="District14" parent="." instance=ExtResource("2_41llr")]
+visible = false
+
+[node name="District15" parent="." instance=ExtResource("2_41llr")]
+visible = false
+
+[node name="District16" parent="." instance=ExtResource("2_41llr")]
+visible = false
 
 [node name="Label2" type="Label" parent="."]
 texture_filter = 2
@@ -128,7 +210,7 @@ offset_right = 303.0
 offset_bottom = 135.0
 
 [node name="DistrictMenu" type="Sprite2D" parent="."]
-position = Vector2(-49, 63)
+position = Vector2(-90.4762, 63.0953)
 scale = Vector2(0.08, 0.08)
 script = ExtResource("5_s2cnt")
 
@@ -141,7 +223,7 @@ menu = NodePath("..")
 
 [node name="Sprite2D" type="Sprite2D" parent="DistrictMenu/Industry"]
 position = Vector2(-113.325, -220.773)
-scale = Vector2(11.5878, 6.53666)
+scale = Vector2(9, 4)
 
 [node name="Label" type="Label" parent="DistrictMenu/Industry"]
 anchors_preset = -1
@@ -169,7 +251,7 @@ label_settings = SubResource("LabelSettings_1rgr7")
 script = ExtResource("7_vefmc")
 
 [node name="Popularity" type="Sprite2D" parent="DistrictMenu" node_paths=PackedStringArray("menu")]
-position = Vector2(-137.5, 875)
+position = Vector2(-133.929, 877.977)
 scale = Vector2(2.096, 2.096)
 texture = ExtResource("4_r5mvf")
 script = ExtResource("7_b887d")
@@ -224,6 +306,7 @@ Meat: blah blah blah"
 label_settings = SubResource("LabelSettings_7wjru")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="News" parent="CanvasLayer" instance=ExtResource("12_k216x")]
 

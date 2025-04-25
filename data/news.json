@@ -1,16 +1,16 @@
 {
   "News": {
-    "0": {
-      "Headline": "Headline 1",
-      "Body": "Text 1"
-    },
-    "1": {
-      "Headline": "Headline 2",
-      "Body": "Text 2"
-    },
-    "2": {
-      "Headline": "Headline 3",
-      "Body": "Text 3"
-    }
+	"0": {
+	  "Headline": "Headline 1",
+	  "Body": "Text 1"
+	},
+	"1": {
+	  "Headline": "Headline 2",
+	  "Body": "Text 2"
+	},
+	"2": {
+	  "Headline": "Headline 3",
+	  "Body": "Text 3"
+	}
   }
 }
