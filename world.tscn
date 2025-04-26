@@ -34,7 +34,7 @@ font_color = Color(1, 1, 3.226, 1)
 font_size = 45
 
 [sub_resource type="LabelSettings" id="LabelSettings_7wjru"]
-font_size = 40
+font_size = 28
 
 [node name="world" type="Node2D" node_paths=PackedStringArray("districts")]
 scale = Vector2(0.84, 0.84)
@@ -160,6 +160,32 @@ image = ExtResource("14_e5fce")
 [node name="District16" parent="." instance=ExtResource("2_41llr")]
 water = true
 
+[node name="Popularity bar" type="Node" parent="."]
+
+[node name="ColorRect2" type="ColorRect" parent="Popularity bar"]
+offset_left = 102.0
+offset_top = -60.0
+offset_right = 152.0
+offset_bottom = -20.0
+scale = Vector2(2, 1)
+color = Color(0.478431, 0, 0.615686, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Popularity bar"]
+offset_left = 2.0
+offset_top = -60.0
+offset_right = 52.0
+offset_bottom = -20.0
+scale = Vector2(2, 1)
+color = Color(0, 0.678431, 0, 1)
+
+[node name="Label" type="Label" parent="Popularity bar"]
+texture_filter = 1
+offset_left = 15.0
+offset_top = -77.0
+offset_right = 177.0
+offset_bottom = -54.0
+text = "Estimated Popularity"
+
 [node name="Label4" type="Label" parent="."]
 offset_left = 803.571
 offset_top = 11.9048
@@ -253,13 +279,25 @@ script = ExtResource("13_6327v")
 position = Vector2(420, 297)
 
 [node name="Label3" type="Label" parent="."]
-offset_left = 1370.0
-offset_top = 2.0
-offset_right = 1903.0
-offset_bottom = 161.0
+offset_left = 1353.57
+offset_top = -55.9524
+offset_right = 2713.57
+offset_bottom = 753.048
 scale = Vector2(0.839998, 0.839998)
-text = "Possible Industries:
-Meat: blah blah blah"
+text = "POSSIBLE INDUSTRIES:
+🌾 Grain
+Effect: Provides immediate food supply to your country.
+Setup Time: Instant.
+
+🥩 Meat
+Effect: Efficient food production. Boosts popularity within your district.
+Drawback: Increases carbon emissions.
+Setup Time: 6 months.
+
+🐟 Fish
+Effect: Efficient food production with lower environmental impact.
+Drawback: Reduces popularity within your district.
+Setup Time: 6 months."
 label_settings = SubResource("LabelSettings_7wjru")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

@@ -419,9 +419,11 @@ func _process(delta: float) -> void:
 					districts[district].population -= moving
 			
 			print(totalpop)
-			print(GenPopularity(10))
-
-
+			var estimate = GenPopularity(10)
+			$"Popularity bar/ColorRect".size.x = estimate
+			$"Popularity bar/ColorRect2".size.x = 100 - estimate
+			$"Popularity bar/ColorRect2".position.x = 2 + 2*estimate
+			
 			#disasters
 			for district in 16:
 				var thing = disaster(temp)
