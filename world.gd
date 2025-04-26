@@ -27,6 +27,8 @@ var curprod = 0
 var checkprod = false
 var factories = 0
 var activatefact = false
+var energyprod = 0
+
 
 var frame = 0
 
@@ -55,6 +57,16 @@ func ElectResults(random = 0):
 	
 	return totalvotes
 		
+
+func GenPopularity(random = 0):
+	var totalpopulation = 0
+	var popularity = 0
+	for district in 16:
+		totalpopulation += districts[district].population
+		popularity += districts[district].population * (districts[district].popularity + (randf_range(-1,1) * random))
+	return popularity/totalpopulation
+	
+
 
 func popularity_down(district):
 	'''
@@ -331,12 +343,17 @@ func _process(delta: float) -> void:
 		phase += 1
 		if phase == 2:
 			$CanvasLayer/News.hide = true
+			if year % 4 == 0:
+				$CanvasLayer/News.text = "Election"
+			else:
+				$CanvasLayer/News.text = "Advance (6 months)"
 			
 		if phase == 3:
 			if year % 4 == 0:
 				print(ElectResults(5))
 			else:
 				phase += 1
+			$CanvasLayer/News.text = "Advance (6 months)"
 		if phase == 4:
 			year += 1
 			factories = 0
@@ -356,6 +373,10 @@ func _process(delta: float) -> void:
 				districts[district].tax = districts[district].newtax
 			
 			#production	
+			for district in 16:
+				if "oil" in districts[district].product:
+					energyprod +=  districts[district].productivity * districts[district].population * districts[district].setup
+				
 			for district in 16:
 				totalpop += districts[district].population
 				if "grain" in districts[district].product:
@@ -398,6 +419,7 @@ func _process(delta: float) -> void:
 					districts[district].population -= moving
 			
 			print(totalpop)
+			print(GenPopularity(10))
 
 
 			#disasters
@@ -412,7 +434,9 @@ func _process(delta: float) -> void:
 					
 						
 			$CanvasLayer/News.hide = false
+			$CanvasLayer/News.text = "Next"
 			phase = 1
+			
 			
 			#news stuff
 			$CanvasLayer/News/ScrollContainer/TextureRect/VBoxContainer/Production_title/Temp.text = "Average surface\ntempurature: " + str(temp) + "°F"
