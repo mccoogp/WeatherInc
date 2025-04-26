@@ -16,7 +16,7 @@ var year = 1
 func _ready() -> void:
 	$Label4.text = "Food = " + str(food) + "\nMoney = " + str(money)
 	pass
-
+var adjacents = {0: [1,4,6], 1: [0,4,2], 2: [1,3,4,5], 3: [2,5,10], 4: [0,1,2,5,6,7,8], 5: [2,3,4,8,9,10], 6: [0,4,7,11], 7: [4,6,8,11,12,13], 8: [4,5,7,9,13,14], 9: [5,8,10,14], 10: [3,5,9,14,15], 11:[6,7,12], 12: [11,7,13], 13: [12,7,8,14,15], 14: [8,9,10,13,15], 15: [10,13,14]}
 
 var zoom = -1
 var cameracenter =  Vector2(420, 297)
@@ -98,6 +98,8 @@ func _input(event):
 						cameracenter = districts[district].center
 						camerazoom = districts[district].zoom
 						districts[district].clicked = false
+						print(districts[district].population)
+						print(districts[district].popularity)
 			else:
 				if event is InputEventKey and event.pressed:
 					if Input.is_key_pressed(KEY_RIGHT):
@@ -196,7 +198,7 @@ func _input(event):
 									checkprod = true
 									$DistrictMenu/Popularity.extra += 1
 								else:
-									districts[zoom].popularity *= randf_range(8.5,9.5)/10
+									districts[zoom].popularity *= randf_range(7.5,9.5)/10
 									districts[zoom].product.erase(posprod[curprod])
 									checkprod = false
 									$DistrictMenu/Industry/Label.text = "Industry:
@@ -213,7 +215,7 @@ func _input(event):
 										$DistrictMenu/Industry/Label.text += "
 										Cost: $100,000"
 										$DistrictMenu/Popularity.extra += 1
-										districts[zoom].popularity += (100-districts[zoom].popularity)* randf_range(0.5,1.5)/10
+
 									if posprod[curprod] == "oil":
 										$DistrictMenu/Industry/Label.text += "
 										Requires: 1 factory"
@@ -227,17 +229,24 @@ func _input(event):
 						if Input.is_key_pressed(KEY_ENTER):
 							if len(districts[zoom].product) == 0:
 								var changed = false
+								
 								if posprod[curprod] == "grain":
 									changed = true
+									districts[zoom].popularity += (100-districts[zoom].popularity)* randf_range(0,1)/10
 								if posprod[curprod] == "meat":
 									changed = true
 									districts[zoom].setup = 0
+									districts[zoom].popularity += (100-districts[zoom].popularity)* randf_range(0.5, 1.5)/10
 								if posprod[curprod] == "fish" and districts[zoom].water == true:
 									changed = true
+									districts[zoom].popularity *= randf_range(8.5,9.5)/10
 								if posprod[curprod] == "factory" and money >= 100000:
 									districts[zoom].setup = 0
 									money -= 100000
 									changed = true
+									districts[zoom].popularity += (100-districts[zoom].popularity)* randf_range(1.5,3)/10
+									for dist in adjacents[zoom]:
+										districts[dist].popularity *=  randf_range(8,10)/10
 								if posprod[curprod] == "oil" and factories > 0:
 									districts[zoom].setup = 0
 									factories -= 1
@@ -254,6 +263,7 @@ func _input(event):
 									" + posprod[curprod]
 									$DistrictMenu/Industry/Label.text += "
 									Press x to remove"
+									
 								
 				if event is InputEventKey and event.pressed:
 					if Input.is_key_pressed(KEY_ESCAPE):
@@ -372,6 +382,7 @@ func _process(delta: float) -> void:
 				food -= totalpop *1.2
 				for district in 16:
 					districts[district].population *= randf_range(100,110)/100
+					districts[district].popularity += (100-districts[district].popularity)* randf_range(0,1)/10
 			elif food >= totalpop:
 				food -= totalpop
 			else:
@@ -379,6 +390,12 @@ func _process(delta: float) -> void:
 					districts[district].population *= food/totalpop
 				food = 0
 			food /= 2
+			
+			for district in 16:
+				for dist in adjacents[district]:
+					var moving = districts[district].population * randf_range(0,5)/100
+					districts[dist].population += moving
+					districts[district].population -= moving
 			
 			print(totalpop)
 

@@ -5,12 +5,13 @@ extends Node2D
 @export var population = 1000
 @export var productivity = 1
 @export var tax = 1
-@export var newtax = 1
+var newtax = 1
 @export var popularity = 50
 var setup = 1
 var product = [] 
 var clicked = false
 var votes = 0
+@export var adjacent: Array[Node2D] = []
 
 @export var center: Vector2
 @export var zoom: float

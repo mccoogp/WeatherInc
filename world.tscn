@@ -80,6 +80,7 @@ texture_filter = 1
 position = Vector2(648, 15)
 scale = Vector2(66.9433, 67)
 DistrictNumber = 4
+water = true
 center = Vector2(620, 20)
 zoom = 2.5
 image = ExtResource("7_q7djm")
@@ -99,7 +100,6 @@ texture_filter = 1
 position = Vector2(565.477, 109.524)
 scale = Vector2(67, 67)
 DistrictNumber = 6
-water = true
 center = Vector2(540, 125)
 zoom = 2.5
 image = ExtResource("9_cjij6")
@@ -109,7 +109,6 @@ texture_filter = 1
 position = Vector2(29.7619, 347.619)
 scale = Vector2(67, 67)
 DistrictNumber = 7
-water = true
 center = Vector2(30, 370)
 zoom = 2.5
 image = ExtResource("10_6le1u")
@@ -119,7 +118,6 @@ texture_filter = 1
 position = Vector2(296.429, 353.572)
 scale = Vector2(67, 67)
 DistrictNumber = 8
-water = true
 center = Vector2(310, 370)
 zoom = 2.7
 image = ExtResource("11_fs5wx")
@@ -146,6 +144,7 @@ image = ExtResource("13_thahp")
 texture_filter = 1
 position = Vector2(790.476, 248.81)
 scale = Vector2(67, 67)
+water = true
 center = Vector2(820, 300)
 zoom = 2.5
 image = ExtResource("14_e5fce")
@@ -159,6 +158,7 @@ image = ExtResource("14_e5fce")
 [node name="District15" parent="." instance=ExtResource("2_41llr")]
 
 [node name="District16" parent="." instance=ExtResource("2_41llr")]
+water = true
 
 [node name="Label4" type="Label" parent="."]
 offset_left = 803.571
