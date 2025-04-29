@@ -84,14 +84,10 @@ func disaster(temp):
 	'''
 	creates a random number and if the current temp is higher then a random disaster is triggered
 	'''
-	var disasters = ["tornado", "drought", "acid rain", "flood"]
-	var disease = ['Influenza']
+	var disasters = ["tornado", "drought", "flood", "fire", "volcano", "disease"]
 	var ran = randi_range(50,300)
 	if ran < temp:
-		if randi_range(0,1) == 0:
-			return disasters[randi_range(0,len(disasters)-1)]
-		else:
-			return disease[randi_range(0,len(disease)-1)]
+		return disasters[randi_range(0,len(disasters)-1)]
 	else:
 		return('none')
 	
@@ -360,6 +356,61 @@ func _process(delta: float) -> void:
 			totalpop = 0
 			foodprod = 0
 			
+			#disasters
+			for district in 16:
+				var thing = disaster(temp)
+				if thing == "none":
+					pass
+				elif thing == "tornado":
+					districts[district].product = []
+					districts[district].population *= 0.75
+					var disasters = ["tornado", "drought", "flood", "fire", "volcano", "disease"]
+				
+				elif thing == "drought":
+					if districts[district].water:
+						pass
+					else:
+						
+						if "meat" in districts[district].product:
+							districts[district].product = []
+							districts[district].population *= 0.75
+						elif "grain" in districts[district].product:
+							districts[district].product = []
+							districts[district].population *= 0.75
+						else:
+							districts[district].population *= 0.75
+				
+				elif thing == "flood":
+					if not districts[district].water:
+						pass
+					else:
+						districts[district].product = []
+						districts[district].population *= 0.75
+				
+				elif thing == "fire":
+					if districts[district].water:
+						districts[district].population *= 0.90
+					else:
+						districts[district].product = []
+						districts[district].population *= 0.75
+				
+				elif thing == "volcano":
+					districts[district].population *= 0.90
+					var moving = districts[district].population * randf_range(20,60)/100
+					var movement = int(moving / 5)
+					for dist in adjacents[district]:
+						districts[dist].population += movement
+						districts[district].population -= movement
+						
+				elif thing == "disease":
+					if "meat" in districts[district].product:
+							districts[district].product = []
+							districts[district].population *= 0.65
+					else:
+						districts[district].population *= 0.75
+					
+							
+			
 			#taxes
 			for district in 16:
 				if districts[district].newtax > 100:
@@ -424,13 +475,7 @@ func _process(delta: float) -> void:
 			$"Popularity bar/ColorRect2".size.x = 100 - estimate
 			$"Popularity bar/ColorRect2".position.x = 2 + 2*estimate
 			
-			#disasters
-			for district in 16:
-				var thing = disaster(temp)
-				if thing == "none":
-					pass
-				elif thing == "tornado":
-					pass
+			
 			
 					
 					
