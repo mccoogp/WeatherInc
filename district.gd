@@ -8,7 +8,7 @@ extends Node2D
 var newtax = 1
 @export var popularity = 50
 var setup = 1
-var product = [] 
+@export var product = [] 
 var clicked = false
 var votes = 0
 @export var adjacent: Array[Node2D] = []
