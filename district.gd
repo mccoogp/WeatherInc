@@ -17,6 +17,7 @@ var votes = 0
 @export var zoom: float
 
 @export var image: Texture
+@export var disaster = []
 
 
 func _ready() -> void:
@@ -26,6 +27,9 @@ func _input(event):
 	$ProductionImage.texture = null
 	for prod in product:
 		$ProductionImage.texture = load("res://icons/" + prod + ".png")
+	$Disaster.texture = null
+	for dis in disaster:
+		$Disaster.texture = load("res://4caster Art/disasters/" + dis + ".png")
 		
 func _process(delta: float) -> void:
 	$ProductionImage.modulate = Color(setup,setup,setup)

@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://districtsprite.gd" id="3_mvpsf"]
 
 [node name="District" type="Node2D"]
+position = Vector2(0, 1)
 scale = Vector2(100, 100)
 script = ExtResource("1_gpufd")
 
@@ -16,3 +17,7 @@ district = NodePath("..")
 [node name="ProductionImage" type="Sprite2D" parent="."]
 position = Vector2(0.300001, 0.309999)
 scale = Vector2(0.0118939, 0.011857)
+
+[node name="Disaster" type="Sprite2D" parent="."]
+position = Vector2(0.5, 0.5)
+scale = Vector2(0.01, 0.01)

@@ -360,17 +360,17 @@ func _process(delta: float) -> void:
 			for district in 16:
 				var thing = disaster(temp)
 				if thing == "none":
-					pass
+					districts[district].disaster = []
 				elif thing == "tornado":
+					districts[district].disaster = ["tornado"]
 					districts[district].product = []
 					districts[district].population *= 0.75
-					var disasters = ["tornado", "drought", "flood", "fire", "volcano", "disease"]
 				
 				elif thing == "drought":
 					if districts[district].water:
 						pass
 					else:
-						
+						districts[district].disaster = ["drought"]
 						if "meat" in districts[district].product:
 							districts[district].product = []
 							districts[district].population *= 0.75
@@ -380,14 +380,16 @@ func _process(delta: float) -> void:
 						else:
 							districts[district].population *= 0.75
 				
-				elif thing == "flood":
+				elif thing == "rain":
 					if not districts[district].water:
 						pass
 					else:
+						districts[district].disaster = ["rain"]
 						districts[district].product = []
 						districts[district].population *= 0.75
 				
 				elif thing == "fire":
+					districts[district].disaster = ["fire"]
 					if districts[district].water:
 						districts[district].population *= 0.90
 					else:
@@ -395,6 +397,7 @@ func _process(delta: float) -> void:
 						districts[district].population *= 0.75
 				
 				elif thing == "volcano":
+					districts[district].disaster = ["volcano"]
 					districts[district].population *= 0.90
 					var moving = districts[district].population * randf_range(20,60)/100
 					var movement = int(moving / 5)
@@ -403,6 +406,7 @@ func _process(delta: float) -> void:
 						districts[district].population -= movement
 						
 				elif thing == "disease":
+					districts[district].disaster = ["disease"]
 					if "meat" in districts[district].product:
 							districts[district].product = []
 							districts[district].population *= 0.65
@@ -482,6 +486,7 @@ func _process(delta: float) -> void:
 						
 			$CanvasLayer/News.hide = false
 			$CanvasLayer/News.text = "Next"
+			temp += 1
 			phase = 1
 			
 			
