@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dgo4cwa032h0v"]
+[gd_scene load_steps=29 format=3 uid="uid://dgo4cwa032h0v"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_3gon6"]
 [ext_resource type="PackedScene" uid="uid://cacfd62pudml6" path="res://district.tscn" id="2_41llr"]
@@ -22,6 +22,8 @@
 [ext_resource type="Script" path="res://tax_label.gd" id="13_6327v"]
 [ext_resource type="Texture2D" uid="uid://b1yqgep36wrhs" path="res://ogpc_map/map10.png" id="13_thahp"]
 [ext_resource type="Texture2D" uid="uid://lbnmtd3bb3gc" path="res://ogpc_map/map11.png" id="14_e5fce"]
+[ext_resource type="Texture2D" uid="uid://cf4tedwaqq4r6" path="res://4caster Art/variables/dollar.png" id="15_ds5hs"]
+[ext_resource type="Texture2D" uid="uid://cv5e5dl0udsxh" path="res://4caster Art/industries/grain.png" id="16_lw505"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_afd1u"]
 font_size = 70
@@ -63,6 +65,7 @@ scale = Vector2(67, 67)
 DistrictNumber = 2
 water = true
 population = 10000
+product = ["grain"]
 center = Vector2(200, 50)
 zoom = 3.0
 image = ExtResource("5_java2")
@@ -72,6 +75,7 @@ texture_filter = 1
 position = Vector2(399, 9)
 scale = Vector2(67, 67)
 DistrictNumber = 3
+product = ["oil"]
 center = Vector2(410, 50)
 zoom = 3.5
 image = ExtResource("6_dnp75")
@@ -82,16 +86,18 @@ position = Vector2(648, 15)
 scale = Vector2(66.9433, 67)
 DistrictNumber = 4
 water = true
+product = ["fish"]
 center = Vector2(620, 20)
 zoom = 2.5
 image = ExtResource("7_q7djm")
 
 [node name="District5" parent="." instance=ExtResource("2_41llr")]
 texture_filter = 1
-position = Vector2(290.476, 188.095)
+position = Vector2(289.286, 188.095)
 scale = Vector2(67, 67)
 DistrictNumber = 5
 water = true
+product = ["grain"]
 center = Vector2(280, 220)
 zoom = 2.5
 image = ExtResource("8_wxhan")
@@ -110,6 +116,7 @@ texture_filter = 1
 position = Vector2(29.7619, 347.619)
 scale = Vector2(67, 67)
 DistrictNumber = 7
+product = ["meat"]
 center = Vector2(30, 370)
 zoom = 2.5
 image = ExtResource("10_6le1u")
@@ -119,6 +126,7 @@ texture_filter = 1
 position = Vector2(296.429, 353.572)
 scale = Vector2(67, 67)
 DistrictNumber = 8
+product = ["grain"]
 center = Vector2(310, 370)
 zoom = 2.7
 image = ExtResource("11_fs5wx")
@@ -188,10 +196,18 @@ offset_bottom = -54.0
 text = "Estimated Popularity"
 
 [node name="Label4" type="Label" parent="."]
-offset_left = 803.571
-offset_top = 11.9048
-offset_right = 1094.57
-offset_bottom = 86.9048
+offset_left = 1164.29
+offset_top = 67.8571
+offset_right = 1455.28
+offset_bottom = 142.857
+
+[node name="Money" type="Sprite2D" parent="Label4"]
+position = Vector2(0.000434399, 36.9047)
+texture = ExtResource("15_ds5hs")
+
+[node name="Food" type="Sprite2D" parent="Label4"]
+position = Vector2(0.000435965, 8.33329)
+texture = ExtResource("16_lw505")
 
 [node name="DistrictMenu" type="Sprite2D" parent="."]
 position = Vector2(-90.4762, 63.0953)
