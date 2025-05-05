@@ -1,10 +1,32 @@
-[gd_scene load_steps=8 format=3 uid="uid://ca2ikrfjlamsp"]
+[gd_scene load_steps=31 format=3 uid="uid://ca2ikrfjlamsp"]
 
 [ext_resource type="Script" path="res://skill_tree.gd" id="1_ahle4"]
 [ext_resource type="Texture2D" uid="uid://csgnvamjyfsfx" path="res://icon.svg" id="2_e16ax"]
 [ext_resource type="Script" path="res://ogpc_map/ag_1.gd" id="3_a41gr"]
-[ext_resource type="Theme" uid="uid://fyewy4meg0mj" path="res://skill_description.tres" id="4_qst2r"]
+[ext_resource type="Theme" uid="uid://bu60mmxjkdhey" path="res://themes/skill_button.tres" id="3_wl7qx"]
+[ext_resource type="Theme" uid="uid://fyewy4meg0mj" path="res://themes/skill_description.tres" id="4_qst2r"]
+[ext_resource type="Texture2D" uid="uid://lhk4liifpb1p" path="res://icons/agriculture/ag_1.png" id="4_twev8"]
 [ext_resource type="FontFile" uid="uid://dhwvo5v6y25wn" path="res://labels/font.tres" id="5_urjk8"]
+[ext_resource type="Texture2D" uid="uid://pe6wo1l1bnoa" path="res://icons/agriculture/ag_2.png" id="6_njwr0"]
+[ext_resource type="Texture2D" uid="uid://bbkrmhvd1gvmk" path="res://icons/agriculture/ag_3.png" id="7_ufkxy"]
+[ext_resource type="Texture2D" uid="uid://b44biu7yhdy27" path="res://icons/agriculture/ag_4.png" id="8_vugur"]
+[ext_resource type="Texture2D" uid="uid://da4e1ov7hysjs" path="res://icons/agriculture/ag_5.png" id="9_thg5m"]
+[ext_resource type="Texture2D" uid="uid://d1ywaudha3hir" path="res://icons/industry/in_1.png" id="10_w1ym2"]
+[ext_resource type="Texture2D" uid="uid://dnsdr6ykfjypu" path="res://icons/industry/in_2.png" id="11_sx3b4"]
+[ext_resource type="Texture2D" uid="uid://br4jl0wt54fg8" path="res://icons/industry/in_3.png" id="12_reuaj"]
+[ext_resource type="Texture2D" uid="uid://daa38d8qwdr2j" path="res://icons/industry/in_4.png" id="13_nfl10"]
+[ext_resource type="Texture2D" uid="uid://coijdlqg30aa1" path="res://icons/industry/in_5.png" id="14_c2hs8"]
+[ext_resource type="Texture2D" uid="uid://dbkk1cw032se1" path="res://icons/environment/en_1.png" id="15_ptmee"]
+[ext_resource type="Texture2D" uid="uid://c4iyutq2rl667" path="res://icons/environment/en_2.png" id="16_jqvyh"]
+[ext_resource type="Texture2D" uid="uid://bmuj0j4sonhmb" path="res://icons/environment/en_3.png" id="17_b64vy"]
+[ext_resource type="Texture2D" uid="uid://cm55nfdg3g7ra" path="res://icons/environment/en_4.png" id="18_0hcy8"]
+[ext_resource type="Texture2D" uid="uid://1qxrnyy275fg" path="res://icons/environment/en_5.png" id="19_hvama"]
+[ext_resource type="Texture2D" uid="uid://dm20x52yfj2pk" path="res://icons/technology/te_1.png" id="20_giy8f"]
+[ext_resource type="Texture2D" uid="uid://deljcc35g7jqy" path="res://icons/technology/te_2.png" id="21_eqvb3"]
+[ext_resource type="Texture2D" uid="uid://6s8ec0v4wilw" path="res://icons/technology/te_3.png" id="22_exvso"]
+[ext_resource type="Texture2D" uid="uid://c8ef81sknibha" path="res://icons/technology/te_4.png" id="23_fau0d"]
+[ext_resource type="Texture2D" uid="uid://bopcdig8bxrg3" path="res://icons/technology/te_5.png" id="24_tujrm"]
+[ext_resource type="FontFile" uid="uid://bdw8tj5ekkyoi" path="res://m5x7.ttf" id="27_bsox2"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_o17h1"]
 
@@ -12,6 +34,9 @@
 font = ExtResource("5_urjk8")
 font_size = 32
 shadow_size = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_b0mbq"]
+font = ExtResource("27_bsox2")
 
 [node name="SkillTree" type="Control"]
 layout_mode = 3
@@ -42,6 +67,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Ag 1" type="Button" parent="Agriculture2"]
+texture_filter = 1
 material = SubResource("CanvasItemMaterial_o17h1")
 layout_direction = 2
 layout_mode = 2
@@ -50,10 +76,15 @@ offset_top = 96.0
 offset_right = 336.0
 offset_bottom = 232.0
 scale = Vector2(0.5, 0.5)
-icon = ExtResource("2_e16ax")
+theme = ExtResource("3_wl7qx")
+icon = ExtResource("4_twev8")
+flat = true
+icon_alignment = 1
+expand_icon = true
 script = ExtResource("3_a41gr")
 
 [node name="Ag 2" type="Button" parent="Agriculture2"]
+texture_filter = 1
 material = SubResource("CanvasItemMaterial_o17h1")
 layout_direction = 2
 layout_mode = 2
@@ -62,9 +93,14 @@ offset_top = 96.0
 offset_right = 536.0
 offset_bottom = 232.0
 scale = Vector2(0.5, 0.5)
-icon = ExtResource("2_e16ax")
+theme = ExtResource("3_wl7qx")
+icon = ExtResource("6_njwr0")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="Ag 3" type="Button" parent="Agriculture2"]
+texture_filter = 1
 material = SubResource("CanvasItemMaterial_o17h1")
 layout_direction = 2
 layout_mode = 2
@@ -73,9 +109,14 @@ offset_top = 96.0
 offset_right = 736.0
 offset_bottom = 232.0
 scale = Vector2(0.5, 0.5)
-icon = ExtResource("2_e16ax")
+theme = ExtResource("3_wl7qx")
+icon = ExtResource("7_ufkxy")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="Ag 4" type="Button" parent="Agriculture2"]
+texture_filter = 1
 material = SubResource("CanvasItemMaterial_o17h1")
 layout_direction = 2
 layout_mode = 2
@@ -84,9 +125,14 @@ offset_top = 96.0
 offset_right = 936.0
 offset_bottom = 232.0
 scale = Vector2(0.5, 0.5)
-icon = ExtResource("2_e16ax")
+theme = ExtResource("3_wl7qx")
+icon = ExtResource("8_vugur")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="Ag 5" type="Button" parent="Agriculture2"]
+texture_filter = 1
 material = SubResource("CanvasItemMaterial_o17h1")
 layout_direction = 2
 layout_mode = 2
@@ -95,7 +141,11 @@ offset_top = 96.0
 offset_right = 1136.0
 offset_bottom = 232.0
 scale = Vector2(0.5, 0.5)
-icon = ExtResource("2_e16ax")
+theme = ExtResource("3_wl7qx")
+icon = ExtResource("9_thg5m")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="Industrial" type="Control" parent="."]
 anchors_preset = 0
@@ -103,6 +153,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="In 1" type="Button" parent="Industrial"]
+texture_filter = 1
 material = SubResource("CanvasItemMaterial_o17h1")
 layout_direction = 2
 layout_mode = 2
@@ -111,9 +162,14 @@ offset_top = 225.0
 offset_right = 336.0
 offset_bottom = 361.0
 scale = Vector2(0.5, 0.5)
-icon = ExtResource("2_e16ax")
+theme = ExtResource("3_wl7qx")
+icon = ExtResource("10_w1ym2")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="In 2" type="Button" parent="Industrial"]
+texture_filter = 1
 material = SubResource("CanvasItemMaterial_o17h1")
 layout_direction = 2
 layout_mode = 2
@@ -122,9 +178,14 @@ offset_top = 225.0
 offset_right = 536.0
 offset_bottom = 361.0
 scale = Vector2(0.5, 0.5)
-icon = ExtResource("2_e16ax")
+theme = ExtResource("3_wl7qx")
+icon = ExtResource("11_sx3b4")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="In 3" type="Button" parent="Industrial"]
+texture_filter = 1
 material = SubResource("CanvasItemMaterial_o17h1")
 layout_direction = 2
 layout_mode = 2
@@ -133,9 +194,14 @@ offset_top = 225.0
 offset_right = 736.0
 offset_bottom = 361.0
 scale = Vector2(0.5, 0.5)
-icon = ExtResource("2_e16ax")
+theme = ExtResource("3_wl7qx")
+icon = ExtResource("12_reuaj")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="In 4" type="Button" parent="Industrial"]
+texture_filter = 1
 material = SubResource("CanvasItemMaterial_o17h1")
 layout_direction = 2
 layout_mode = 2
@@ -144,9 +210,14 @@ offset_top = 225.0
 offset_right = 936.0
 offset_bottom = 361.0
 scale = Vector2(0.5, 0.5)
-icon = ExtResource("2_e16ax")
+theme = ExtResource("3_wl7qx")
+icon = ExtResource("13_nfl10")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="In 5" type="Button" parent="Industrial"]
+texture_filter = 1
 material = SubResource("CanvasItemMaterial_o17h1")
 layout_direction = 2
 layout_mode = 2
@@ -155,7 +226,11 @@ offset_top = 225.0
 offset_right = 1136.0
 offset_bottom = 361.0
 scale = Vector2(0.5, 0.5)
-icon = ExtResource("2_e16ax")
+theme = ExtResource("3_wl7qx")
+icon = ExtResource("14_c2hs8")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="Environment" type="Control" parent="."]
 layout_mode = 2
@@ -164,6 +239,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="En 1" type="Button" parent="Environment"]
+texture_filter = 1
 material = SubResource("CanvasItemMaterial_o17h1")
 layout_direction = 2
 layout_mode = 2
@@ -172,9 +248,14 @@ offset_top = 355.0
 offset_right = 336.0
 offset_bottom = 491.0
 scale = Vector2(0.5, 0.5)
-icon = ExtResource("2_e16ax")
+theme = ExtResource("3_wl7qx")
+icon = ExtResource("15_ptmee")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="En 2" type="Button" parent="Environment"]
+texture_filter = 1
 material = SubResource("CanvasItemMaterial_o17h1")
 layout_direction = 2
 layout_mode = 2
@@ -183,9 +264,14 @@ offset_top = 355.0
 offset_right = 536.0
 offset_bottom = 491.0
 scale = Vector2(0.5, 0.5)
-icon = ExtResource("2_e16ax")
+theme = ExtResource("3_wl7qx")
+icon = ExtResource("16_jqvyh")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="En 3" type="Button" parent="Environment"]
+texture_filter = 1
 material = SubResource("CanvasItemMaterial_o17h1")
 layout_direction = 2
 layout_mode = 2
@@ -194,9 +280,14 @@ offset_top = 355.0
 offset_right = 736.0
 offset_bottom = 491.0
 scale = Vector2(0.5, 0.5)
-icon = ExtResource("2_e16ax")
+theme = ExtResource("3_wl7qx")
+icon = ExtResource("17_b64vy")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="En 4" type="Button" parent="Environment"]
+texture_filter = 1
 material = SubResource("CanvasItemMaterial_o17h1")
 layout_direction = 2
 layout_mode = 2
@@ -205,9 +296,14 @@ offset_top = 355.0
 offset_right = 936.0
 offset_bottom = 491.0
 scale = Vector2(0.5, 0.5)
-icon = ExtResource("2_e16ax")
+theme = ExtResource("3_wl7qx")
+icon = ExtResource("18_0hcy8")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="En 5" type="Button" parent="Environment"]
+texture_filter = 1
 material = SubResource("CanvasItemMaterial_o17h1")
 layout_direction = 2
 layout_mode = 2
@@ -216,7 +312,11 @@ offset_top = 355.0
 offset_right = 1136.0
 offset_bottom = 491.0
 scale = Vector2(0.5, 0.5)
-icon = ExtResource("2_e16ax")
+theme = ExtResource("3_wl7qx")
+icon = ExtResource("19_hvama")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="Technology" type="Control" parent="."]
 anchors_preset = 0
@@ -224,6 +324,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Te 1" type="Button" parent="Technology"]
+texture_filter = 1
 material = SubResource("CanvasItemMaterial_o17h1")
 layout_direction = 2
 layout_mode = 2
@@ -232,9 +333,14 @@ offset_top = 484.0
 offset_right = 336.0
 offset_bottom = 620.0
 scale = Vector2(0.5, 0.5)
-icon = ExtResource("2_e16ax")
+theme = ExtResource("3_wl7qx")
+icon = ExtResource("20_giy8f")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="Te 2" type="Button" parent="Technology"]
+texture_filter = 1
 material = SubResource("CanvasItemMaterial_o17h1")
 layout_direction = 2
 layout_mode = 2
@@ -243,9 +349,14 @@ offset_top = 484.0
 offset_right = 536.0
 offset_bottom = 620.0
 scale = Vector2(0.5, 0.5)
-icon = ExtResource("2_e16ax")
+theme = ExtResource("3_wl7qx")
+icon = ExtResource("21_eqvb3")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="Te 3" type="Button" parent="Technology"]
+texture_filter = 1
 material = SubResource("CanvasItemMaterial_o17h1")
 layout_direction = 2
 layout_mode = 2
@@ -254,9 +365,14 @@ offset_top = 484.0
 offset_right = 736.0
 offset_bottom = 620.0
 scale = Vector2(0.5, 0.5)
-icon = ExtResource("2_e16ax")
+theme = ExtResource("3_wl7qx")
+icon = ExtResource("22_exvso")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="Te 4" type="Button" parent="Technology"]
+texture_filter = 1
 material = SubResource("CanvasItemMaterial_o17h1")
 layout_direction = 2
 layout_mode = 2
@@ -265,9 +381,14 @@ offset_top = 484.0
 offset_right = 936.0
 offset_bottom = 620.0
 scale = Vector2(0.5, 0.5)
-icon = ExtResource("2_e16ax")
+theme = ExtResource("3_wl7qx")
+icon = ExtResource("23_fau0d")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="Te 5" type="Button" parent="Technology"]
+texture_filter = 1
 material = SubResource("CanvasItemMaterial_o17h1")
 layout_direction = 2
 layout_mode = 2
@@ -276,7 +397,11 @@ offset_top = 484.0
 offset_right = 1136.0
 offset_bottom = 620.0
 scale = Vector2(0.5, 0.5)
-icon = ExtResource("2_e16ax")
+theme = ExtResource("3_wl7qx")
+icon = ExtResource("24_tujrm")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="Skill Descriptions" type="Control" parent="."]
 visible = false
@@ -285,6 +410,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Panel" type="Panel" parent="Skill Descriptions"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -305,11 +431,13 @@ offset_bottom = 62.0
 label_settings = SubResource("LabelSettings_ytyk0")
 
 [node name="Description" type="Label" parent="Skill Descriptions"]
+texture_filter = 1
 layout_mode = 0
 offset_left = 761.0
 offset_top = 150.0
 offset_right = 1129.0
 offset_bottom = 480.0
+label_settings = SubResource("LabelSettings_b0mbq")
 autowrap_mode = 2
 
 [connection signal="pressed" from="Agriculture2/Ag 1" to="." method="_on_ag_1_pressed"]

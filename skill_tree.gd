@@ -5,6 +5,7 @@ var json_data
 var skill_name_label 
 var skill_description_label
 var skill_box
+var btn_active
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,7 +28,12 @@ func load_skill_description(name) -> void:
 	var skill_name = json_data[name]['name']
 	var skill_description = json_data[name]['description']
 	
-	skill_box.visible = !skill_box.visible
+	if name == btn_active:
+		skill_box.visible = !skill_box.visible
+	else:
+		skill_box.visible = true
+			
+	btn_active = name
 	skill_name_label.text = name
 	skill_description_label.text = skill_description
 	

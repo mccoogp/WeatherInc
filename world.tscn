@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dgo4cwa032h0v"]
+[gd_scene load_steps=27 format=3 uid="uid://dgo4cwa032h0v"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_3gon6"]
 [ext_resource type="PackedScene" uid="uid://cacfd62pudml6" path="res://district.tscn" id="2_41llr"]
@@ -18,11 +18,10 @@
 [ext_resource type="Texture2D" uid="uid://b1x425kpot6kk" path="res://ogpc_map/map7.png" id="10_6le1u"]
 [ext_resource type="Texture2D" uid="uid://bepn0r0vs8tg5" path="res://ogpc_map/map8.png" id="11_fs5wx"]
 [ext_resource type="Texture2D" uid="uid://dq6yda8lu7x8d" path="res://ogpc_map/map9.png" id="12_7bvj4"]
-[ext_resource type="PackedScene" uid="uid://s2poj2l4nlfc" path="res://news.tscn" id="12_k216x"]
+[ext_resource type="PackedScene" uid="uid://s2poj2l4nlfc" path="res://UI.tscn" id="12_k216x"]
 [ext_resource type="Script" path="res://tax_label.gd" id="13_6327v"]
 [ext_resource type="Texture2D" uid="uid://b1yqgep36wrhs" path="res://ogpc_map/map10.png" id="13_thahp"]
 [ext_resource type="Texture2D" uid="uid://lbnmtd3bb3gc" path="res://ogpc_map/map11.png" id="14_e5fce"]
-[ext_resource type="Texture2D" uid="uid://cwvvdlb3ek7j1" path="res://4caster Art/menu.png" id="23_bhy6b"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_afd1u"]
 font_size = 70
@@ -36,9 +35,6 @@ font_size = 45
 
 [sub_resource type="LabelSettings" id="LabelSettings_7wjru"]
 font_size = 40
-
-[sub_resource type="LabelSettings" id="LabelSettings_aqbte"]
-font_size = 32
 
 [node name="world" type="Node2D" node_paths=PackedStringArray("districts")]
 scale = Vector2(0.84, 0.84)

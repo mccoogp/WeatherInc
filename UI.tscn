@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://s2poj2l4nlfc"]
+[gd_scene load_steps=14 format=3 uid="uid://s2poj2l4nlfc"]
 
 [ext_resource type="Script" path="res://scroll_container.gd" id="1_esmcc"]
 [ext_resource type="Texture2D" uid="uid://d37hrhx7v44rg" path="res://tan background.jpg" id="1_iok06"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://dj424tw2qv7j0" path="res://icons/grain.png" id="4_dw5ri"]
 [ext_resource type="Texture2D" uid="uid://d4hn8p3qer7pl" path="res://icons/research.png" id="5_g0iih"]
 [ext_resource type="Texture2D" uid="uid://blgwak8ty3to5" path="res://icons/oil.png" id="6_wc150"]
+[ext_resource type="Theme" uid="uid://bs33wb320xbd8" path="res://themes/ui_button.tres" id="8_y2hmj"]
+[ext_resource type="PackedScene" uid="uid://ca2ikrfjlamsp" path="res://skill_tree.tscn" id="10_2dcy7"]
+[ext_resource type="Texture2D" uid="uid://dl2d0u1g1a8t7" path="res://icons/wide_btn.png" id="10_4nyke"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yleyt"]
 
@@ -121,18 +124,44 @@ label_settings = ExtResource("2_i62pv")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="SkillTree" parent="." instance=ExtResource("10_2dcy7")]
+visible = false
+layout_mode = 1
+offset_left = 18.0
+offset_top = 35.0
+offset_right = 18.0
+offset_bottom = 35.0
+
 [node name="UpdateToggle" type="Button" parent="."]
+texture_filter = 1
 layout_direction = 1
 layout_mode = 0
-offset_left = 1000.0
-offset_top = 36.0
-offset_right = 1125.0
-offset_bottom = 76.0
+offset_left = 906.0
+offset_top = 23.0
+offset_right = 1164.0
+offset_bottom = 79.0
 focus_mode = 0
+theme = ExtResource("8_y2hmj")
 theme_override_styles/focus = SubResource("StyleBoxTexture_yleyt")
 theme_override_styles/hover = SubResource("StyleBoxTexture_uy5r5")
 text = "Updates"
+icon = ExtResource("10_4nyke")
+flat = true
+icon_alignment = 1
 script = ExtResource("3_gt6nm")
+
+[node name="SkillTreeToggle" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 746.0
+offset_top = 23.0
+offset_right = 894.0
+offset_bottom = 79.0
+theme = ExtResource("8_y2hmj")
+text = "Skill Tree"
+flat = true
+icon_alignment = 1
 
 [connection signal="button_down" from="UpdateToggle" to="ScrollContainer" method="_on_update_toggle_button_down"]
 [connection signal="button_up" from="UpdateToggle" to="ScrollContainer" method="_on_update_toggle_button_up"]
+[connection signal="button_down" from="SkillTreeToggle" to="ScrollContainer" method="_on_skill_tree_toggle_button_down"]
