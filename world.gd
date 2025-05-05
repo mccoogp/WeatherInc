@@ -7,6 +7,12 @@ extends Node2D
 @export var districts: Array[Node2D] = []
 var totalpop = 0
 var foodprod = 0
+
+var food_modifier = 1.0
+var env_modifier = 0.0
+var ind_modifier = 1.0
+var tech_modifier = 1.0
+
 var phase = 1
 var food = 10000
 var money = 50000
@@ -15,7 +21,7 @@ var year = 1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Label4.text = "Food = " + str(food) + "\nMoney = " + str(money)
-	pass
+	
 var adjacents = {0: [1,4,6], 1: [0,4,2], 2: [1,3,4,5], 3: [2,5,10], 4: [0,1,2,5,6,7,8], 5: [2,3,4,8,9,10], 6: [0,4,7,11], 7: [4,6,8,11,12,13], 8: [4,5,7,9,13,14], 9: [5,8,10,14], 10: [3,5,9,14,15], 11:[6,7,12], 12: [11,7,13], 13: [12,7,8,14,15], 14: [8,9,10,13,15], 15: [10,13,14]}
 
 var zoom = -1
@@ -86,7 +92,7 @@ func disaster(temp):
 	'''
 	var disasters = ["tornado", "drought", "flood", "fire", "volcano", "disease"]
 	var ran = randi_range(50,300)
-	if ran < temp:
+	if ran < temp and randf() <= 1.0 - env_modifier:
 		return disasters[randi_range(0,len(disasters)-1)]
 	else:
 		return('none')
@@ -351,6 +357,12 @@ func _process(delta: float) -> void:
 				phase += 1
 			$CanvasLayer/News.text = "Advance (6 months)"
 		if phase == 4:
+			var skill_tree_script = get_node('CanvasLayer/News/SkillTree')
+			food_modifier = 1.0 + skill_tree_script.levels[0] * 0.1
+			env_modifier = skill_tree_script.levels[2] * 0.1
+			ind_modifier = 1.0 + skill_tree_script.levels[1] * 0.1
+			tech_modifier = 1.0 + skill_tree_script.levels[3] * 0.1
+			
 			year += 1
 			factories = 0
 			totalpop = 0
@@ -430,7 +442,7 @@ func _process(delta: float) -> void:
 			#production	
 			for district in 16:
 				if "oil" in districts[district].product:
-					energyprod +=  districts[district].productivity * districts[district].population * districts[district].setup
+					energyprod +=  districts[district].productivity * districts[district].population * districts[district].setup * ind_modifier
 				
 			for district in 16:
 				totalpop += districts[district].population
@@ -453,7 +465,7 @@ func _process(delta: float) -> void:
 					districts[district].setup = 1
 			
 			
-			food += foodprod
+			food += foodprod * food_modifier
 			if food >= totalpop * 1.2:
 				food -= totalpop *1.2
 				for district in 16:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://ca2ikrfjlamsp"]
+[gd_scene load_steps=33 format=3 uid="uid://ca2ikrfjlamsp"]
 
 [ext_resource type="Script" path="res://skill_tree.gd" id="1_ahle4"]
 [ext_resource type="Texture2D" uid="uid://csgnvamjyfsfx" path="res://icon.svg" id="2_e16ax"]
@@ -27,6 +27,8 @@
 [ext_resource type="Texture2D" uid="uid://c8ef81sknibha" path="res://icons/technology/te_4.png" id="23_fau0d"]
 [ext_resource type="Texture2D" uid="uid://bopcdig8bxrg3" path="res://icons/technology/te_5.png" id="24_tujrm"]
 [ext_resource type="FontFile" uid="uid://bdw8tj5ekkyoi" path="res://m5x7.ttf" id="27_bsox2"]
+[ext_resource type="Theme" uid="uid://bs33wb320xbd8" path="res://themes/ui_button.tres" id="28_6q6td"]
+[ext_resource type="Texture2D" uid="uid://bmuc3xesndupg" path="res://icons/godot_button_v2.png" id="29_fs4mv"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_o17h1"]
 
@@ -404,7 +406,6 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Skill Descriptions" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -440,6 +441,18 @@ offset_bottom = 480.0
 label_settings = SubResource("LabelSettings_b0mbq")
 autowrap_mode = 2
 
+[node name="buy_button" type="Button" parent="Skill Descriptions"]
+layout_mode = 0
+offset_left = 739.0
+offset_top = 588.0
+offset_right = 887.0
+offset_bottom = 644.0
+theme = ExtResource("28_6q6td")
+text = "Buy"
+icon = ExtResource("29_fs4mv")
+flat = true
+icon_alignment = 1
+
 [connection signal="pressed" from="Agriculture2/Ag 1" to="." method="_on_ag_1_pressed"]
 [connection signal="pressed" from="Agriculture2/Ag 2" to="." method="_on_ag_2_pressed"]
 [connection signal="pressed" from="Agriculture2/Ag 3" to="." method="_on_ag_3_pressed"]
@@ -460,3 +473,5 @@ autowrap_mode = 2
 [connection signal="pressed" from="Technology/Te 3" to="." method="_on_te_3_pressed"]
 [connection signal="pressed" from="Technology/Te 4" to="." method="_on_te_4_pressed"]
 [connection signal="pressed" from="Technology/Te 5" to="." method="_on_te_5_pressed"]
+[connection signal="pressed" from="Skill Descriptions/buy_button" to="." method="_on_buy_button_pressed"]
+[connection signal="pressed" from="Skill Descriptions/buy_button" to="." method="_on_button_pressed"]

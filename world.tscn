@@ -304,3 +304,6 @@ label_settings = SubResource("LabelSettings_7wjru")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="News" parent="CanvasLayer" instance=ExtResource("12_k216x")]
+
+[editable path="CanvasLayer/News"]
+[editable path="CanvasLayer/News/SkillTree"]

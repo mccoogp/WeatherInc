@@ -6,6 +6,14 @@ var skill_name_label
 var skill_description_label
 var skill_box
 var btn_active
+var levels = [0, 0, 0, 0, 0] # ag, in, env, tech
+var skill_dict = {
+	'ag':0,
+	'in':1,
+	'en':2,
+	'te':3
+}
+var current_skill
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,14 +36,40 @@ func load_skill_description(name) -> void:
 	var skill_name = json_data[name]['name']
 	var skill_description = json_data[name]['description']
 	
+
+		
 	if name == btn_active:
 		skill_box.visible = !skill_box.visible
 	else:
 		skill_box.visible = true
 			
+	if skill_box.visible:
+		current_skill = name
+		
 	btn_active = name
 	skill_name_label.text = name
 	skill_description_label.text = skill_description
+	
+func buy_skill(name) -> void:
+	var level = int(name[-1])
+	var category = skill_dict[name.split('_')[0]]
+	if levels[category] + 1 > level:
+		print("already bought")
+	elif levels[category] + 1 < level:
+		print("need prerequisite upgrade")
+	else:
+		if find_parent('world').money - 1000 >= 0:
+			levels[category] += 1
+			find_parent('world').money -= 1000
+			print("bought", name)
+		else:
+			print("not enough money")
+		
+		
+func _on_buy_button_pressed() -> void:
+	if skill_box.visible:
+		buy_skill(current_skill)
+
 	
 # Agriculture skill signals
 func _on_ag_1_pressed() -> void:
