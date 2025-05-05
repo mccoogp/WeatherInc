@@ -1,0 +1,21 @@
+{
+  "Skills": {
+	"ag_1": {
+	  "name":"Agriculture Upgrade I",
+		"description":"Minor Agriculture Upgrade improves efficiency of farms,
+		increasing agricultural output by 10%"
+	},
+	"ag_2": {
+	  "name":"Agriculture Upgrade II",
+		"description":"Agriculture Upgrade II allows more advanced farming techniques,
+		improving ability of farms to seed and harvest large regions. Improves
+		agricultural output by 15%"
+	},
+	"ag_3": {
+	  "name":"Agriculture Upgrade III",
+		"description":"Agriculture Upgrade III develops new method for fertilization,
+		improving time for crop harvest and allowing increased efficiency at an industrial
+		scale. Increases agricultural output by 20%"
+	},
+  }
+}

@@ -1,0 +1,334 @@
+[gd_scene load_steps=8 format=3 uid="uid://ca2ikrfjlamsp"]
+
+[ext_resource type="Script" path="res://skill_tree.gd" id="1_ahle4"]
+[ext_resource type="Texture2D" uid="uid://csgnvamjyfsfx" path="res://icon.svg" id="2_e16ax"]
+[ext_resource type="Script" path="res://ogpc_map/ag_1.gd" id="3_a41gr"]
+[ext_resource type="Theme" uid="uid://fyewy4meg0mj" path="res://skill_description.tres" id="4_qst2r"]
+[ext_resource type="FontFile" uid="uid://dhwvo5v6y25wn" path="res://labels/font.tres" id="5_urjk8"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_o17h1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ytyk0"]
+font = ExtResource("5_urjk8")
+font_size = 32
+shadow_size = 0
+
+[node name="SkillTree" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ahle4")
+
+[node name="Master Node" type="Button" parent="."]
+material = SubResource("CanvasItemMaterial_o17h1")
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 50.0
+offset_top = -34.0
+offset_right = 186.0
+offset_bottom = 102.0
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("2_e16ax")
+
+[node name="Agriculture2" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Ag 1" type="Button" parent="Agriculture2"]
+material = SubResource("CanvasItemMaterial_o17h1")
+layout_direction = 2
+layout_mode = 2
+offset_left = 200.0
+offset_top = 96.0
+offset_right = 336.0
+offset_bottom = 232.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("2_e16ax")
+script = ExtResource("3_a41gr")
+
+[node name="Ag 2" type="Button" parent="Agriculture2"]
+material = SubResource("CanvasItemMaterial_o17h1")
+layout_direction = 2
+layout_mode = 2
+offset_left = 400.0
+offset_top = 96.0
+offset_right = 536.0
+offset_bottom = 232.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("2_e16ax")
+
+[node name="Ag 3" type="Button" parent="Agriculture2"]
+material = SubResource("CanvasItemMaterial_o17h1")
+layout_direction = 2
+layout_mode = 2
+offset_left = 600.0
+offset_top = 96.0
+offset_right = 736.0
+offset_bottom = 232.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("2_e16ax")
+
+[node name="Ag 4" type="Button" parent="Agriculture2"]
+material = SubResource("CanvasItemMaterial_o17h1")
+layout_direction = 2
+layout_mode = 2
+offset_left = 800.0
+offset_top = 96.0
+offset_right = 936.0
+offset_bottom = 232.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("2_e16ax")
+
+[node name="Ag 5" type="Button" parent="Agriculture2"]
+material = SubResource("CanvasItemMaterial_o17h1")
+layout_direction = 2
+layout_mode = 2
+offset_left = 1000.0
+offset_top = 96.0
+offset_right = 1136.0
+offset_bottom = 232.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("2_e16ax")
+
+[node name="Industrial" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="In 1" type="Button" parent="Industrial"]
+material = SubResource("CanvasItemMaterial_o17h1")
+layout_direction = 2
+layout_mode = 2
+offset_left = 200.0
+offset_top = 225.0
+offset_right = 336.0
+offset_bottom = 361.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("2_e16ax")
+
+[node name="In 2" type="Button" parent="Industrial"]
+material = SubResource("CanvasItemMaterial_o17h1")
+layout_direction = 2
+layout_mode = 2
+offset_left = 400.0
+offset_top = 225.0
+offset_right = 536.0
+offset_bottom = 361.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("2_e16ax")
+
+[node name="In 3" type="Button" parent="Industrial"]
+material = SubResource("CanvasItemMaterial_o17h1")
+layout_direction = 2
+layout_mode = 2
+offset_left = 600.0
+offset_top = 225.0
+offset_right = 736.0
+offset_bottom = 361.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("2_e16ax")
+
+[node name="In 4" type="Button" parent="Industrial"]
+material = SubResource("CanvasItemMaterial_o17h1")
+layout_direction = 2
+layout_mode = 2
+offset_left = 800.0
+offset_top = 225.0
+offset_right = 936.0
+offset_bottom = 361.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("2_e16ax")
+
+[node name="In 5" type="Button" parent="Industrial"]
+material = SubResource("CanvasItemMaterial_o17h1")
+layout_direction = 2
+layout_mode = 2
+offset_left = 1000.0
+offset_top = 225.0
+offset_right = 1136.0
+offset_bottom = 361.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("2_e16ax")
+
+[node name="Environment" type="Control" parent="."]
+layout_mode = 2
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="En 1" type="Button" parent="Environment"]
+material = SubResource("CanvasItemMaterial_o17h1")
+layout_direction = 2
+layout_mode = 2
+offset_left = 200.0
+offset_top = 355.0
+offset_right = 336.0
+offset_bottom = 491.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("2_e16ax")
+
+[node name="En 2" type="Button" parent="Environment"]
+material = SubResource("CanvasItemMaterial_o17h1")
+layout_direction = 2
+layout_mode = 2
+offset_left = 400.0
+offset_top = 355.0
+offset_right = 536.0
+offset_bottom = 491.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("2_e16ax")
+
+[node name="En 3" type="Button" parent="Environment"]
+material = SubResource("CanvasItemMaterial_o17h1")
+layout_direction = 2
+layout_mode = 2
+offset_left = 600.0
+offset_top = 355.0
+offset_right = 736.0
+offset_bottom = 491.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("2_e16ax")
+
+[node name="En 4" type="Button" parent="Environment"]
+material = SubResource("CanvasItemMaterial_o17h1")
+layout_direction = 2
+layout_mode = 2
+offset_left = 800.0
+offset_top = 355.0
+offset_right = 936.0
+offset_bottom = 491.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("2_e16ax")
+
+[node name="En 5" type="Button" parent="Environment"]
+material = SubResource("CanvasItemMaterial_o17h1")
+layout_direction = 2
+layout_mode = 2
+offset_left = 1000.0
+offset_top = 355.0
+offset_right = 1136.0
+offset_bottom = 491.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("2_e16ax")
+
+[node name="Technology" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Te 1" type="Button" parent="Technology"]
+material = SubResource("CanvasItemMaterial_o17h1")
+layout_direction = 2
+layout_mode = 2
+offset_left = 200.0
+offset_top = 484.0
+offset_right = 336.0
+offset_bottom = 620.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("2_e16ax")
+
+[node name="Te 2" type="Button" parent="Technology"]
+material = SubResource("CanvasItemMaterial_o17h1")
+layout_direction = 2
+layout_mode = 2
+offset_left = 400.0
+offset_top = 484.0
+offset_right = 536.0
+offset_bottom = 620.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("2_e16ax")
+
+[node name="Te 3" type="Button" parent="Technology"]
+material = SubResource("CanvasItemMaterial_o17h1")
+layout_direction = 2
+layout_mode = 2
+offset_left = 600.0
+offset_top = 484.0
+offset_right = 736.0
+offset_bottom = 620.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("2_e16ax")
+
+[node name="Te 4" type="Button" parent="Technology"]
+material = SubResource("CanvasItemMaterial_o17h1")
+layout_direction = 2
+layout_mode = 2
+offset_left = 800.0
+offset_top = 484.0
+offset_right = 936.0
+offset_bottom = 620.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("2_e16ax")
+
+[node name="Te 5" type="Button" parent="Technology"]
+material = SubResource("CanvasItemMaterial_o17h1")
+layout_direction = 2
+layout_mode = 2
+offset_left = 1000.0
+offset_top = 484.0
+offset_right = 1136.0
+offset_bottom = 620.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("2_e16ax")
+
+[node name="Skill Descriptions" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="Skill Descriptions"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 696.0
+offset_right = 1112.0
+offset_bottom = 648.0
+grow_horizontal = 0
+theme = ExtResource("4_qst2r")
+
+[node name="Name" type="Label" parent="Skill Descriptions"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 761.0
+offset_top = 18.0
+offset_right = 1104.0
+offset_bottom = 62.0
+label_settings = SubResource("LabelSettings_ytyk0")
+
+[node name="Description" type="Label" parent="Skill Descriptions"]
+layout_mode = 0
+offset_left = 761.0
+offset_top = 150.0
+offset_right = 1129.0
+offset_bottom = 480.0
+autowrap_mode = 2
+
+[connection signal="pressed" from="Agriculture2/Ag 1" to="." method="_on_ag_1_pressed"]
+[connection signal="pressed" from="Agriculture2/Ag 2" to="." method="_on_ag_2_pressed"]
+[connection signal="pressed" from="Agriculture2/Ag 3" to="." method="_on_ag_3_pressed"]
+[connection signal="pressed" from="Agriculture2/Ag 4" to="." method="_on_ag_4_pressed"]
+[connection signal="pressed" from="Agriculture2/Ag 5" to="." method="_on_ag_5_pressed"]
+[connection signal="pressed" from="Industrial/In 1" to="." method="_on_in_1_pressed"]
+[connection signal="pressed" from="Industrial/In 2" to="." method="_on_in_2_pressed"]
+[connection signal="pressed" from="Industrial/In 3" to="." method="_on_in_3_pressed"]
+[connection signal="pressed" from="Industrial/In 4" to="." method="_on_in_4_pressed"]
+[connection signal="pressed" from="Industrial/In 5" to="." method="_on_in_5_pressed"]
+[connection signal="pressed" from="Environment/En 1" to="." method="_on_en_1_pressed"]
+[connection signal="pressed" from="Environment/En 2" to="." method="_on_en_2_pressed"]
+[connection signal="pressed" from="Environment/En 3" to="." method="_on_en_3_pressed"]
+[connection signal="pressed" from="Environment/En 4" to="." method="_on_en_4_pressed"]
+[connection signal="pressed" from="Environment/En 5" to="." method="_on_en_5_pressed"]
+[connection signal="pressed" from="Technology/Te 1" to="." method="_on_te_1_pressed"]
+[connection signal="pressed" from="Technology/Te 2" to="." method="_on_te_2_pressed"]
+[connection signal="pressed" from="Technology/Te 3" to="." method="_on_te_3_pressed"]
+[connection signal="pressed" from="Technology/Te 4" to="." method="_on_te_4_pressed"]
+[connection signal="pressed" from="Technology/Te 5" to="." method="_on_te_5_pressed"]
