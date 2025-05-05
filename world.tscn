@@ -22,12 +22,7 @@
 [ext_resource type="Script" path="res://tax_label.gd" id="13_6327v"]
 [ext_resource type="Texture2D" uid="uid://b1yqgep36wrhs" path="res://ogpc_map/map10.png" id="13_thahp"]
 [ext_resource type="Texture2D" uid="uid://lbnmtd3bb3gc" path="res://ogpc_map/map11.png" id="14_e5fce"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_j4inj"]
-font_size = 24
-
-[sub_resource type="LabelSettings" id="LabelSettings_1erbk"]
-font_size = 34
+[ext_resource type="Texture2D" uid="uid://cwvvdlb3ek7j1" path="res://4caster Art/menu.png" id="23_bhy6b"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_afd1u"]
 font_size = 70
@@ -41,6 +36,9 @@ font_size = 45
 
 [sub_resource type="LabelSettings" id="LabelSettings_7wjru"]
 font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_aqbte"]
+font_size = 32
 
 [node name="world" type="Node2D" node_paths=PackedStringArray("districts")]
 scale = Vector2(0.84, 0.84)
