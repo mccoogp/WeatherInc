@@ -8,7 +8,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	self.text = $"..".text
 			
 func _pressed():
 	pass # only triggers when button is lifted up

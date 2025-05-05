@@ -11,12 +11,12 @@ var phase = 1
 var food = 10000
 var money = 50000
 var temp = 60
-
+var year = 1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Label2/Label4.text = "Food = " + str(food) + "\nMoney = " + str(money)
+	$Label4.text = "Food = " + str(food) + "\nMoney = " + str(money)
 	pass
-
+var adjacents = {0: [1,4,6], 1: [0,4,2], 2: [1,3,4,5], 3: [2,5,10], 4: [0,1,2,5,6,7,8], 5: [2,3,4,8,9,10], 6: [0,4,7,11], 7: [4,6,8,11,12,13], 8: [4,5,7,9,13,14], 9: [5,8,10,14], 10: [3,5,9,14,15], 11:[6,7,12], 12: [11,7,13], 13: [12,7,8,14,15], 14: [8,9,10,13,15], 15: [10,13,14]}
 
 var zoom = -1
 var cameracenter =  Vector2(420, 297)
@@ -27,8 +27,45 @@ var curprod = 0
 var checkprod = false
 var factories = 0
 var activatefact = false
+var energyprod = 0
+
 
 var frame = 0
+
+func ElectResults(random = 0):
+	var totalpopulation = 0
+	var populations = []
+
+	for district in 16:
+		totalpopulation += districts[district].population
+		populations.append( [districts[district].population, district] )
+		districts[district].votes = 2
+
+	
+	
+	for i in 504:
+		populations.sort()
+		districts[populations[-1][1]].votes += 1
+		populations[-1][0] -= totalpopulation/504
+		populations.sort()
+	
+	var totalvotes = 0
+	
+	for district in 16:
+		if districts[district].popularity + randf_range(-1,1) * random > 50:
+			totalvotes += districts[district].votes
+	
+	return totalvotes
+		
+
+func GenPopularity(random = 0):
+	var totalpopulation = 0
+	var popularity = 0
+	for district in 16:
+		totalpopulation += districts[district].population
+		popularity += districts[district].population * (districts[district].popularity + (randf_range(-1,1) * random))
+	return popularity/totalpopulation
+	
 
 
 func popularity_down(district):
@@ -47,14 +84,10 @@ func disaster(temp):
 	'''
 	creates a random number and if the current temp is higher then a random disaster is triggered
 	'''
-	var disasters = ["tornado", "drought", "acid rain", "flood"]
-	var disease = ['Influenza']
+	var disasters = ["tornado", "drought", "flood", "fire", "volcano", "disease"]
 	var ran = randi_range(50,300)
 	if ran < temp:
-		if randi_range(0,1) == 0:
-			return disasters[randi_range(0,len(disasters)-1)]
-		else:
-			return disease[randi_range(0,len(disease)-1)]
+		return disasters[randi_range(0,len(disasters)-1)]
 	else:
 		return('none')
 	
@@ -64,7 +97,7 @@ func _input(event):
 	if frame == 0:
 
 
-		if phase == 3:
+		if phase == 2:
 			if zoom == -1:
 				curprod = 0
 				for district in 16:
@@ -73,6 +106,8 @@ func _input(event):
 						cameracenter = districts[district].center
 						camerazoom = districts[district].zoom
 						districts[district].clicked = false
+						print(districts[district].population)
+						print(districts[district].popularity)
 			else:
 				if event is InputEventKey and event.pressed:
 					if Input.is_key_pressed(KEY_RIGHT):
@@ -171,6 +206,7 @@ func _input(event):
 									checkprod = true
 									$DistrictMenu/Popularity.extra += 1
 								else:
+									districts[zoom].popularity *= randf_range(7.5,9.5)/10
 									districts[zoom].product.erase(posprod[curprod])
 									checkprod = false
 									$DistrictMenu/Industry/Label.text = "Industry:
@@ -187,6 +223,7 @@ func _input(event):
 										$DistrictMenu/Industry/Label.text += "
 										Cost: $100,000"
 										$DistrictMenu/Popularity.extra += 1
+
 									if posprod[curprod] == "oil":
 										$DistrictMenu/Industry/Label.text += "
 										Requires: 1 factory"
@@ -196,20 +233,28 @@ func _input(event):
 										Cost: $500,000
 										Requires: 1 factory"
 										$DistrictMenu/Popularity.extra += 2
+									
 						if Input.is_key_pressed(KEY_ENTER):
 							if len(districts[zoom].product) == 0:
 								var changed = false
+								
 								if posprod[curprod] == "grain":
 									changed = true
+									districts[zoom].popularity += (100-districts[zoom].popularity)* randf_range(0,1)/10
 								if posprod[curprod] == "meat":
 									changed = true
 									districts[zoom].setup = 0
+									districts[zoom].popularity += (100-districts[zoom].popularity)* randf_range(0.5, 1.5)/10
 								if posprod[curprod] == "fish" and districts[zoom].water == true:
 									changed = true
+									districts[zoom].popularity *= randf_range(8.5,9.5)/10
 								if posprod[curprod] == "factory" and money >= 100000:
 									districts[zoom].setup = 0
 									money -= 100000
 									changed = true
+									districts[zoom].popularity += (100-districts[zoom].popularity)* randf_range(1.5,3)/10
+									for dist in adjacents[zoom]:
+										districts[dist].popularity *=  randf_range(8,10)/10
 								if posprod[curprod] == "oil" and factories > 0:
 									districts[zoom].setup = 0
 									factories -= 1
@@ -226,6 +271,7 @@ func _input(event):
 									" + posprod[curprod]
 									$DistrictMenu/Industry/Label.text += "
 									Press x to remove"
+									
 								
 				if event is InputEventKey and event.pressed:
 					if Input.is_key_pressed(KEY_ESCAPE):
@@ -262,10 +308,9 @@ func _input(event):
 				$DistrictMenu.industry_clicked = false
 
 func _process(delta: float) -> void:
-	$Label2/Label.text = "Phase = " + str(phase)
-	$Label2/Label4.text = "Food = " + str(food) + "\nMoney = " + str(money)
+	$Label4.text = "Food = " + str(food) + "\nMoney = " + str(money)
 	if activatefact:
-		$Label2/Label4.text += "\nFactories = " + str(factories)
+		$Label4.text += "\nFactories = " + str(factories)
 	if frame == 0:
 		#print($Camera2D.zoom, $Camera2D.position)
 		#print(camerazoom, cameracenter)
@@ -274,8 +319,8 @@ func _process(delta: float) -> void:
 		$Camera2D.zoom.x += (camerazoom - $Camera2D.zoom.x)/30
 		$Camera2D.zoom.y += (camerazoom - $Camera2D.zoom.y)/30
 		
-		$Label2.position = $Camera2D.position + Vector2(256, -290)/$Camera2D.zoom.y
-		$Label2.scale = Vector2(1,1)/$Camera2D.zoom.x
+		$Label4.position = $Camera2D.position + Vector2(256, -290)/$Camera2D.zoom.y
+		$Label4.scale = Vector2(1,1)/$Camera2D.zoom.x
 		
 		
 		if zoom == -1:
@@ -294,10 +339,81 @@ func _process(delta: float) -> void:
 		phase += 1
 		if phase == 2:
 			$CanvasLayer/News.hide = true
-		if phase == 5:
+			if year % 4 == 0:
+				$CanvasLayer/News.text = "Election"
+			else:
+				$CanvasLayer/News.text = "Advance (6 months)"
+			
+		if phase == 3:
+			if year % 4 == 0:
+				print(ElectResults(5))
+			else:
+				phase += 1
+			$CanvasLayer/News.text = "Advance (6 months)"
+		if phase == 4:
+			year += 1
 			factories = 0
 			totalpop = 0
 			foodprod = 0
+			
+			#disasters
+			for district in 16:
+				var thing = disaster(temp)
+				if thing == "none":
+					districts[district].disaster = []
+				elif thing == "tornado":
+					districts[district].disaster = ["tornado"]
+					districts[district].product = []
+					districts[district].population *= 0.75
+				
+				elif thing == "drought":
+					if districts[district].water:
+						pass
+					else:
+						districts[district].disaster = ["drought"]
+						if "meat" in districts[district].product:
+							districts[district].product = []
+							districts[district].population *= 0.75
+						elif "grain" in districts[district].product:
+							districts[district].product = []
+							districts[district].population *= 0.75
+						else:
+							districts[district].population *= 0.75
+				
+				elif thing == "rain":
+					if not districts[district].water:
+						pass
+					else:
+						districts[district].disaster = ["rain"]
+						districts[district].product = []
+						districts[district].population *= 0.75
+				
+				elif thing == "fire":
+					districts[district].disaster = ["fire"]
+					if districts[district].water:
+						districts[district].population *= 0.90
+					else:
+						districts[district].product = []
+						districts[district].population *= 0.75
+				
+				elif thing == "volcano":
+					districts[district].disaster = ["volcano"]
+					districts[district].population *= 0.90
+					var moving = districts[district].population * randf_range(20,60)/100
+					var movement = int(moving / 5)
+					for dist in adjacents[district]:
+						districts[dist].population += movement
+						districts[district].population -= movement
+						
+				elif thing == "disease":
+					districts[district].disaster = ["disease"]
+					if "meat" in districts[district].product:
+							districts[district].product = []
+							districts[district].population *= 0.65
+					else:
+						districts[district].population *= 0.75
+					
+							
 			
 			#taxes
 			for district in 16:
@@ -312,6 +428,10 @@ func _process(delta: float) -> void:
 				districts[district].tax = districts[district].newtax
 			
 			#production	
+			for district in 16:
+				if "oil" in districts[district].product:
+					energyprod +=  districts[district].productivity * districts[district].population * districts[district].setup
+				
 			for district in 16:
 				totalpop += districts[district].population
 				if "grain" in districts[district].product:
@@ -331,20 +451,44 @@ func _process(delta: float) -> void:
 					districts[district].setup = 1
 				if "research" in districts[district].product:
 					districts[district].setup = 1
-			food += foodprod - totalpop
 			
-			#disasters
+			
+			food += foodprod
+			if food >= totalpop * 1.2:
+				food -= totalpop *1.2
+				for district in 16:
+					districts[district].population *= randf_range(100,110)/100
+					districts[district].popularity += (100-districts[district].popularity)* randf_range(0,1)/10
+			elif food >= totalpop:
+				food -= totalpop
+			else:
+				for district in 16:
+					districts[district].population *= food/totalpop
+				food = 0
+			food /= 2
+			
 			for district in 16:
-				var thing = disaster(temp)
-				if thing == "none":
-					pass
-				elif thing == "tornado":
-					pass
+				for dist in adjacents[district]:
+					var moving = districts[district].population * randf_range(0,5)/100
+					districts[dist].population += moving
+					districts[district].population -= moving
+			
+			print(totalpop)
+			var estimate = GenPopularity(10)
+			$"Popularity bar/ColorRect".size.x = estimate
+			$"Popularity bar/ColorRect2".size.x = 100 - estimate
+			$"Popularity bar/ColorRect2".position.x = 2 + 2*estimate
+			
+			
+			
 					
 					
 						
 			$CanvasLayer/News.hide = false
+			$CanvasLayer/News.text = "Next"
+			temp += 1
 			phase = 1
+			
 			
 			#news stuff
 			$CanvasLayer/News/ScrollContainer/TextureRect/VBoxContainer/Production_title/Temp.text = "Average surface\ntempurature: " + str(temp) + "°F"
