@@ -324,6 +324,7 @@ label_settings = SubResource("LabelSettings_7wjru")
 
 [node name="News" parent="CanvasLayer" instance=ExtResource("12_k216x")]
 hide = true
+skillclicked = true
 
 [node name="Start" type="CanvasLayer" parent="."]
 
