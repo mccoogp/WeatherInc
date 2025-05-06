@@ -169,30 +169,31 @@ image = ExtResource("14_e5fce")
 [node name="District16" parent="." instance=ExtResource("2_41llr")]
 water = true
 
-[node name="Popularity bar" type="Node" parent="."]
+[node name="Popularity bar" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect2" type="ColorRect" parent="Popularity bar"]
-offset_left = 102.0
-offset_top = -60.0
-offset_right = 152.0
-offset_bottom = -20.0
+offset_left = 168.0
+offset_top = 15.0
+offset_right = 218.0
+offset_bottom = 55.0
 scale = Vector2(2, 1)
 color = Color(0.478431, 0, 0.615686, 1)
 
 [node name="ColorRect" type="ColorRect" parent="Popularity bar"]
-offset_left = 2.0
-offset_top = -60.0
-offset_right = 52.0
-offset_bottom = -20.0
+offset_left = 68.0
+offset_top = 15.0
+offset_right = 118.0
+offset_bottom = 55.0
 scale = Vector2(2, 1)
 color = Color(0, 0.678431, 0, 1)
 
 [node name="Label" type="Label" parent="Popularity bar"]
 texture_filter = 1
-offset_left = 15.0
-offset_top = -77.0
-offset_right = 177.0
-offset_bottom = -54.0
+offset_left = 81.0
+offset_top = -2.0
+offset_right = 243.0
+offset_bottom = 21.0
 text = "Estimated Popularity"
 
 [node name="Label4" type="Label" parent="."]
@@ -320,6 +321,21 @@ label_settings = SubResource("LabelSettings_7wjru")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="News" parent="CanvasLayer" instance=ExtResource("12_k216x")]
+hide = true
+
+[node name="Pause" parent="." instance=ExtResource("23_qn5yi")]
+position = Vector2(-1676.19, -7.14286)
+scale = Vector2(2.46548, 2.53277)
+
+[node name="Start" type="CanvasLayer" parent="."]
+
+[node name="StartText" type="Label" parent="Start"]
+offset_left = 112.0
+offset_top = 83.0
+offset_right = 706.0
+offset_bottom = 382.0
+theme_override_font_sizes/font_size = 29
+text = "Welcome President..."
 
 [editable path="CanvasLayer/News"]
 [editable path="CanvasLayer/News/SkillTree"]
