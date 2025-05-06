@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dgo4cwa032h0v"]
+[gd_scene load_steps=30 format=3 uid="uid://dgo4cwa032h0v"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_3gon6"]
 [ext_resource type="PackedScene" uid="uid://cacfd62pudml6" path="res://district.tscn" id="2_41llr"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://lbnmtd3bb3gc" path="res://ogpc_map/map11.png" id="14_e5fce"]
 [ext_resource type="Texture2D" uid="uid://cf4tedwaqq4r6" path="res://4caster Art/variables/dollar.png" id="15_ds5hs"]
 [ext_resource type="Texture2D" uid="uid://cv5e5dl0udsxh" path="res://4caster Art/industries/grain.png" id="16_lw505"]
+[ext_resource type="PackedScene" uid="uid://b6n21rixj3vjv" path="res://pause.tscn" id="25_irgum"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_afd1u"]
 font_size = 70
@@ -173,30 +174,31 @@ water = true
 visible = false
 
 [node name="ColorRect2" type="ColorRect" parent="Popularity bar"]
-offset_left = 168.0
-offset_top = 15.0
-offset_right = 218.0
-offset_bottom = 55.0
+offset_left = 109.0
+offset_top = 12.0
+offset_right = 159.0
+offset_bottom = 52.0
 scale = Vector2(2, 1)
 color = Color(0.478431, 0, 0.615686, 1)
 
 [node name="ColorRect" type="ColorRect" parent="Popularity bar"]
-offset_left = 68.0
-offset_top = 15.0
-offset_right = 118.0
-offset_bottom = 55.0
+offset_left = 9.0
+offset_top = 12.0
+offset_right = 59.0
+offset_bottom = 52.0
 scale = Vector2(2, 1)
 color = Color(0, 0.678431, 0, 1)
 
 [node name="Label" type="Label" parent="Popularity bar"]
 texture_filter = 1
-offset_left = 81.0
-offset_top = -2.0
-offset_right = 243.0
-offset_bottom = 21.0
+offset_left = 22.0
+offset_top = -5.0
+offset_right = 184.0
+offset_bottom = 18.0
 text = "Estimated Popularity"
 
 [node name="Label4" type="Label" parent="."]
+visible = false
 offset_left = 1164.29
 offset_top = 67.8571
 offset_right = 1455.28
@@ -323,19 +325,19 @@ label_settings = SubResource("LabelSettings_7wjru")
 [node name="News" parent="CanvasLayer" instance=ExtResource("12_k216x")]
 hide = true
 
-[node name="Pause" parent="." instance=ExtResource("23_qn5yi")]
-position = Vector2(-1676.19, -7.14286)
-scale = Vector2(2.46548, 2.53277)
-
 [node name="Start" type="CanvasLayer" parent="."]
 
-[node name="StartText" type="Label" parent="Start"]
-offset_left = 112.0
-offset_top = 83.0
-offset_right = 706.0
-offset_bottom = 382.0
-theme_override_font_sizes/font_size = 29
+[node name="Label" type="Label" parent="Start"]
+offset_left = 63.0
+offset_top = 85.0
+offset_right = 316.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 25
 text = "Welcome President..."
+
+[node name="Pause" parent="." instance=ExtResource("25_irgum")]
+position = Vector2(-1557.14, 2.38095)
+scale = Vector2(3.42857, 3.42857)
 
 [editable path="CanvasLayer/News"]
 [editable path="CanvasLayer/News/SkillTree"]

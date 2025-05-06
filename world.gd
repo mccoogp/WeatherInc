@@ -510,11 +510,11 @@ func _process(delta: float) -> void:
 			var estimate = GenPopularity(10)
 			$"Popularity bar/ColorRect".size.x = estimate
 			$"Popularity bar/ColorRect2".size.x = 100 - estimate
-			$"Popularity bar/ColorRect2".position.x = 68 + 2*estimate
+			$"Popularity bar/ColorRect2".position.x = 9 + 2*estimate
 			
 			
 			
-			
+			$Label4.visible = true
 			$"Popularity bar".visible = true
 			$Start.visible = false
 			$CanvasLayer/News.hide = false
