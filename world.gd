@@ -13,7 +13,7 @@ var env_modifier = 0.0
 var ind_modifier = 1.0
 var tech_modifier = 1.0
 
-var phase = 1
+var phase = 3
 var food = 10000
 var money = 50000
 var temp = 60
@@ -35,7 +35,7 @@ var factories = 0
 var activatefact = false
 var energyprod = 0
 
-
+var previousvis = [false, false, false]
 var frame = 0
 
 func ElectResults(random = 0):
@@ -101,11 +101,16 @@ func disaster(temp):
 
 	
 func _input(event):
-	
+	if Input.is_key_pressed(KEY_ESCAPE):
+				frame = 2
+				$Camera2D.position = Vector2(-1420, 297)
+				$Camera2D.zoom = Vector2(1,1)
+				previousvis = [$CanvasLayer.visible, $"Popularity bar".visible, $Start.visible]
+				$CanvasLayer.visible = false
+				$"Popularity bar".visible =  false
+				$Start.visible = false
 	
 	if frame == 0:
-
-
 		if phase == 2:
 			if zoom == -1:
 				curprod = 0
@@ -211,7 +216,7 @@ func _input(event):
 							if posprod[curprod] in districts[zoom].product:
 								if checkprod == false:
 									$DistrictMenu/Industry/Label.text += "
-									Press X to confirm"
+									Press X to confirm."
 									checkprod = true
 									$DistrictMenu/Popularity.extra += 1
 								else:
@@ -283,10 +288,11 @@ func _input(event):
 									
 								
 				if event is InputEventKey and event.pressed:
-					if Input.is_key_pressed(KEY_ESCAPE):
+					if Input.is_key_pressed(KEY_BACKSPACE):
 						cameracenter =  Vector2(420, 297)
 						camerazoom = 1
 						zoom = -1
+						
 				
 				if event is InputEventMouseButton:
 					if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -307,6 +313,8 @@ func _input(event):
 							frame = 1
 							$Camera2D.position = Vector2(1920, 297)
 							$Camera2D.zoom = Vector2(1,1)
+							$"Popularity bar".visible = false
+							$CanvasLayer.visible = false
 							
 	if frame == 1:
 		if event is InputEventKey and event.pressed:
@@ -315,6 +323,16 @@ func _input(event):
 				$Camera2D.position = Vector2(420, 297)
 				$Camera2D.zoom = Vector2(1,1)
 				$DistrictMenu.industry_clicked = false
+				$CanvasLayer.visible = true
+				$"Popularity bar".visible = true
+	if frame == 2:
+		if Input.is_key_pressed(KEY_BACKSPACE):
+				frame = 0
+				$Camera2D.position = Vector2(420, 297)
+				$Camera2D.zoom = Vector2(1,1)
+				$CanvasLayer.visible = previousvis[0]
+				$"Popularity bar".visible =  previousvis[1]
+				$Start.visible = previousvis[2]
 
 func _process(delta: float) -> void:
 	$Label4.text = "    =" + str(food) + "\n    = " + str(money)
@@ -492,13 +510,13 @@ func _process(delta: float) -> void:
 			var estimate = GenPopularity(10)
 			$"Popularity bar/ColorRect".size.x = estimate
 			$"Popularity bar/ColorRect2".size.x = 100 - estimate
-			$"Popularity bar/ColorRect2".position.x = 2 + 2*estimate
+			$"Popularity bar/ColorRect2".position.x = 68 + 2*estimate
 			
 			
 			
-					
-					
-						
+			
+			$"Popularity bar".visible = true
+			$Start.visible = false
 			$CanvasLayer/News.hide = false
 			$CanvasLayer/News.text = "Next"
 			temp += 1

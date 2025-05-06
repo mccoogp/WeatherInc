@@ -43,3 +43,4 @@ func _on_update_toggle_button_down() -> void:
 func _on_skill_tree_toggle_button_down() -> void:
 	var skill_tree = get_node("../SkillTree")
 	skill_tree.visible = !skill_tree.visible
+	$CanvasLayer/News.skillsclicked = true
