@@ -21,7 +21,7 @@ var year = 1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$TopBar/Variables.text = "    =" + str(food) + "\n     = " + str(money)
-	$TopBar.visible = false
+
 	
 var adjacents = {0: [1,4,6], 1: [0,4,2], 2: [1,3,4,5], 3: [2,5,10], 4: [0,1,2,5,6,7,8], 5: [2,3,4,8,9,10], 6: [0,4,7,11], 7: [4,6,8,11,12,13], 8: [4,5,7,9,13,14], 9: [5,8,10,14], 10: [3,5,9,14,15], 11:[6,7,12], 12: [11,7,13], 13: [12,7,8,14,15], 14: [8,9,10,13,15], 15: [10,13,14]}
 
@@ -543,8 +543,7 @@ func _process(delta: float) -> void:
 			$"Popularity bar/ColorRect".size.x = estimate
 			$"Popularity bar/ColorRect2".size.x = 100 - estimate
 			$"Popularity bar/ColorRect2".position.x = 49 + 2*estimate
-			
-			$TopBar.visible = true
+			$TopBar/TopMenu.visible = true
 			#$Label4.visible = true
 			$"Popularity bar".visible = true
 			$Start.visible = false

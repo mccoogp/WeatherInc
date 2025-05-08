@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dgo4cwa032h0v"]
+[gd_scene load_steps=37 format=3 uid="uid://dgo4cwa032h0v"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_3gon6"]
 [ext_resource type="PackedScene" uid="uid://cacfd62pudml6" path="res://district.tscn" id="2_41llr"]
@@ -26,6 +26,7 @@
 [ext_resource type="FontFile" uid="uid://bdw8tj5ekkyoi" path="res://m5x7.ttf" id="16_6dtuk"]
 [ext_resource type="Texture2D" uid="uid://cv5e5dl0udsxh" path="res://4caster Art/industries/grain.png" id="16_lw505"]
 [ext_resource type="Texture2D" uid="uid://b1ecqpyxsxhg2" path="res://4caster Art/menu/menu_left.png" id="16_r0fdw"]
+[ext_resource type="Texture2D" uid="uid://cuamw7cxdnd2h" path="res://4caster Art/menu/menu_top.png" id="17_oo65l"]
 [ext_resource type="Texture2D" uid="uid://b3hq3frebpew7" path="res://4caster Art/menu/menu_right.png" id="17_uh2i4"]
 [ext_resource type="PackedScene" uid="uid://b6n21rixj3vjv" path="res://pause.tscn" id="25_irgum"]
 [ext_resource type="Texture2D" uid="uid://dsc86vr60qvhl" path="res://4caster Art/menu/menu.png" id="26_3urtx"]
@@ -187,21 +188,24 @@ water = true
 [node name="TopBar" type="CanvasLayer" parent="."]
 
 [node name="MenuGuide" type="Sprite2D" parent="TopBar"]
+visible = false
 position = Vector2(573, 355)
 scale = Vector2(1.34, 1.34)
 texture = ExtResource("26_3urtx")
 
 [node name="LeftMenu" type="Sprite2D" parent="TopBar"]
+visible = false
 texture_filter = 1
 position = Vector2(145, 295)
 scale = Vector2(1.34, 1.34)
 texture = ExtResource("16_r0fdw")
 
 [node name="TopMenu" type="Sprite2D" parent="TopBar"]
+visible = false
 texture_filter = 1
-position = Vector2(145, 295)
+position = Vector2(573, 355)
 scale = Vector2(1.34, 1.34)
-texture = ExtResource("16_r0fdw")
+texture = ExtResource("17_oo65l")
 
 [node name="RightMenu" type="Sprite2D" parent="TopBar"]
 texture_filter = 1
