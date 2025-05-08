@@ -56,12 +56,24 @@ func ElectResults(random = 0):
 		populations[-1][0] -= totalpopulation/504
 		populations.sort()
 	
+	var district_nodes = [$District, $District2, $District3, $District4,
+	$District5, $District6, $District7, $District8,
+	$District9, $District10, $District11, $District12,
+	$District13, $District14, $District15, $District16]
+
+
 	var totalvotes = 0
 	
 	for district in 16:
 		if districts[district].popularity + randf_range(-1,1) * random > 50:
-			totalvotes += districts[district].votes
-	
+			var color = Color(0.2, 0.8, 0.2)
+			var tween = create_tween()
+			tween.tween_property(districts[district], "modulate", color, 0.3)
+		else:
+			var color = Color(0.5, 0.2, 0.6)
+			var tween = create_tween()
+			tween.tween_property(districts[district], "modulate", color, 0.3)
+		totalvotes += districts[district].votes
 	return totalvotes
 		
 
@@ -73,6 +85,17 @@ func GenPopularity(random = 0):
 		popularity += districts[district].population * (districts[district].popularity + (randf_range(-1,1) * random))
 	return popularity/totalpopulation
 	
+func ResetColor():
+	var district_nodes = [$District, $District2, $District3, $District4,
+	$District5, $District6, $District7, $District8,
+	$District9, $District10, $District11, $District12,
+	$District13, $District14, $District15, $District16]
+
+
+	for district in 16:
+		var tween = create_tween()
+		tween.tween_property(district_nodes[district], "modulate", Color(1, 1, 1, 1), 1.0)
+
 
 
 func popularity_down(district):
@@ -293,6 +316,11 @@ func _input(event):
 						cameracenter =  Vector2(420, 297)
 						camerazoom = 0.7
 						zoom = -1
+					
+					if Input.is_key_pressed(KEY_TAB):
+						cameracenter =  Vector2(420, 297)
+						camerazoom = 1
+						zoom = -1
 						
 				
 				if event is InputEventMouseButton:
@@ -363,6 +391,7 @@ func _process(delta: float) -> void:
 	
 
 	if $CanvasLayer/News.clicked == true:
+		
 		$CanvasLayer/News.clicked = false
 		phase += 1
 		if phase == 2:
@@ -375,6 +404,8 @@ func _process(delta: float) -> void:
 		if phase == 3:
 			if year % 4 == 0:
 				print(ElectResults(5))
+				await get_tree().create_timer(5).timeout
+				ResetColor()
 			else:
 				phase += 1
 			$CanvasLayer/News.text = "Advance (6 months)"
