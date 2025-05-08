@@ -20,13 +20,14 @@ var temp = 60
 var year = 1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Label4.text = "    =" + str(food) + "\n     = " + str(money)
+	$TopBar/Variables.text = "    =" + str(food) + "\n     = " + str(money)
+	$TopBar.visible = false
 	
 var adjacents = {0: [1,4,6], 1: [0,4,2], 2: [1,3,4,5], 3: [2,5,10], 4: [0,1,2,5,6,7,8], 5: [2,3,4,8,9,10], 6: [0,4,7,11], 7: [4,6,8,11,12,13], 8: [4,5,7,9,13,14], 9: [5,8,10,14], 10: [3,5,9,14,15], 11:[6,7,12], 12: [11,7,13], 13: [12,7,8,14,15], 14: [8,9,10,13,15], 15: [10,13,14]}
 
 var zoom = -1
-var cameracenter =  Vector2(420, 297)
-var camerazoom = 1
+var cameracenter =  Vector2(420, 250)
+var camerazoom = 0.8
 
 var posprod = ["none", "grain", "meat", "fish", "factory", "oil", "research"]
 var curprod = 0
@@ -290,7 +291,7 @@ func _input(event):
 				if event is InputEventKey and event.pressed:
 					if Input.is_key_pressed(KEY_BACKSPACE):
 						cameracenter =  Vector2(420, 297)
-						camerazoom = 1
+						camerazoom = 0.7
 						zoom = -1
 						
 				
@@ -298,7 +299,7 @@ func _input(event):
 					if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 						if districts[zoom].clicked == false and $DistrictMenu.anyclicked == false:
 							cameracenter =  Vector2(420, 297)
-							camerazoom = 1
+							camerazoom = 0.7
 							zoom = -1
 							for district in 16:
 								if districts[district].clicked == true:
@@ -321,7 +322,7 @@ func _input(event):
 			if Input.is_key_pressed(KEY_BACKSPACE):
 				frame = 0
 				$Camera2D.position = Vector2(420, 297)
-				$Camera2D.zoom = Vector2(1,1)
+				$Camera2D.zoom = Vector2(0.7,0.7)
 				$DistrictMenu.industry_clicked = false
 				$CanvasLayer.visible = true
 				$"Popularity bar".visible = true
@@ -329,15 +330,15 @@ func _input(event):
 		if Input.is_key_pressed(KEY_BACKSPACE):
 				frame = 0
 				$Camera2D.position = Vector2(420, 297)
-				$Camera2D.zoom = Vector2(1,1)
+				$Camera2D.zoom = Vector2(0.7,0.7)
 				$CanvasLayer.visible = previousvis[0]
 				$"Popularity bar".visible =  previousvis[1]
 				$Start.visible = previousvis[2]
 
 func _process(delta: float) -> void:
-	$Label4.text = "    =" + str(food) + "\n    = " + str(money)
+	$TopBar/Variables.text = "    =" + str(food) + "\n    = " + str(money)
 	if activatefact:
-		$Label4.text += "\nFactories = " + str(factories)
+		$TopBar/Variables.text += "\nFactories = " + str(factories)
 	if frame == 0:
 		#print($Camera2D.zoom, $Camera2D.position)
 		#print(camerazoom, cameracenter)
@@ -346,8 +347,8 @@ func _process(delta: float) -> void:
 		$Camera2D.zoom.x += (camerazoom - $Camera2D.zoom.x)/30
 		$Camera2D.zoom.y += (camerazoom - $Camera2D.zoom.y)/30
 		
-		$Label4.position = $Camera2D.position + Vector2(256, -290)/$Camera2D.zoom.y
-		$Label4.scale = Vector2(1,1)/$Camera2D.zoom.x
+		#$Label4.position = $Camera2D.position + Vector2(256, -290)/$Camera2D.zoom.y
+		#$Label4.scale = Vector2(1,1)/$Camera2D.zoom.x
 		
 		
 		if zoom == -1:
@@ -510,11 +511,10 @@ func _process(delta: float) -> void:
 			var estimate = GenPopularity(10)
 			$"Popularity bar/ColorRect".size.x = estimate
 			$"Popularity bar/ColorRect2".size.x = 100 - estimate
-			$"Popularity bar/ColorRect2".position.x = 9 + 2*estimate
+			$"Popularity bar/ColorRect2".position.x = 49 + 2*estimate
 			
-			
-			
-			$Label4.visible = true
+			$TopBar.visible = true
+			#$Label4.visible = true
 			$"Popularity bar".visible = true
 			$Start.visible = false
 			$CanvasLayer/News.hide = false
