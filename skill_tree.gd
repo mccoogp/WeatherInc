@@ -47,7 +47,20 @@ func load_skill_description(name) -> void:
 		current_skill = name
 		
 	btn_active = name
-	skill_name_label.text = name
+	if str(name).substr(0, 2) == "ag":
+		skill_name_label.text = "Agriculture"
+		
+	if str(name).substr(0, 2) == "in":
+		skill_name_label.text = "Industrial"
+		
+	if str(name).substr(0, 2) == "en":
+		skill_name_label.text = "Enviormental"
+		
+	if str(name).substr(0, 2) == "te":
+		skill_name_label.text = "Technology"
+	
+		
+	skill_name_label.text += " " + str(name).substr(3, 1)
 	skill_description_label.text = skill_description
 	
 func buy_skill(name) -> void:

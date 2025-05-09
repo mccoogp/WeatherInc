@@ -572,9 +572,46 @@ label_settings = SubResource("LabelSettings_7wjru")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+offset_left = -695.0
+offset_top = -286.0
+offset_right = 305.0
+offset_bottom = 714.0
+scale = Vector2(5.88502, 5.88502)
+color = Color(0.14902, 0.14902, 0.14902, 0.384314)
+
 [node name="News" parent="CanvasLayer" instance=ExtResource("12_k216x")]
 hide = true
 skillclicked = true
+
+[node name="Ag 4" parent="CanvasLayer/News/SkillTree/Agriculture2" index="3"]
+visible = false
+
+[node name="Ag 5" parent="CanvasLayer/News/SkillTree/Agriculture2" index="4"]
+visible = false
+
+[node name="In 4" parent="CanvasLayer/News/SkillTree/Industrial" index="3"]
+visible = false
+
+[node name="In 5" parent="CanvasLayer/News/SkillTree/Industrial" index="4"]
+visible = false
+
+[node name="Skill Descriptions" parent="CanvasLayer/News/SkillTree" index="5"]
+visible = false
+
+[node name="Name" parent="CanvasLayer/News/SkillTree/Skill Descriptions" index="1"]
+offset_top = 188.0
+offset_bottom = 232.0
+scale = Vector2(1.52, 1.52)
+text = "name"
+
+[node name="Description" parent="CanvasLayer/News/SkillTree/Skill Descriptions" index="2"]
+offset_left = 759.0
+offset_top = 250.0
+offset_right = 1127.0
+offset_bottom = 640.0
+text = "descrip"
 
 [node name="UpdateToggle" parent="CanvasLayer/News" index="2"]
 offset_left = 854.0

@@ -407,8 +407,10 @@ func _process(delta: float) -> void:
 		$CanvasLayer/News.skillclicked = false
 		if $CanvasLayer/News/SkillTree.visible == false:
 			frame = 0
+			$CanvasLayer/ColorRect.visible = $CanvasLayer/News/SkillTree.visible
 
 	if $CanvasLayer/News/SkillTree.visible == true:
+		$CanvasLayer/ColorRect.visible = $CanvasLayer/News/SkillTree.visible
 		frame = 3
 	if frame == 0:
 		#print($Camera2D.zoom, $Camera2D.position)
@@ -442,7 +444,7 @@ func _process(delta: float) -> void:
 			$TopBar/LeftMenu/DistrictPopularity/ColorRect2.size.x = 100 - estimate
 			$TopBar/LeftMenu/DistrictPopularity/ColorRect2.position.x = 49 + 2*estimate
 			$TopBar/LeftMenu/Label.text = $DistrictMenu/Popularity/Tax_Label.text
-			
+
 			
 	
 
@@ -456,6 +458,8 @@ func _process(delta: float) -> void:
 				$CanvasLayer/News.text = "Election"
 			else:
 				$CanvasLayer/News.text = "Advance"
+			if activateresearch:
+				$CanvasLayer/News/SkillTreeToggle.visible = true
 			
 		if phase == 3:
 			if year % 4 == 0:
@@ -591,7 +595,7 @@ func _process(delta: float) -> void:
 				food = 0
 			food /= 2
 			
-			
+			$CanvasLayer/News/SkillTreeToggle.visible = false
 			totalpop = 0
 			for district in 16:
 				for dist in adjacents[district]:
@@ -623,7 +627,6 @@ func _process(delta: float) -> void:
 			phase = 1
 			$TopBar/Variables3/Research
 			if activateresearch:
-				$CanvasLayer/News/SkillTreeToggle.visible = true
 				$TopBar/Variables3/Research.visible = true
 				$TopBar/Variables3.text = "  = " + str(totalpop) + "\n  = " + str(research)
 			
