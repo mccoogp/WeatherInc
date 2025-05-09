@@ -58,9 +58,10 @@ func buy_skill(name) -> void:
 	elif levels[category] + 1 < level:
 		print("need prerequisite upgrade")
 	else:
-		if find_parent('world').money - 1000 >= 0:
+		if find_parent('world').energyprod - 1000 >= 0 and find_parent('world').research - 1 >= 0:
 			levels[category] += 1
-			find_parent('world').money -= 1000
+			find_parent('world').energyprod -= 1000
+			find_parent('world').research -= 1
 			print("bought", name)
 		else:
 			print("not enough money")

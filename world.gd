@@ -20,6 +20,8 @@ var temp = 60
 var year = 1
 var factories = 0
 var energyprod = 0
+var research = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$TopBar/Variables.text = "  = " + str(food) + "\n   = " + str(money)
@@ -42,7 +44,7 @@ var curprod = 0
 var checkprod = false
 
 var activatefact = false
-
+var activateresearch = false
 
 var previousvis = [false, false, false]
 var frame = 0
@@ -152,8 +154,7 @@ func _input(event):
 						cameracenter = districts[district].center
 						camerazoom = districts[district].zoom
 						districts[district].clicked = false
-						print(districts[district].population)
-						print(districts[district].popularity)
+
 			else:
 				if event is InputEventKey and event.pressed:
 					if Input.is_key_pressed(KEY_RIGHT):
@@ -245,7 +246,7 @@ func _input(event):
 						districts[zoom].newtax -= 0.5
 						if districts[zoom].newtax < 0:
 							districts[zoom].newtax = 0
-						print((districts[zoom]).newtax)
+
 						$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax) + "%"		
 					if curprod > 0:
 						if Input.is_key_pressed(KEY_X):
@@ -400,7 +401,15 @@ func _input(event):
 func _process(delta: float) -> void:
 	$TopBar/Variables.text = "  = " + str(food) + "\n  = " + str(money)
 	$TopBar/Variables2.text = "   = " + str(factories) + "\n   = " + str(energyprod)
+	if activateresearch:
+				$TopBar/Variables3.text = "  = " + str(totalpop) + "\n  = " + str(research)
+	if $CanvasLayer/News.skillclicked:
+		$CanvasLayer/News.skillclicked = false
+		if $CanvasLayer/News/SkillTree.visible == false:
+			frame = 0
 
+	if $CanvasLayer/News/SkillTree.visible == true:
+		frame = 3
 	if frame == 0:
 		#print($Camera2D.zoom, $Camera2D.position)
 		#print(camerazoom, cameracenter)
@@ -465,6 +474,7 @@ func _process(delta: float) -> void:
 			
 			year += 1
 			factories = 0
+			research = 0
 			totalpop = 0
 			foodprod = 0
 			
@@ -563,6 +573,8 @@ func _process(delta: float) -> void:
 					districts[district].setup = 1
 				if "research" in districts[district].product:
 					districts[district].setup = 1
+					research += 1
+					activateresearch = true
 			
 			
 			food += foodprod * food_modifier
@@ -609,8 +621,11 @@ func _process(delta: float) -> void:
 			$CanvasLayer/News.text = "Next"
 			temp += 1
 			phase = 1
-			
-			
+			$TopBar/Variables3/Research
+			if activateresearch:
+				$CanvasLayer/News/SkillTreeToggle.visible = true
+				$TopBar/Variables3/Research.visible = true
+				$TopBar/Variables3.text = "  = " + str(totalpop) + "\n  = " + str(research)
 			
 			#news stuff
 			$CanvasLayer/News/ScrollContainer/TextureRect/VBoxContainer/Production_title/Temp.text = "Average surface\ntempurature: " + str(temp) + "°F"

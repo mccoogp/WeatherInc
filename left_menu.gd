@@ -20,5 +20,3 @@ func _process(delta: float) -> void:
 	$DistrictPopulation.position.y = -50 + 25 * (extras[0] + 2)
 	$DistrictPopularity.position.y = -70 + 25 * (extras[0] + 3)
 	$Label.position.y = -60 + 25 * (extras[0] + 4)
-func _input(event: InputEvent) -> void:
-	print(extras)
