@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dgo4cwa032h0v"]
+[gd_scene load_steps=47 format=3 uid="uid://dgo4cwa032h0v"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_3gon6"]
 [ext_resource type="PackedScene" uid="uid://cacfd62pudml6" path="res://district.tscn" id="2_41llr"]
@@ -24,23 +24,48 @@
 [ext_resource type="Texture2D" uid="uid://bpn10f2wtf42n" path="res://4caster Art/new map/district11.png" id="14_5hcpw"]
 [ext_resource type="Texture2D" uid="uid://cf4tedwaqq4r6" path="res://4caster Art/variables/dollar.png" id="15_ds5hs"]
 [ext_resource type="FontFile" uid="uid://bdw8tj5ekkyoi" path="res://m5x7.ttf" id="16_6dtuk"]
+[ext_resource type="Texture2D" uid="uid://cobga1anch7pf" path="res://4caster Art/menu/menu_left_top.png" id="16_dv0ow"]
 [ext_resource type="Texture2D" uid="uid://cv5e5dl0udsxh" path="res://4caster Art/industries/grain.png" id="16_lw505"]
-[ext_resource type="Texture2D" uid="uid://b1ecqpyxsxhg2" path="res://4caster Art/menu/menu_left.png" id="16_r0fdw"]
 [ext_resource type="Texture2D" uid="uid://cuamw7cxdnd2h" path="res://4caster Art/menu/menu_top.png" id="17_oo65l"]
 [ext_resource type="Texture2D" uid="uid://b3hq3frebpew7" path="res://4caster Art/menu/menu_right.png" id="17_uh2i4"]
+[ext_resource type="Script" path="res://left_menu.gd" id="17_uwtjx"]
+[ext_resource type="Texture2D" uid="uid://dsy5eq0itmrqa" path="res://4caster Art/menu/menu_section.png" id="19_dcwrs"]
+[ext_resource type="Texture2D" uid="uid://b72j3hhq8e55f" path="res://4caster Art/menu/menu_left_bottom.png" id="21_6ps3s"]
+[ext_resource type="Texture2D" uid="uid://c483hywjwx8pt" path="res://4caster Art/variables/energy.png" id="21_mobic"]
+[ext_resource type="Texture2D" uid="uid://bcc6af5iy0tfm" path="res://4caster Art/industries/factory.png" id="22_jx0ki"]
+[ext_resource type="Texture2D" uid="uid://bepv4cc5d0a6f" path="res://4caster Art/variables/population.png" id="23_7gflr"]
 [ext_resource type="PackedScene" uid="uid://b6n21rixj3vjv" path="res://pause.tscn" id="25_irgum"]
 [ext_resource type="Texture2D" uid="uid://dsc86vr60qvhl" path="res://4caster Art/menu/menu.png" id="26_3urtx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_afd1u"]
+line_spacing = -20.0
+font = ExtResource("16_6dtuk")
+font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_kknvv"]
+font = ExtResource("16_6dtuk")
+font_size = 70
+
+[sub_resource type="LabelSettings" id="LabelSettings_1rgr7"]
+font = ExtResource("16_6dtuk")
+font_size = 70
+font_color = Color(1, 1, 3.226, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_13on7"]
+font = ExtResource("16_6dtuk")
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_hhqc8"]
+font = ExtResource("16_6dtuk")
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4opf"]
+font = ExtResource("16_6dtuk")
+font_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_gib8d"]
 font = ExtResource("16_6dtuk")
 font_size = 25
-
-[sub_resource type="LabelSettings" id="LabelSettings_afd1u"]
-font_size = 70
-
-[sub_resource type="LabelSettings" id="LabelSettings_1rgr7"]
-font_size = 70
-font_color = Color(1, 1, 3.226, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_luws0"]
 font_size = 45
@@ -88,10 +113,9 @@ image = ExtResource("5_ec8ym")
 
 [node name="District3" parent="." instance=ExtResource("2_41llr")]
 texture_filter = 1
-position = Vector2(399, 9)
+position = Vector2(398.809, 9.52381)
 scale = Vector2(67, 67)
 DistrictNumber = 3
-product = ["oil"]
 center = Vector2(410, 50)
 zoom = 3.5
 image = ExtResource("6_fi25x")
@@ -193,12 +217,93 @@ position = Vector2(573, 355)
 scale = Vector2(1.34, 1.34)
 texture = ExtResource("26_3urtx")
 
-[node name="LeftMenu" type="Sprite2D" parent="TopBar"]
-visible = false
+[node name="LeftMenu" type="Sprite2D" parent="TopBar" node_paths=PackedStringArray("extend")]
 texture_filter = 1
 position = Vector2(145, 295)
 scale = Vector2(1.34, 1.34)
-texture = ExtResource("16_r0fdw")
+texture = ExtResource("16_dv0ow")
+script = ExtResource("17_uwtjx")
+extend = [NodePath("LeftMenuMiddle"), NodePath("LeftMenuMiddle2"), NodePath("LeftMenuMiddle3")]
+
+[node name="LeftMenuBottom" type="Sprite2D" parent="TopBar/LeftMenu"]
+texture_filter = 1
+position = Vector2(0, -45)
+texture = ExtResource("21_6ps3s")
+
+[node name="LeftMenuMiddle" type="Sprite2D" parent="TopBar/LeftMenu"]
+visible = false
+texture_filter = 1
+position = Vector2(-5.97, -5)
+texture = ExtResource("19_dcwrs")
+
+[node name="LeftMenuMiddle2" type="Sprite2D" parent="TopBar/LeftMenu"]
+visible = false
+texture_filter = 1
+position = Vector2(-2.239, 37)
+texture = ExtResource("19_dcwrs")
+
+[node name="LeftMenuMiddle3" type="Sprite2D" parent="TopBar/LeftMenu"]
+visible = false
+texture_filter = 1
+position = Vector2(-2.239, 79)
+texture = ExtResource("19_dcwrs")
+
+[node name="Industry" type="Sprite2D" parent="TopBar/LeftMenu" node_paths=PackedStringArray("menu")]
+position = Vector2(0, 71.6418)
+scale = Vector2(0.1051, 0.255548)
+script = ExtResource("6_ttn6t")
+menu = NodePath("../../../DistrictMenu")
+
+[node name="Sprite2D" type="Sprite2D" parent="TopBar/LeftMenu/Industry"]
+position = Vector2(-461.537, -586.975)
+scale = Vector2(19.2248, 8.54436)
+
+[node name="Label" type="Label" parent="TopBar/LeftMenu/Industry"]
+anchors_preset = -1
+anchor_left = -2.06342
+anchor_top = -1.35004
+anchor_right = -1.68176
+anchor_bottom = -1.2042
+offset_left = -1105.63
+offset_top = -734.559
+offset_right = -371.626
+offset_bottom = -449.559
+scale = Vector2(2.52758, 2.02583)
+text = "Industry: 
+None"
+label_settings = SubResource("LabelSettings_afd1u")
+horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label3" type="Label" parent="TopBar/LeftMenu/Industry"]
+anchors_preset = -1
+anchor_left = -2.06342
+anchor_top = -1.35004
+anchor_right = -1.68176
+anchor_bottom = -1.2042
+offset_left = -835.804
+offset_top = -538.901
+offset_right = -101.804
+offset_bottom = -253.901
+scale = Vector2(2.52758, 2.02583)
+label_settings = SubResource("LabelSettings_kknvv")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="TopBar/LeftMenu/Industry"]
+offset_left = -837.867
+offset_top = -560.693
+offset_right = -188.867
+offset_bottom = -464.692
+scale = Vector2(2.5, 2.5)
+text = "Test"
+label_settings = SubResource("LabelSettings_1rgr7")
+script = ExtResource("7_vefmc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="TopBar/LeftMenu"]
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="TopBar/LeftMenu"]
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="TopBar/LeftMenu"]
 
 [node name="TopMenu" type="Sprite2D" parent="TopBar"]
 visible = false
@@ -214,10 +319,11 @@ scale = Vector2(1.34, 1.34)
 texture = ExtResource("17_uh2i4")
 
 [node name="Variables" type="Label" parent="TopBar"]
-offset_left = 533.0
-offset_top = 33.0
-offset_right = 823.99
-offset_bottom = 108.0
+offset_left = 650.0
+offset_top = 30.0
+offset_right = 940.99
+offset_bottom = 105.0
+label_settings = SubResource("LabelSettings_13on7")
 
 [node name="Money" type="Sprite2D" parent="TopBar/Variables"]
 position = Vector2(0.000434399, 36.9047)
@@ -227,7 +333,39 @@ texture = ExtResource("15_ds5hs")
 position = Vector2(0.000435965, 8.33329)
 texture = ExtResource("16_lw505")
 
+[node name="Variables2" type="Label" parent="TopBar"]
+offset_left = 475.0
+offset_top = 30.0
+offset_right = 765.99
+offset_bottom = 105.0
+label_settings = SubResource("LabelSettings_hhqc8")
+
+[node name="Money" type="Sprite2D" parent="TopBar/Variables2"]
+position = Vector2(0.000434399, 36.9047)
+texture = ExtResource("21_mobic")
+
+[node name="Food" type="Sprite2D" parent="TopBar/Variables2"]
+position = Vector2(8.7189e-06, 8)
+texture = ExtResource("22_jx0ki")
+
+[node name="Variables3" type="Label" parent="TopBar"]
+offset_left = 300.0
+offset_top = 30.0
+offset_right = 590.99
+offset_bottom = 105.0
+label_settings = SubResource("LabelSettings_g4opf")
+
+[node name="Money" type="Sprite2D" parent="TopBar/Variables3"]
+visible = false
+position = Vector2(0.000434399, 36.9047)
+texture = ExtResource("21_mobic")
+
+[node name="Food" type="Sprite2D" parent="TopBar/Variables3"]
+position = Vector2(8.7189e-06, 8)
+texture = ExtResource("23_7gflr")
+
 [node name="Popularity bar" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect3" type="ColorRect" parent="Popularity bar"]
 offset_left = 47.0
@@ -262,46 +400,10 @@ text = "Estimated Popularity"
 label_settings = SubResource("LabelSettings_gib8d")
 
 [node name="DistrictMenu" type="Sprite2D" parent="."]
-z_index = 1
+z_index = 3
 position = Vector2(-90.4762, 63.0953)
 scale = Vector2(0.08, 0.08)
 script = ExtResource("5_s2cnt")
-
-[node name="Industry" type="Sprite2D" parent="DistrictMenu" node_paths=PackedStringArray("menu")]
-position = Vector2(-162.5, 737.5)
-scale = Vector2(2.09574, 5.09574)
-texture = ExtResource("4_r5mvf")
-script = ExtResource("6_ttn6t")
-menu = NodePath("..")
-
-[node name="Sprite2D" type="Sprite2D" parent="DistrictMenu/Industry"]
-position = Vector2(-113.325, -220.773)
-scale = Vector2(9, 4)
-
-[node name="Label" type="Label" parent="DistrictMenu/Industry"]
-anchors_preset = -1
-anchor_left = -2.06342
-anchor_top = -1.35004
-anchor_right = -1.68176
-anchor_bottom = -1.2042
-offset_left = 1748.44
-offset_top = 1330.24
-offset_right = 2482.44
-offset_bottom = 1615.24
-scale = Vector2(1.00283, 0.803758)
-text = "Industry: 
-None"
-label_settings = SubResource("LabelSettings_afd1u")
-horizontal_alignment = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="Label2" type="Label" parent="DistrictMenu/Industry"]
-offset_left = -256.472
-offset_top = -149.635
-offset_right = 392.528
-offset_bottom = -53.6348
-label_settings = SubResource("LabelSettings_1rgr7")
-script = ExtResource("7_vefmc")
 
 [node name="Popularity" type="Sprite2D" parent="DistrictMenu" node_paths=PackedStringArray("menu")]
 position = Vector2(-133.929, 877.977)
@@ -377,17 +479,23 @@ label_settings = SubResource("LabelSettings_7wjru")
 hide = true
 skillclicked = true
 
+[node name="ScrollContainer" parent="CanvasLayer/News" index="0"]
+visible = false
+
 [node name="UpdateToggle" parent="CanvasLayer/News" index="2"]
-offset_left = 872.0
-offset_top = 76.0
-offset_right = 1130.0
-offset_bottom = 132.0
+offset_left = 854.0
+offset_top = 65.0
+offset_right = 1112.0
+offset_bottom = 121.0
+scale = Vector2(1.08, 1.08)
+theme_override_font_sizes/font_size = 50
 
 [node name="SkillTreeToggle" parent="CanvasLayer/News" index="3"]
-offset_left = 887.0
-offset_top = 163.0
-offset_right = 1035.0
-offset_bottom = 219.0
+offset_left = 870.0
+offset_top = 127.0
+offset_right = 1018.0
+offset_bottom = 183.0
+scale = Vector2(1.68, 1.68)
 
 [node name="Start" type="CanvasLayer" parent="."]
 

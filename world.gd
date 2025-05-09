@@ -18,9 +18,12 @@ var food = 10000
 var money = 50000
 var temp = 60
 var year = 1
+var factories = 0
+var energyprod = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$TopBar/Variables.text = "    =" + str(food) + "\n     = " + str(money)
+	$TopBar/Variables.text = "  = " + str(food) + "\n   = " + str(money)
+	$TopBar/Variables2.text = "  = " + str(factories) + "\n   = " + str(energyprod)
 
 	
 var adjacents = {0: [1,4,6], 1: [0,4,2], 2: [1,3,4,5], 3: [2,5,10], 4: [0,1,2,5,6,7,8], 5: [2,3,4,8,9,10], 6: [0,4,7,11], 7: [4,6,8,11,12,13], 8: [4,5,7,9,13,14], 9: [5,8,10,14], 10: [3,5,9,14,15], 11:[6,7,12], 12: [11,7,13], 13: [12,7,8,14,15], 14: [8,9,10,13,15], 15: [10,13,14]}
@@ -32,9 +35,9 @@ var camerazoom = 0.8
 var posprod = ["none", "grain", "meat", "fish", "factory", "oil", "research"]
 var curprod = 0
 var checkprod = false
-var factories = 0
+
 var activatefact = false
-var energyprod = 0
+
 
 var previousvis = [false, false, false]
 var frame = 0
@@ -159,73 +162,77 @@ func _input(event):
 							curprod = 0
 						
 						if curprod == 0:
-							$DistrictMenu/Industry/Sprite2D.texture = null
-							$DistrictMenu/Industry/Label.text = "Industry:
+							$TopBar/LeftMenu/Industry/Sprite2D.texture = null
+							$TopBar/LeftMenu/Industry/Label.text = "Industry:
 							None"
-							$DistrictMenu/Popularity.extra = 0
-							$DistrictMenu/Industry/Label2.text = ""
+							$TopBar/LeftMenu/Industry/Label3.text = ""
+							$TopBar/LeftMenu.extras[0] = 0
+							$TopBar/LeftMenu/Industry/Label2.text = ""
 							$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].tax) + "%"
 						else:
-							$DistrictMenu/Industry/Sprite2D.texture = load("res://icons/" + posprod[curprod] + ".png")
-							$DistrictMenu/Industry/Label.text = "Industry:
+							$TopBar/LeftMenu/Industry/Sprite2D.texture = load("res://icons/" + posprod[curprod] + ".png")
+							$TopBar/LeftMenu/Industry/Label.text = "Industry:
 								" + posprod[curprod]
+							$TopBar/LeftMenu/Industry/Label3.text = ""
+							$TopBar/LeftMenu.extras[0] = 0
+							$DistrictMenu/Popularity.extra
 							if posprod[curprod] in districts[zoom].product:
-								$DistrictMenu/Industry/Label.text += "
+								$TopBar/LeftMenu/Industry/Label3.text += "
 								Press x to remove"
-								$DistrictMenu/Popularity.extra = 1
-								$DistrictMenu/Industry/Label2.text = ""
+								$TopBar/LeftMenu.extras[0] += 1
+								$TopBar/LeftMenu/Industry/Label2.text = ""
 							else:
 								if len(districts[zoom].product) == 0:
-									$DistrictMenu/Industry/Label.text += "
+									$TopBar/LeftMenu/Industry/Label3.text += "
 									Press enter to confirm"
-									$DistrictMenu/Popularity.extra = 1
+									$TopBar/LeftMenu.extras[0] += 1
 								else:
-									$DistrictMenu/Industry/Label.text += "
+									$TopBar/LeftMenu/Industry/Label3.text += "
 									No available space"
-									$DistrictMenu/Popularity.extra = 1
+									$TopBar/LeftMenu.extras[0] += 1
 								if posprod[curprod] == "fish":
-									$DistrictMenu/Industry/Label.text += "
+									$TopBar/LeftMenu/Industry/Label3.text += "
 									Requires: Water access"
 									if districts[zoom].water == true:
-										$DistrictMenu/Industry/Label2.text = "Reuirements met"
-										$DistrictMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
 									else:
-										$DistrictMenu/Industry/Label2.text = "Reuirements not met"
-										$DistrictMenu/Industry/Label2.get_label_settings().font_color = Color.RED
-									$DistrictMenu/Popularity.extra += 2
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+									$TopBar/LeftMenu.extras[0] += 2
 								elif posprod[curprod] == "factory":
-									$DistrictMenu/Industry/Label.text += "
+									$TopBar/LeftMenu/Industry/Label3.text += "
 									Cost: $100,000"
-									$DistrictMenu/Popularity.extra += 2
 									if money >= 100000:
-										$DistrictMenu/Industry/Label2.text = "Reuirements met"
-										$DistrictMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
 									else:
-										$DistrictMenu/Industry/Label2.text = "Reuirements not met"
-										$DistrictMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+									$TopBar/LeftMenu.extras[0] += 2
 								elif posprod[curprod] == "oil":
-									$DistrictMenu/Industry/Label.text += "
+									$TopBar/LeftMenu/Industry/Label3.text += "
 									Requires: 1 factory"
-									$DistrictMenu/Popularity.extra += 2
+									$TopBar/LeftMenu.extras[0] += 2
 									if factories >= 1:
-										$DistrictMenu/Industry/Label2.text = "Reuirements met"
-										$DistrictMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
 									else:
-										$DistrictMenu/Industry/Label2.text = "Reuirements not met"
-										$DistrictMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
 								elif posprod[curprod] == "research":
-									$DistrictMenu/Industry/Label.text += "
+									$TopBar/LeftMenu/Industry/Label3.text += "
 									Cost: $500,000
 									Requires 1 factory"
 									if money >= 500000 and factories >= 1:
-										$DistrictMenu/Industry/Label2.text = "Reuirements met"
-										$DistrictMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
 									else:
-										$DistrictMenu/Industry/Label2.text = "Reuirements not met"
-										$DistrictMenu/Industry/Label2.get_label_settings().font_color = Color.RED
-									$DistrictMenu/Popularity.extra += 3
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+									$TopBar/LeftMenu.extras[0] += 3
 								else:
-									$DistrictMenu/Industry/Label2.text = ""
+									$TopBar/LeftMenu/Industry/Label2.text = ""
 					if Input.is_key_pressed(KEY_UP):
 						districts[zoom].newtax += 0.5
 						$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax) + "%"
@@ -239,38 +246,38 @@ func _input(event):
 						if Input.is_key_pressed(KEY_X):
 							if posprod[curprod] in districts[zoom].product:
 								if checkprod == false:
-									$DistrictMenu/Industry/Label.text += "
+									$TopBar/LeftMenu/Industry/Label3.text += "
 									Press X to confirm."
 									checkprod = true
-									$DistrictMenu/Popularity.extra += 1
+									$TopBar/LeftMenu.extras[0] += 1
 								else:
 									districts[zoom].popularity *= randf_range(7.5,9.5)/10
 									districts[zoom].product.erase(posprod[curprod])
 									checkprod = false
-									$DistrictMenu/Industry/Label.text = "Industry:
+									$TopBar/LeftMenu/Industry/Label.text = "Industry:
 									" + posprod[curprod]
 									if len(districts[zoom].product) == 0:
-										$DistrictMenu/Industry/Label.text += "
+										$TopBar/LeftMenu/Industry/Label3.text += "
 										Press enter to confirm"
-										$DistrictMenu/Popularity.extra = 1
+										$TopBar/LeftMenu.extras[0] += 1
 									else:
-										$DistrictMenu/Industry/Label.text += "
+										$TopBar/LeftMenu/Industry/Label3.text += "
 										No available space"
-										$DistrictMenu/Popularity.extra = 1
+										$TopBar/LeftMenu.extras[0] += 1
 									if posprod[curprod] == "factory":
-										$DistrictMenu/Industry/Label.text += "
+										$TopBar/LeftMenu/Industry/Label3.text += "
 										Cost: $100,000"
-										$DistrictMenu/Popularity.extra += 1
+										$TopBar/LeftMenu.extras[0] += 1
 
 									if posprod[curprod] == "oil":
-										$DistrictMenu/Industry/Label.text += "
+										$TopBar/LeftMenu/Industry/Label3.text += "
 										Requires: 1 factory"
-										$DistrictMenu/Popularity.extra += 1
+										$TopBar/LeftMenu.extras[0] += 1
 									if posprod[curprod] == "research":
-										$DistrictMenu/Industry/Label.text += "
+										$TopBar/LeftMenu/Industry/Label3.text += "
 										Cost: $500,000
 										Requires: 1 factory"
-										$DistrictMenu/Popularity.extra += 2
+										$TopBar/LeftMenu.extras[0] += 2
 									
 						if Input.is_key_pressed(KEY_ENTER):
 							if len(districts[zoom].product) == 0:
@@ -305,11 +312,11 @@ func _input(event):
 								
 								if changed == true:
 									districts[zoom].product.append(posprod[curprod])
-									$DistrictMenu/Industry/Label.text = "Industry:
+									$TopBar/LeftMenu/Industry/Label.text = "Industry:
 									" + posprod[curprod]
-									$DistrictMenu/Industry/Label.text += "
+									$TopBar/LeftMenu/Industry/Label3.text = "
 									Press x to remove"
-									
+									$TopBar/LeftMenu.extras[0] = 1
 								
 				if event is InputEventKey and event.pressed:
 					if Input.is_key_pressed(KEY_BACKSPACE):
@@ -332,11 +339,12 @@ func _input(event):
 							for district in 16:
 								if districts[district].clicked == true:
 									districts[district].clicked = false
-							$DistrictMenu/Industry/Sprite2D.texture = null
-							$DistrictMenu/Industry/Label.text = "Industry:
+							$TopBar/LeftMenu/Industry/Sprite2D.texture = null
+							$TopBar/LeftMenu/Industry/Label.text = "Industry:
 							None"
+							$TopBar/LeftMenu/Industry/Label3.text = ""
 							$DistrictMenu/Popularity.extra = 0
-							$DistrictMenu/Industry/Label2.text = ""
+							$TopBar/LeftMenu/Industry/Label2.text = ""
 							
 						if $DistrictMenu.industry_clicked == true:
 							frame = 1
@@ -364,9 +372,9 @@ func _input(event):
 				$Start.visible = previousvis[2]
 
 func _process(delta: float) -> void:
-	$TopBar/Variables.text = "    =" + str(food) + "\n    = " + str(money)
-	if activatefact:
-		$TopBar/Variables.text += "\nFactories = " + str(factories)
+	$TopBar/Variables.text = "  = " + str(food) + "\n  = " + str(money)
+	$TopBar/Variables2.text = "   = " + str(factories) + "\n   = " + str(energyprod)
+
 	if frame == 0:
 		#print($Camera2D.zoom, $Camera2D.position)
 		#print(camerazoom, cameracenter)
@@ -381,10 +389,12 @@ func _process(delta: float) -> void:
 		
 		if zoom == -1:
 			$DistrictMenu.visible = false
+			$TopBar/LeftMenu.visible = false
 			$DistrictMenu.position = $Camera2D.position + Vector2(-479, -184)/$Camera2D.zoom.x   
 			$DistrictMenu.scale = Vector2(0.15,0.15)/$Camera2D.zoom.x
 		else:
 			$DistrictMenu.visible = true
+			$TopBar/LeftMenu.visible = true
 			$DistrictMenu.position = $Camera2D.position + Vector2(-479, -184)/$Camera2D.zoom.x   
 			$DistrictMenu.scale = Vector2(0.15,0.15)/$Camera2D.zoom.x
 			$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax) + "%"
@@ -399,7 +409,7 @@ func _process(delta: float) -> void:
 			if year % 4 == 0:
 				$CanvasLayer/News.text = "Election"
 			else:
-				$CanvasLayer/News.text = "Advance (6 months)"
+				$CanvasLayer/News.text = "Advance"
 			
 		if phase == 3:
 			if year % 4 == 0:
@@ -408,7 +418,7 @@ func _process(delta: float) -> void:
 				ResetColor()
 			else:
 				phase += 1
-			$CanvasLayer/News.text = "Advance (6 months)"
+			$CanvasLayer/News.text = "Advance"
 		if phase == 4:
 			var skill_tree_script = get_node('CanvasLayer/News/SkillTree')
 			food_modifier = 1.0 + skill_tree_script.levels[0] * 0.1
@@ -532,17 +542,25 @@ func _process(delta: float) -> void:
 				food = 0
 			food /= 2
 			
+			
+			totalpop = 0
 			for district in 16:
 				for dist in adjacents[district]:
 					var moving = districts[district].population * randf_range(0,5)/100
 					districts[dist].population += moving
 					districts[district].population -= moving
+			for district in 16:
+				districts[district].population = float(int(districts[district].population))
+				totalpop += districts[district].population
+			$TopBar/Variables3.text = "  = " + str(totalpop) 
 			
-			print(totalpop)
 			var estimate = GenPopularity(10)
 			$"Popularity bar/ColorRect".size.x = estimate
 			$"Popularity bar/ColorRect2".size.x = 100 - estimate
 			$"Popularity bar/ColorRect2".position.x = 49 + 2*estimate
+			
+			
+			$TopBar/Variables.visible = true
 			$TopBar/TopMenu.visible = true
 			#$Label4.visible = true
 			$"Popularity bar".visible = true
@@ -551,6 +569,7 @@ func _process(delta: float) -> void:
 			$CanvasLayer/News.text = "Next"
 			temp += 1
 			phase = 1
+			
 			
 			
 			#news stuff
