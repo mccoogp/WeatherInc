@@ -1,8 +1,9 @@
-[gd_scene load_steps=54 format=3 uid="uid://dgo4cwa032h0v"]
+[gd_scene load_steps=56 format=3 uid="uid://dgo4cwa032h0v"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_3gon6"]
 [ext_resource type="PackedScene" uid="uid://cacfd62pudml6" path="res://district.tscn" id="2_41llr"]
 [ext_resource type="Texture2D" uid="uid://b42u6galvg4kj" path="res://ogpc_map/mapfr.png" id="2_yw1kr"]
+[ext_resource type="Texture2D" uid="uid://c17nfm0cwkwit" path="res://4caster Art/new map/mamapsmapmapamp.png" id="3_w1gwx"]
 [ext_resource type="Texture2D" uid="uid://csgnvamjyfsfx" path="res://icon.svg" id="3_w2861"]
 [ext_resource type="Texture2D" uid="uid://m467oey86fmp" path="res://4caster Art/new map/district1.png" id="4_beqg1"]
 [ext_resource type="Texture2D" uid="uid://0u746ocid1y2" path="res://4caster Art/new map/district2.png" id="5_ec8ym"]
@@ -35,6 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://dlgystj22v1a6" path="res://4caster Art/new map/district16.png" id="19_05ytu"]
 [ext_resource type="Texture2D" uid="uid://dsy5eq0itmrqa" path="res://4caster Art/menu/menu_section.png" id="19_dcwrs"]
 [ext_resource type="Texture2D" uid="uid://b72j3hhq8e55f" path="res://4caster Art/menu/menu_left_bottom.png" id="21_6ps3s"]
+[ext_resource type="Texture2D" uid="uid://ds7g0e3p6gan5" path="res://4caster Art/new map/borders.png" id="21_a57w1"]
 [ext_resource type="Texture2D" uid="uid://c483hywjwx8pt" path="res://4caster Art/variables/energy.png" id="21_mobic"]
 [ext_resource type="Texture2D" uid="uid://bcc6af5iy0tfm" path="res://4caster Art/industries/factory.png" id="22_jx0ki"]
 [ext_resource type="Texture2D" uid="uid://bepv4cc5d0a6f" path="res://4caster Art/variables/population.png" id="23_7gflr"]
@@ -103,6 +105,12 @@ texture_filter = 1
 position = Vector2(417, 309)
 scale = Vector2(0.720001, 0.716921)
 texture = ExtResource("2_yw1kr")
+
+[node name="Background3" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(416.667, 217.857)
+scale = Vector2(0.720001, 0.716921)
+texture = ExtResource("3_w1gwx")
 
 [node name="District" parent="." instance=ExtResource("2_41llr")]
 position = Vector2(20.2381, 92.8571)
@@ -249,6 +257,12 @@ water = true
 center = Vector2(840, 495)
 zoom = 2.5
 image = ExtResource("19_05ytu")
+
+[node name="Background2" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(416.667, 217.857)
+scale = Vector2(0.720001, 0.716921)
+texture = ExtResource("21_a57w1")
 
 [node name="TopBar" type="CanvasLayer" parent="."]
 
