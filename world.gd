@@ -29,8 +29,13 @@ func _ready() -> void:
 var adjacents = {0: [1,4,6], 1: [0,4,2], 2: [1,3,4,5], 3: [2,5,10], 4: [0,1,2,5,6,7,8], 5: [2,3,4,8,9,10], 6: [0,4,7,11], 7: [4,6,8,11,12,13], 8: [4,5,7,9,13,14], 9: [5,8,10,14], 10: [3,5,9,14,15], 11:[6,7,12], 12: [11,7,13], 13: [12,7,8,14,15], 14: [8,9,10,13,15], 15: [10,13,14]}
 
 var zoom = -1
-var cameracenter =  Vector2(420, 250)
-var camerazoom = 0.8
+
+var defaultcenter = Vector2(420, 250)
+var defaultzoom = 0.9
+var cameracenter =  defaultcenter
+var camerazoom = defaultzoom
+
+
 
 var posprod = ["none", "grain", "meat", "fish", "factory", "oil", "research"]
 var curprod = 0
@@ -320,21 +325,21 @@ func _input(event):
 								
 				if event is InputEventKey and event.pressed:
 					if Input.is_key_pressed(KEY_BACKSPACE):
-						cameracenter =  Vector2(420, 297)
-						camerazoom = 0.7
+						cameracenter =  defaultcenter
+						camerazoom = defaultzoom
 						zoom = -1
 					
 					if Input.is_key_pressed(KEY_TAB):
-						cameracenter =  Vector2(420, 297)
-						camerazoom = 1
+						cameracenter =  defaultcenter
+						camerazoom = defaultzoom
 						zoom = -1
 						
 				
 				if event is InputEventMouseButton:
 					if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 						if districts[zoom].clicked == false and $DistrictMenu.anyclicked == false:
-							cameracenter =  Vector2(420, 297)
-							camerazoom = 0.7
+							cameracenter =  defaultcenter
+							camerazoom = defaultzoom
 							zoom = -1
 							for district in 16:
 								if districts[district].clicked == true:
@@ -353,20 +358,41 @@ func _input(event):
 							$"Popularity bar".visible = false
 							$CanvasLayer.visible = false
 							
+		if phase == 2 or phase == 3:
+			if zoom == -1:
+				if event is InputEventKey and event.pressed:
+					if Input.is_key_pressed(KEY_W):
+						defaultcenter.y -= 30/defaultzoom
+						$Camera2D.position.y -= 30/defaultzoom
+					if Input.is_key_pressed(KEY_S):
+						defaultcenter.y += 30/defaultzoom
+						$Camera2D.position.y += 30/defaultzoom
+					if Input.is_key_pressed(KEY_A):
+						defaultcenter.x -= 30/defaultzoom
+						$Camera2D.position.x -= 30/defaultzoom
+					if Input.is_key_pressed(KEY_D):
+						defaultcenter.x += 30/defaultzoom
+						$Camera2D.position.x += 30/defaultzoom
+					if Input.is_key_pressed(KEY_EQUAL):
+						defaultzoom += 0.1*defaultzoom
+						$Camera2D.zoom = Vector2(defaultzoom, defaultzoom)
+					if Input.is_key_pressed(KEY_MINUS):
+						defaultzoom -= 0.1*defaultzoom
+						$Camera2D.zoom = Vector2(defaultzoom, defaultzoom)
 	if frame == 1:
 		if event is InputEventKey and event.pressed:
 			if Input.is_key_pressed(KEY_BACKSPACE):
 				frame = 0
-				$Camera2D.position = Vector2(420, 297)
-				$Camera2D.zoom = Vector2(0.7,0.7)
+				$Camera2D.position = defaultcenter
+				$Camera2D.zoom = Vector2(defaultzoom, defaultzoom)
 				$DistrictMenu.industry_clicked = false
 				$CanvasLayer.visible = true
 				$"Popularity bar".visible = true
 	if frame == 2:
 		if Input.is_key_pressed(KEY_BACKSPACE):
 				frame = 0
-				$Camera2D.position = Vector2(420, 297)
-				$Camera2D.zoom = Vector2(0.7,0.7)
+				$Camera2D.position = defaultcenter
+				$Camera2D.zoom = Vector2(defaultzoom, defaultzoom)
 				$CanvasLayer.visible = previousvis[0]
 				$"Popularity bar".visible =  previousvis[1]
 				$Start.visible = previousvis[2]
@@ -378,6 +404,7 @@ func _process(delta: float) -> void:
 	if frame == 0:
 		#print($Camera2D.zoom, $Camera2D.position)
 		#print(camerazoom, cameracenter)
+		
 		$Camera2D.position.x += (cameracenter.x - $Camera2D.position.x)/15
 		$Camera2D.position.y += (cameracenter.y - $Camera2D.position.y)/15
 		$Camera2D.zoom.x += (camerazoom - $Camera2D.zoom.x)/30
@@ -392,6 +419,8 @@ func _process(delta: float) -> void:
 			$TopBar/LeftMenu.visible = false
 			$DistrictMenu.position = $Camera2D.position + Vector2(-479, -184)/$Camera2D.zoom.x   
 			$DistrictMenu.scale = Vector2(0.15,0.15)/$Camera2D.zoom.x
+			cameracenter = defaultcenter
+			camerazoom = defaultzoom
 		else:
 			$DistrictMenu.visible = true
 			$TopBar/LeftMenu.visible = true
@@ -570,6 +599,9 @@ func _process(delta: float) -> void:
 			
 			$TopBar/Variables.visible = true
 			$TopBar/TopMenu.visible = true
+			$TopBar/Variables.visible = true
+			$TopBar/Variables2.visible = true
+			$TopBar/Variables3.visible = true
 			#$Label4.visible = true
 			$"Popularity bar".visible = true
 			$Start.visible = false

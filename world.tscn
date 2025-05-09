@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://dgo4cwa032h0v"]
+[gd_scene load_steps=53 format=3 uid="uid://dgo4cwa032h0v"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_3gon6"]
 [ext_resource type="PackedScene" uid="uid://cacfd62pudml6" path="res://district.tscn" id="2_41llr"]
@@ -22,12 +22,17 @@
 [ext_resource type="Script" path="res://tax_label.gd" id="13_6327v"]
 [ext_resource type="Texture2D" uid="uid://bpn10f2wtf42n" path="res://4caster Art/new map/district11.png" id="14_5hcpw"]
 [ext_resource type="Texture2D" uid="uid://cf4tedwaqq4r6" path="res://4caster Art/variables/dollar.png" id="15_ds5hs"]
+[ext_resource type="Texture2D" uid="uid://ch8pqu217jw41" path="res://4caster Art/new map/district12.png" id="15_h5cav"]
 [ext_resource type="FontFile" uid="uid://bdw8tj5ekkyoi" path="res://m5x7.ttf" id="16_6dtuk"]
 [ext_resource type="Texture2D" uid="uid://cobga1anch7pf" path="res://4caster Art/menu/menu_left_top.png" id="16_dv0ow"]
 [ext_resource type="Texture2D" uid="uid://cv5e5dl0udsxh" path="res://4caster Art/industries/grain.png" id="16_lw505"]
+[ext_resource type="Texture2D" uid="uid://cuddmiptcfo1d" path="res://4caster Art/new map/district13.png" id="16_nqpus"]
+[ext_resource type="Texture2D" uid="uid://cn2sldy5vmjjv" path="res://4caster Art/new map/district14.png" id="17_b736m"]
 [ext_resource type="Texture2D" uid="uid://cuamw7cxdnd2h" path="res://4caster Art/menu/menu_top.png" id="17_oo65l"]
 [ext_resource type="Texture2D" uid="uid://b3hq3frebpew7" path="res://4caster Art/menu/menu_right.png" id="17_uh2i4"]
 [ext_resource type="Script" path="res://left_menu.gd" id="17_uwtjx"]
+[ext_resource type="Texture2D" uid="uid://dmjl6aj2oc6hn" path="res://4caster Art/new map/district15.png" id="18_6jcjn"]
+[ext_resource type="Texture2D" uid="uid://dlgystj22v1a6" path="res://4caster Art/new map/district16.png" id="19_05ytu"]
 [ext_resource type="Texture2D" uid="uid://dsy5eq0itmrqa" path="res://4caster Art/menu/menu_section.png" id="19_dcwrs"]
 [ext_resource type="Texture2D" uid="uid://b72j3hhq8e55f" path="res://4caster Art/menu/menu_left_bottom.png" id="21_6ps3s"]
 [ext_resource type="Texture2D" uid="uid://c483hywjwx8pt" path="res://4caster Art/variables/energy.png" id="21_mobic"]
@@ -90,7 +95,6 @@ script = ExtResource("1_3gon6")
 districts = [NodePath("District"), NodePath("District2"), NodePath("District3"), NodePath("District4"), NodePath("District5"), NodePath("District6"), NodePath("District7"), NodePath("District8"), NodePath("District9"), NodePath("District10"), NodePath("District11"), NodePath("District12"), NodePath("District13"), NodePath("District14"), NodePath("District15"), NodePath("District16")]
 
 [node name="Background" type="Sprite2D" parent="."]
-modulate = Color(0.521569, 1, 1, 1)
 texture_filter = 1
 position = Vector2(417, 309)
 scale = Vector2(0.720001, 0.716921)
@@ -206,15 +210,40 @@ zoom = 2.5
 image = ExtResource("14_5hcpw")
 
 [node name="District12" parent="." instance=ExtResource("2_41llr")]
+position = Vector2(35.7143, 505.952)
+scale = Vector2(67, 67)
+center = Vector2(30, 470)
+zoom = 1.8
+image = ExtResource("15_h5cav")
 
 [node name="District13" parent="." instance=ExtResource("2_41llr")]
+position = Vector2(245.238, 538.095)
+scale = Vector2(67, 67)
+center = Vector2(300, 550)
+zoom = 2.5
+image = ExtResource("16_nqpus")
 
 [node name="District14" parent="." instance=ExtResource("2_41llr")]
+position = Vector2(527.381, 502.381)
+scale = Vector2(67, 67)
+center = Vector2(530, 510)
+zoom = 2.5
+image = ExtResource("17_b736m")
 
 [node name="District15" parent="." instance=ExtResource("2_41llr")]
+position = Vector2(616.667, 365.476)
+scale = Vector2(67, 67)
+center = Vector2(675, 385)
+zoom = 2.7
+image = ExtResource("18_6jcjn")
 
 [node name="District16" parent="." instance=ExtResource("2_41llr")]
+position = Vector2(791.667, 477.381)
+scale = Vector2(67, 67)
 water = true
+center = Vector2(840, 495)
+zoom = 2.5
+image = ExtResource("19_05ytu")
 
 [node name="TopBar" type="CanvasLayer" parent="."]
 
@@ -225,6 +254,7 @@ scale = Vector2(1.34, 1.34)
 texture = ExtResource("26_3urtx")
 
 [node name="LeftMenu" type="Sprite2D" parent="TopBar" node_paths=PackedStringArray("extend")]
+visible = false
 texture_filter = 1
 position = Vector2(145, 295)
 scale = Vector2(1.34, 1.34)
@@ -313,6 +343,7 @@ script = ExtResource("7_vefmc")
 [node name="CanvasLayer3" type="CanvasLayer" parent="TopBar/LeftMenu"]
 
 [node name="DistrictPopulation" type="Sprite2D" parent="TopBar/LeftMenu"]
+texture_filter = 1
 position = Vector2(-74.6269, -11.9403)
 texture = ExtResource("23_7gflr")
 
@@ -326,6 +357,7 @@ scale = Vector2(1.41791, 1.41791)
 label_settings = SubResource("LabelSettings_bx38f")
 
 [node name="DistrictPopularity" type="Sprite2D" parent="TopBar/LeftMenu"]
+texture_filter = 1
 position = Vector2(-64.1791, -2.98507)
 scale = Vector2(0.402985, 0.402985)
 
@@ -353,6 +385,7 @@ scale = Vector2(2, 1)
 color = Color(0, 0.678431, 0, 1)
 
 [node name="Label" type="Label" parent="TopBar/LeftMenu"]
+texture_filter = 1
 offset_left = -67.9104
 offset_top = 23.8806
 offset_right = 28.0896
@@ -375,6 +408,7 @@ scale = Vector2(1.34, 1.34)
 texture = ExtResource("17_uh2i4")
 
 [node name="Variables" type="Label" parent="TopBar"]
+visible = false
 offset_left = 650.0
 offset_top = 30.0
 offset_right = 940.99
@@ -390,6 +424,7 @@ position = Vector2(0.000435965, 8.33329)
 texture = ExtResource("16_lw505")
 
 [node name="Variables2" type="Label" parent="TopBar"]
+visible = false
 offset_left = 475.0
 offset_top = 30.0
 offset_right = 765.99
@@ -405,6 +440,7 @@ position = Vector2(8.7189e-06, 8)
 texture = ExtResource("22_jx0ki")
 
 [node name="Variables3" type="Label" parent="TopBar"]
+visible = false
 offset_left = 300.0
 offset_top = 30.0
 offset_right = 590.99
@@ -535,9 +571,6 @@ label_settings = SubResource("LabelSettings_7wjru")
 [node name="News" parent="CanvasLayer" instance=ExtResource("12_k216x")]
 hide = true
 skillclicked = true
-
-[node name="ScrollContainer" parent="CanvasLayer/News" index="0"]
-visible = false
 
 [node name="UpdateToggle" parent="CanvasLayer/News" index="2"]
 offset_left = 854.0
