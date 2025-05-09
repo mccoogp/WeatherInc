@@ -1,11 +1,10 @@
-[gd_scene load_steps=47 format=3 uid="uid://dgo4cwa032h0v"]
+[gd_scene load_steps=48 format=3 uid="uid://dgo4cwa032h0v"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_3gon6"]
 [ext_resource type="PackedScene" uid="uid://cacfd62pudml6" path="res://district.tscn" id="2_41llr"]
 [ext_resource type="Texture2D" uid="uid://b42u6galvg4kj" path="res://ogpc_map/mapfr.png" id="2_yw1kr"]
 [ext_resource type="Texture2D" uid="uid://csgnvamjyfsfx" path="res://icon.svg" id="3_w2861"]
 [ext_resource type="Texture2D" uid="uid://m467oey86fmp" path="res://4caster Art/new map/district1.png" id="4_beqg1"]
-[ext_resource type="Texture2D" uid="uid://ci40uw4qw76ht" path="res://Box.png" id="4_r5mvf"]
 [ext_resource type="Texture2D" uid="uid://0u746ocid1y2" path="res://4caster Art/new map/district2.png" id="5_ec8ym"]
 [ext_resource type="Script" path="res://district_menu.gd" id="5_s2cnt"]
 [ext_resource type="Texture2D" uid="uid://dcrmpvds4a51n" path="res://4caster Art/new map/district3.png" id="6_fi25x"]
@@ -50,6 +49,14 @@ font_size = 70
 font = ExtResource("16_6dtuk")
 font_size = 70
 font_color = Color(1, 1, 3.226, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bx38f"]
+font = ExtResource("16_6dtuk")
+font_size = 26
+
+[sub_resource type="LabelSettings" id="LabelSettings_03d63"]
+font = ExtResource("16_6dtuk")
+font_size = 60
 
 [sub_resource type="LabelSettings" id="LabelSettings_13on7"]
 font = ExtResource("16_6dtuk")
@@ -239,13 +246,13 @@ texture = ExtResource("19_dcwrs")
 [node name="LeftMenuMiddle2" type="Sprite2D" parent="TopBar/LeftMenu"]
 visible = false
 texture_filter = 1
-position = Vector2(-2.239, 37)
+position = Vector2(-6, 37)
 texture = ExtResource("19_dcwrs")
 
 [node name="LeftMenuMiddle3" type="Sprite2D" parent="TopBar/LeftMenu"]
 visible = false
 texture_filter = 1
-position = Vector2(-2.239, 79)
+position = Vector2(-6, 79)
 texture = ExtResource("19_dcwrs")
 
 [node name="Industry" type="Sprite2D" parent="TopBar/LeftMenu" node_paths=PackedStringArray("menu")]
@@ -304,6 +311,55 @@ script = ExtResource("7_vefmc")
 [node name="CanvasLayer2" type="CanvasLayer" parent="TopBar/LeftMenu"]
 
 [node name="CanvasLayer3" type="CanvasLayer" parent="TopBar/LeftMenu"]
+
+[node name="DistrictPopulation" type="Sprite2D" parent="TopBar/LeftMenu"]
+position = Vector2(-74.6269, -11.9403)
+texture = ExtResource("23_7gflr")
+
+[node name="Label" type="Label" parent="TopBar/LeftMenu/DistrictPopulation"]
+texture_filter = 1
+offset_left = 17.1642
+offset_top = -16.4179
+offset_right = 66.1642
+offset_bottom = 6.58209
+scale = Vector2(1.41791, 1.41791)
+label_settings = SubResource("LabelSettings_bx38f")
+
+[node name="DistrictPopularity" type="Sprite2D" parent="TopBar/LeftMenu"]
+position = Vector2(-64.1791, -2.98507)
+scale = Vector2(0.402985, 0.402985)
+
+[node name="ColorRect3" type="ColorRect" parent="TopBar/LeftMenu/DistrictPopularity"]
+offset_left = 47.0
+offset_top = 43.0
+offset_right = 251.0
+offset_bottom = 87.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="TopBar/LeftMenu/DistrictPopularity"]
+offset_left = 149.0
+offset_top = 45.0
+offset_right = 199.0
+offset_bottom = 85.0
+scale = Vector2(2, 1)
+color = Color(0.478431, 0, 0.615686, 1)
+
+[node name="ColorRect" type="ColorRect" parent="TopBar/LeftMenu/DistrictPopularity"]
+offset_left = 49.0
+offset_top = 45.0
+offset_right = 99.0
+offset_bottom = 85.0
+scale = Vector2(2, 1)
+color = Color(0, 0.678431, 0, 1)
+
+[node name="Label" type="Label" parent="TopBar/LeftMenu"]
+offset_left = -67.9104
+offset_top = 23.8806
+offset_right = 28.0896
+offset_bottom = 79.8806
+scale = Vector2(0.6, 0.6)
+text = "test"
+label_settings = SubResource("LabelSettings_03d63")
 
 [node name="TopMenu" type="Sprite2D" parent="TopBar"]
 visible = false
@@ -408,16 +464,17 @@ script = ExtResource("5_s2cnt")
 [node name="Popularity" type="Sprite2D" parent="DistrictMenu" node_paths=PackedStringArray("menu")]
 position = Vector2(-133.929, 877.977)
 scale = Vector2(2.096, 2.096)
-texture = ExtResource("4_r5mvf")
 script = ExtResource("7_b887d")
 menu = NodePath("..")
 
 [node name="Sprite2D" type="Sprite2D" parent="DistrictMenu/Popularity"]
+visible = false
 position = Vector2(53.6737, -59.6374)
 scale = Vector2(5.43118, 0.831471)
 texture = ExtResource("3_w2861")
 
 [node name="Label" type="Label" parent="DistrictMenu/Popularity"]
+visible = false
 anchors_preset = -1
 anchor_left = -2.06342
 anchor_top = -1.35004

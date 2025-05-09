@@ -398,6 +398,14 @@ func _process(delta: float) -> void:
 			$DistrictMenu.position = $Camera2D.position + Vector2(-479, -184)/$Camera2D.zoom.x   
 			$DistrictMenu.scale = Vector2(0.15,0.15)/$Camera2D.zoom.x
 			$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax) + "%"
+			$TopBar/LeftMenu/DistrictPopulation/Label.text = str(districts[zoom].population)
+			var estimate = districts[zoom].popularity
+			$TopBar/LeftMenu/DistrictPopularity/ColorRect.size.x = estimate
+			$TopBar/LeftMenu/DistrictPopularity/ColorRect2.size.x = 100 - estimate
+			$TopBar/LeftMenu/DistrictPopularity/ColorRect2.position.x = 49 + 2*estimate
+			$TopBar/LeftMenu/Label.text = $DistrictMenu/Popularity/Tax_Label.text
+			
+			
 	
 
 	if $CanvasLayer/News.clicked == true:
