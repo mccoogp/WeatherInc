@@ -15,7 +15,7 @@ var tech_modifier = 1.0
 
 var phase = 3
 var food = 0
-var money = 2000000
+var money = 25000
 
 var temp = 60
 var year = 1
@@ -845,6 +845,7 @@ func _process(delta: float) -> void:
 		$TopBar.visible = false
 		$"Popularity bar".visible = false
 		$CanvasLayer.visible = false
+		$loseMenu.text += "\nYears survived: " + str(year)
 		$LoseMenu.visible = true
 		lostcount += 1
 		if lostcount > 100:

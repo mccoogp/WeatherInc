@@ -262,7 +262,7 @@ texture_filter = 1
 position = Vector2(613.095, 261.905)
 scale = Vector2(67, 67)
 DistrictNumber = 10
-product = ["research"]
+product = ["meat"]
 center = Vector2(629, 290)
 zoom = 3.2
 image = ExtResource("13_23l0j")
@@ -747,7 +747,6 @@ offset_top = 127.0
 offset_right = 1018.0
 offset_bottom = 183.0
 scale = Vector2(1.68, 1.68)
-focus_mode = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/News"]
 texture_filter = 1
@@ -845,7 +844,7 @@ offset_bottom = 219.0
 text = "The results are in, and while your campaign resonated with some, 
 you have failed to be re-elected.
 Although your presidency has ended, your leadership has not gone unnoticed.
-he people of Ennustoya will not forget your name: Connor."
+the people of Ennustoya will not forget your name: Connor."
 label_settings = SubResource("LabelSettings_v6b3y")
 
 [node name="ColorRect" type="ColorRect" parent="."]
