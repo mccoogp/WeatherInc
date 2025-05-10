@@ -18,11 +18,21 @@ signal resume_game
 
 func _ready():
 	$Button.pressed.connect(_on_button_pressed)
+	$peaceful.pressed.connect(_on_peaceful_pressed)
+	$pink.pressed.connect(_on_pink_pressed)
 
 func _on_button_pressed():
-	print("emmiting")
 	emit_signal("resume_game")
+	
+signal peaceful
 
+func _on_peaceful_pressed() -> void:
+	emit_signal("peaceful")
+
+signal pink
+
+func _on_pink_pressed() -> void:
+	emit_signal("pink")
 
 func _on_vol_up_pressed() -> void:
 	if volume < 100:
@@ -32,3 +42,7 @@ func _on_vol_up_pressed() -> void:
 func _on_vol_down_pressed() -> void:
 	if volume > 0:
 		volume -= 20
+
+
+
+	

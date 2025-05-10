@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene load_steps=27 format=3 uid="uid://dgo4cwa032h0v"]
+=======
+[gd_scene load_steps=59 format=3 uid="uid://dgo4cwa032h0v"]
+>>>>>>> fa302f112794ee2ff92cea3dce25da8f46300a7a
 
 [ext_resource type="Script" path="res://world.gd" id="1_3gon6"]
 [ext_resource type="PackedScene" uid="uid://cacfd62pudml6" path="res://district.tscn" id="2_41llr"]
@@ -36,10 +40,23 @@ font_size = 45
 [sub_resource type="LabelSettings" id="LabelSettings_7wjru"]
 font_size = 40
 
-[node name="world" type="Node2D" node_paths=PackedStringArray("districts")]
+[sub_resource type="LabelSettings" id="LabelSettings_3u6n6"]
+font = ExtResource("16_6dtuk")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_7y7o5"]
+font = ExtResource("16_6dtuk")
+font_size = 52
+
+[sub_resource type="LabelSettings" id="LabelSettings_v6b3y"]
+font = ExtResource("16_6dtuk")
+font_size = 34
+
+[node name="world" type="Node2D" node_paths=PackedStringArray("districts", "instructions")]
 scale = Vector2(0.84, 0.84)
 script = ExtResource("1_3gon6")
 districts = [NodePath("District"), NodePath("District2"), NodePath("District3"), NodePath("District4"), NodePath("District5"), NodePath("District6"), NodePath("District7"), NodePath("District8"), NodePath("District9"), NodePath("District10"), NodePath("District11"), NodePath("District12"), NodePath("District13"), NodePath("District14"), NodePath("District15"), NodePath("District16")]
+instructions = [NodePath("Pause/CanvasLayer2/Node2D/Objective"), NodePath("Pause/CanvasLayer2/Node2D/Objective2"), NodePath("Pause/CanvasLayer2/Node2D/Objective3"), NodePath("Pause/CanvasLayer2/Node2D/Objective4"), NodePath("Pause/CanvasLayer2/Node2D/Objective5")]
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -51,30 +68,45 @@ texture = ExtResource("2_yw1kr")
 position = Vector2(23, 91)
 scale = Vector2(67, 67)
 water = true
-population = 20000
 product = ["fish"]
 center = Vector2(60, 150)
 zoom = 1.75
-image = ExtResource("4_nrn2x")
+image = ExtResource("4_beqg1")
+offset1 = Vector2(0.62, 1.12)
+offset2 = Vector2(1.03, -1.07)
+offset3 = Vector2(0.04, 0.05)
+offset4 = Vector2(1.7, 2.3)
+offset5 = Vector2(0.3, 2.6)
 
 [node name="District2" parent="." instance=ExtResource("2_41llr")]
 position = Vector2(194, 17)
 scale = Vector2(67, 67)
 DistrictNumber = 2
 water = true
-population = 10000
+product = ["grain"]
 center = Vector2(200, 50)
 zoom = 3.0
-image = ExtResource("5_java2")
+image = ExtResource("5_ec8ym")
+offset1 = Vector2(0.5, 0.4)
+offset2 = Vector2(1.7, -0.3)
+offset3 = Vector2(1.6, 0.7)
+offset4 = Vector2(-0.5, 0.3)
+offset5 = Vector2(-0.5, 1.4)
 
 [node name="District3" parent="." instance=ExtResource("2_41llr")]
 texture_filter = 1
 position = Vector2(399, 9)
 scale = Vector2(67, 67)
 DistrictNumber = 3
+product = ["grain"]
 center = Vector2(410, 50)
 zoom = 3.5
-image = ExtResource("6_dnp75")
+image = ExtResource("6_fi25x")
+offset1 = Vector2(0.5, 1.1)
+offset2 = Vector2(1.45, 0.2)
+offset3 = Vector2(1.5, 1.1)
+offset4 = Vector2(0.1, 0)
+offset5 = Vector2(-0.5, 0.9)
 
 [node name="District4" parent="." instance=ExtResource("2_41llr")]
 texture_filter = 1
@@ -84,7 +116,12 @@ DistrictNumber = 4
 water = true
 center = Vector2(620, 20)
 zoom = 2.5
-image = ExtResource("7_q7djm")
+image = ExtResource("7_yp4oj")
+offset1 = Vector2(0.65, -0.15)
+offset2 = Vector2(1.69, 0)
+offset3 = Vector2(2, 1)
+offset4 = Vector2(1.7, 1.7)
+offset5 = Vector2(-0.6, -0.2)
 
 [node name="District5" parent="." instance=ExtResource("2_41llr")]
 texture_filter = 1
@@ -94,7 +131,12 @@ DistrictNumber = 5
 water = true
 center = Vector2(280, 220)
 zoom = 2.5
-image = ExtResource("8_wxhan")
+image = ExtResource("8_83dif")
+offset1 = Vector2(0.6, 0.65)
+offset2 = Vector2(2.7, 0)
+offset3 = Vector2(1.7, -0.35)
+offset4 = Vector2(0.5, 1.6)
+offset5 = Vector2(-0.65, 1.55)
 
 [node name="District6" parent="." instance=ExtResource("2_41llr")]
 texture_filter = 1
@@ -103,7 +145,12 @@ scale = Vector2(67, 67)
 DistrictNumber = 6
 center = Vector2(540, 125)
 zoom = 2.5
-image = ExtResource("9_cjij6")
+image = ExtResource("9_vg7tp")
+offset1 = Vector2(0.6, 0.65)
+offset2 = Vector2(1.9, 0.34)
+offset3 = Vector2(1, -0.35)
+offset4 = Vector2(0.5, 1.6)
+offset5 = Vector2(-0.6, 1.1)
 
 [node name="District7" parent="." instance=ExtResource("2_41llr")]
 texture_filter = 1
@@ -112,7 +159,12 @@ scale = Vector2(67, 67)
 DistrictNumber = 7
 center = Vector2(30, 370)
 zoom = 2.5
-image = ExtResource("10_6le1u")
+image = ExtResource("10_t472r")
+offset1 = Vector2(1, 0.9)
+offset2 = Vector2(2.3, 0.35)
+offset3 = Vector2(0, 0.15)
+offset4 = Vector2(0.9, 1.9)
+offset5 = Vector2(-1, 0.45)
 
 [node name="District8" parent="." instance=ExtResource("2_41llr")]
 texture_filter = 1
@@ -121,7 +173,12 @@ scale = Vector2(67, 67)
 DistrictNumber = 8
 center = Vector2(310, 370)
 zoom = 2.7
-image = ExtResource("11_fs5wx")
+image = ExtResource("11_y2jl0")
+offset1 = Vector2(1, 0.9)
+offset2 = Vector2(1.6, -0.1)
+offset3 = Vector2(0.4, 0)
+offset4 = Vector2(1.4, 1.8)
+offset5 = Vector2(-0.15, 0.76)
 
 [node name="District9" parent="." instance=ExtResource("2_41llr")]
 texture_filter = 1
@@ -130,36 +187,105 @@ scale = Vector2(67, 67)
 DistrictNumber = 9
 center = Vector2(490, 340)
 zoom = 2.3
-image = ExtResource("12_7bvj4")
+image = ExtResource("12_ag4au")
+offset1 = Vector2(1, 0.7)
+offset2 = Vector2(1.6, -0.22)
+offset3 = Vector2(0.8, -0.55)
+offset4 = Vector2(1, 1.7)
+offset5 = Vector2(0, -0.3)
 
 [node name="District10" parent="." instance=ExtResource("2_41llr")]
 texture_filter = 1
 position = Vector2(613.095, 261.905)
 scale = Vector2(67, 67)
 DistrictNumber = 10
+product = ["research"]
 center = Vector2(629, 290)
 zoom = 3.2
-image = ExtResource("13_thahp")
+image = ExtResource("13_23l0j")
+offset1 = Vector2(0.57, 0.54)
+offset2 = Vector2(1.5, 0.5)
+offset3 = Vector2(1, -0.3)
+offset4 = Vector2(0, 1.45)
+offset5 = Vector2(-0.4, 0.6)
 
 [node name="District11" parent="." instance=ExtResource("2_41llr")]
 texture_filter = 1
 position = Vector2(790.476, 248.81)
 scale = Vector2(67, 67)
 water = true
+product = ["fish"]
 center = Vector2(820, 300)
 zoom = 2.5
-image = ExtResource("14_e5fce")
+image = ExtResource("14_5hcpw")
+offset1 = Vector2(0.7, 0.9)
+offset2 = Vector2(1.7, 1.7)
+offset3 = Vector2(0.6, -0.15)
+offset4 = Vector2(0.6, 2)
+offset5 = Vector2(-0.55, -0.4)
 
 [node name="District12" parent="." instance=ExtResource("2_41llr")]
+position = Vector2(35.7143, 505.952)
+scale = Vector2(67, 67)
+product = ["grain"]
+center = Vector2(30, 470)
+zoom = 1.8
+image = ExtResource("15_h5cav")
+offset1 = Vector2(0.4, 0.9)
+offset2 = Vector2(2.8, -0.45)
+offset3 = Vector2(1.65, 0.3)
+offset4 = Vector2(-0.75, 1.15)
+offset5 = Vector2(-1.1, 0.14)
 
 [node name="District13" parent="." instance=ExtResource("2_41llr")]
+position = Vector2(245.238, 538.095)
+scale = Vector2(67, 67)
+center = Vector2(300, 550)
+zoom = 2.5
+image = ExtResource("16_nqpus")
+offset1 = Vector2(0.2, 0.5)
+offset2 = Vector2(0.95, -0.4)
+offset3 = Vector2(1.8, 0)
+offset4 = Vector2(0.65, 1.35)
+offset5 = Vector2(-0.3, 1.4)
 
 [node name="District14" parent="." instance=ExtResource("2_41llr")]
+position = Vector2(527.381, 502.381)
+scale = Vector2(67, 67)
+product = ["factory"]
+center = Vector2(530, 510)
+zoom = 2.5
+image = ExtResource("17_b736m")
+offset1 = Vector2(0.35, 0.85)
+offset2 = Vector2(-0.2, -0.2)
+offset3 = Vector2(-1.1, 0.7)
+offset4 = Vector2(2.6, 0.5)
+offset5 = Vector2(1.8, 1)
 
 [node name="District15" parent="." instance=ExtResource("2_41llr")]
+position = Vector2(616.667, 365.476)
+scale = Vector2(67, 67)
+product = ["factory"]
+center = Vector2(675, 385)
+zoom = 2.7
+image = ExtResource("18_6jcjn")
+offset1 = Vector2(0.75, 1.1)
+offset2 = Vector2(0, 1.75)
+offset3 = Vector2(-0.4, 0.95)
+offset4 = Vector2(1.2, 0)
+offset5 = Vector2(1.8, 0.65)
 
 [node name="District16" parent="." instance=ExtResource("2_41llr")]
 water = true
+product = ["factory"]
+center = Vector2(840, 495)
+zoom = 2.5
+image = ExtResource("19_05ytu")
+offset1 = Vector2(0.9, 0.5)
+offset2 = Vector2(-0.1, -0.4)
+offset3 = Vector2(1.35, -0.4)
+offset4 = Vector2(-0.1, 0.6)
+offset5 = Vector2(0.75, 1.45)
 
 [node name="Popularity bar" type="Node" parent="."]
 
@@ -198,10 +324,47 @@ position = Vector2(-90.4762, 63.0953)
 scale = Vector2(0.08, 0.08)
 script = ExtResource("5_s2cnt")
 
-[node name="Industry" type="Sprite2D" parent="DistrictMenu" node_paths=PackedStringArray("menu")]
-position = Vector2(-162.5, 737.5)
-scale = Vector2(2.09574, 5.09574)
-texture = ExtResource("4_r5mvf")
+[node name="LeftMenu" type="Sprite2D" parent="TopBar" node_paths=PackedStringArray("extend")]
+visible = false
+texture_filter = 1
+position = Vector2(145, 295)
+scale = Vector2(1.34, 1.34)
+texture = ExtResource("16_dv0ow")
+script = ExtResource("17_uwtjx")
+extend = [NodePath("LeftMenuMiddle"), NodePath("LeftMenuMiddle2"), NodePath("LeftMenuMiddle3"), NodePath("LeftMenuMiddle4")]
+
+[node name="LeftMenuBottom" type="Sprite2D" parent="TopBar/LeftMenu"]
+texture_filter = 1
+position = Vector2(0, -45)
+texture = ExtResource("21_6ps3s")
+
+[node name="LeftMenuMiddle" type="Sprite2D" parent="TopBar/LeftMenu"]
+visible = false
+texture_filter = 1
+position = Vector2(-5.97, -5)
+texture = ExtResource("19_dcwrs")
+
+[node name="LeftMenuMiddle2" type="Sprite2D" parent="TopBar/LeftMenu"]
+visible = false
+texture_filter = 1
+position = Vector2(-6, 37)
+texture = ExtResource("19_dcwrs")
+
+[node name="LeftMenuMiddle3" type="Sprite2D" parent="TopBar/LeftMenu"]
+visible = false
+texture_filter = 1
+position = Vector2(-6, 79)
+texture = ExtResource("19_dcwrs")
+
+[node name="LeftMenuMiddle4" type="Sprite2D" parent="TopBar/LeftMenu"]
+visible = false
+texture_filter = 1
+position = Vector2(-6, 121)
+texture = ExtResource("19_dcwrs")
+
+[node name="Industry" type="Sprite2D" parent="TopBar/LeftMenu" node_paths=PackedStringArray("menu")]
+position = Vector2(0, 71.6418)
+scale = Vector2(0.1051, 0.255548)
 script = ExtResource("6_ttn6t")
 menu = NodePath("..")
 
@@ -304,6 +467,166 @@ label_settings = SubResource("LabelSettings_7wjru")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="News" parent="CanvasLayer" instance=ExtResource("12_k216x")]
+hide = true
+skillclicked = true
+
+[node name="Master Node" parent="CanvasLayer/News/SkillTree" index="0"]
+visible = false
+
+[node name="Ag 4" parent="CanvasLayer/News/SkillTree/Agriculture2" index="3"]
+visible = false
+
+[node name="Ag 5" parent="CanvasLayer/News/SkillTree/Agriculture2" index="4"]
+visible = false
+
+[node name="In 4" parent="CanvasLayer/News/SkillTree/Industrial" index="3"]
+visible = false
+
+[node name="In 5" parent="CanvasLayer/News/SkillTree/Industrial" index="4"]
+visible = false
+
+[node name="Skill Descriptions" parent="CanvasLayer/News/SkillTree" index="5"]
+visible = false
+
+[node name="Name" parent="CanvasLayer/News/SkillTree/Skill Descriptions" index="1"]
+offset_top = 188.0
+offset_bottom = 232.0
+scale = Vector2(1.52, 1.52)
+text = "name"
+
+[node name="Description" parent="CanvasLayer/News/SkillTree/Skill Descriptions" index="2"]
+offset_left = 759.0
+offset_top = 250.0
+offset_right = 1059.0
+offset_bottom = 640.0
+scale = Vector2(1.75, 1.75)
+text = "descrip"
+
+[node name="UpdateToggle" parent="CanvasLayer/News" index="2"]
+offset_left = 854.0
+offset_top = 65.0
+offset_right = 1112.0
+offset_bottom = 121.0
+scale = Vector2(1.08, 1.08)
+theme_override_font_sizes/font_size = 50
+
+[node name="SkillTreeToggle" parent="CanvasLayer/News" index="3"]
+visible = false
+offset_left = 870.0
+offset_top = 127.0
+offset_right = 1018.0
+offset_bottom = 183.0
+scale = Vector2(1.68, 1.68)
+focus_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/News"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 17.1642
+offset_top = -16.4179
+offset_right = 66.1642
+offset_bottom = 6.58209
+scale = Vector2(1.41791, 1.41791)
+label_settings = SubResource("LabelSettings_bx38f")
+
+[node name="Label2" type="Label" parent="CanvasLayer/News"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 17.1642
+offset_top = -16.4179
+offset_right = 66.1642
+offset_bottom = 6.58209
+scale = Vector2(1.41791, 1.41791)
+label_settings = SubResource("LabelSettings_bx38f")
+
+[node name="Start" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Start"]
+offset_left = 7786.0
+offset_top = -3299.0
+offset_right = 7826.0
+offset_bottom = -3259.0
+scale = Vector2(-2069.85, 4073.76)
+color = Color(0, 0, 0, 0.560784)
+
+[node name="Label" type="Label" parent="Start"]
+offset_left = 145.0
+offset_top = 66.0
+offset_right = 3480.0
+offset_bottom = 693.0
+theme_override_font_sizes/font_size = 25
+text = "Congratulations President!
+You have just been elected as the 72nd president of Ennustoya, 
+and the fate of the nation now rests in your capable hands. 
+From now on, you will command the government. 
+Ennustoya is divided into sixteen districts, and for each you can:
+control tax rates, manage production, and control your popularity. 
+
+Furthermore, you need research facilities and energy to help 
+Dr. Elliot Yoo to make new technological advancements:
+ increasing industry efficiency and reducing carbon emissions. 
+To stay in power, you must be careful to appeal to each district.
+Every two years (four in-game  turns), there will be an election,
+and the president will be appointed based on electoral college votes. 
+The people have spoken and their trust is yours to honor.
+Welcome to the presidency!
+
+Press Escape for more info
+Press space to continue"
+label_settings = SubResource("LabelSettings_3u6n6")
+
+[node name="Pause" parent="." instance=ExtResource("25_irgum")]
+position = Vector2(-5907.14, 2.38095)
+scale = Vector2(3.42857, 3.42857)
+
+[node name="ColorRect" parent="Pause/ColorRect" index="0"]
+offset_left = 0.0
+offset_right = 405.0
+
+[node name="Button2" parent="Pause" index="10"]
+focus_mode = 0
+
+[node name="CanvasLayer2" parent="Pause" index="11"]
+visible = false
+
+[node name="Objective2" parent="Pause/CanvasLayer2/Node2D/Objective4" index="0"]
+offset_right = 400.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("44_33rck")
+autoplay = true
+
+[node name="LoseMenu" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="LoseMenu"]
+offset_left = 134.0
+offset_top = 54.0
+offset_right = 5577.0
+offset_bottom = 110.0
+text = "YOU LOSE"
+label_settings = SubResource("LabelSettings_7y7o5")
+
+[node name="Label2" type="Label" parent="LoseMenu"]
+offset_left = 74.0
+offset_top = 98.0
+offset_right = 2018.0
+offset_bottom = 219.0
+text = "The results are in, and while your campaign resonated with some, 
+you have failed to be re-elected.
+Although your presidency has ended, your leadership has not gone unnoticed.
+he people of Ennustoya will not forget your name: Connor."
+label_settings = SubResource("LabelSettings_v6b3y")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -1412.0
+offset_top = -1179.0
+offset_right = 2228.0
+offset_bottom = 1579.0
+color = Color(1, 0, 0, 0)
+
+[connection signal="button_down" from="Pause/Button2" to="." method="_on_more_info_button_down"]
 
 [editable path="CanvasLayer/News"]
 [editable path="CanvasLayer/News/SkillTree"]
+[editable path="Pause"]

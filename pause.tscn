@@ -1,13 +1,75 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6n21rixj3vjv"]
+[gd_scene load_steps=14 format=3 uid="uid://b6n21rixj3vjv"]
 
 [ext_resource type="Script" path="res://pause.gd" id="1_2q88n"]
+[ext_resource type="Texture2D" uid="uid://cuamw7cxdnd2h" path="res://4caster Art/menu/menu_top.png" id="2_h8gfo"]
+[ext_resource type="FontFile" uid="uid://bdw8tj5ekkyoi" path="res://m5x7.ttf" id="3_d4ik4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2twnc"]
+font = ExtResource("3_d4ik4")
+font_size = 25
+
+[sub_resource type="Theme" id="Theme_yn1gy"]
+default_font = ExtResource("3_d4ik4")
+default_font_size = 33
+
+[sub_resource type="LabelSettings" id="LabelSettings_xwcs3"]
+font = ExtResource("3_d4ik4")
+font_size = 33
+
+[sub_resource type="Theme" id="Theme_jps3d"]
+default_font = ExtResource("3_d4ik4")
+default_font_size = 22
+
+[sub_resource type="Theme" id="Theme_ntt0g"]
+default_font = ExtResource("3_d4ik4")
+default_font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_lcvkh"]
+font = ExtResource("3_d4ik4")
+font_size = 54
+
+[sub_resource type="LabelSettings" id="LabelSettings_ias7f"]
+font = ExtResource("3_d4ik4")
+font_size = 22
+
+[sub_resource type="LabelSettings" id="LabelSettings_3sm02"]
+font = ExtResource("3_d4ik4")
+font_size = 21
+
+[sub_resource type="LabelSettings" id="LabelSettings_77opn"]
+font = ExtResource("3_d4ik4")
+
+[sub_resource type="LabelSettings" id="LabelSettings_s54ar"]
+font = ExtResource("3_d4ik4")
+font_size = 19
 
 [node name="Pause" type="Node2D"]
 script = ExtResource("1_2q88n")
 
+[node name="MenuTop" type="Sprite2D" parent="."]
+position = Vector2(800, 992)
+scale = Vector2(4.04581, 4.04581)
+texture = ExtResource("2_h8gfo")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = 62.9999
+offset_top = -43.0
+offset_right = 468.0
+offset_bottom = 187.0
+color = Color(1, 1, 1, 0.313726)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+layout_mode = 0
+offset_left = -715.0
+offset_right = -310.0
+offset_bottom = 230.0
+color = Color(1, 1, 1, 0.313726)
+
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = 85.0
 offset_top = 2.0
 offset_right = 233.0
@@ -15,39 +77,188 @@ offset_bottom = 51.0
 text = "This is a pause menu
 Press Exit to exit
 "
+label_settings = SubResource("LabelSettings_2twnc")
 
 [node name="Button" type="Button" parent="."]
-offset_left = 277.0
-offset_top = 6.0
-offset_right = 314.0
-offset_bottom = 37.0
+texture_filter = 1
+offset_left = 348.0
+offset_top = -26.0
+offset_right = 397.0
+offset_bottom = 9.0
+scale = Vector2(1.88, 1.88)
 focus_mode = 0
+theme = SubResource("Theme_yn1gy")
 text = "Exit
 "
 
 [node name="volume" type="Label" parent="."]
 offset_left = 88.0
-offset_top = 70.0
-offset_right = 128.0
-offset_bottom = 93.0
+offset_top = -19.0
+offset_right = 224.0
+offset_bottom = 8.0
 scale = Vector2(1.5, 1.5)
+text = "Volume: 100%"
+label_settings = SubResource("LabelSettings_xwcs3")
 
 [node name="vol_up" type="Button" parent="."]
-offset_left = 280.0
-offset_top = 52.0
-offset_right = 300.0
-offset_bottom = 83.0
+offset_left = 301.0
+offset_top = -31.0
+offset_right = 321.0
 focus_mode = 0
 text = "↑"
 
 [node name="vol_down" type="Button" parent="."]
-offset_left = 281.0
-offset_top = 90.0
-offset_right = 301.0
-offset_bottom = 121.0
+offset_left = 301.0
+offset_top = 3.0
+offset_right = 321.0
+offset_bottom = 34.0
 focus_mode = 0
 text = "↓"
+
+[node name="peaceful" type="Button" parent="."]
+offset_left = 340.0
+offset_top = 103.0
+offset_right = 462.0
+offset_bottom = 134.0
+focus_mode = 0
+theme = SubResource("Theme_jps3d")
+text = "Peaceful Mode"
+
+[node name="pink" type="Button" parent="."]
+offset_left = 295.0
+offset_top = 140.0
+offset_right = 463.0
+offset_bottom = 171.0
+focus_mode = 0
+theme = SubResource("Theme_ntt0g")
+text = "Toggle Color Blind"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 76.0
+offset_top = 142.0
+offset_right = 160.0
+offset_bottom = 173.0
+text = "More Info
+"
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+offset = Vector2(30, 0)
+transform = Transform2D(1, 0, 0, 1, 30, 0)
+
+[node name="Node2D" type="Node2D" parent="CanvasLayer2"]
+scale = Vector2(2, 2)
+
+[node name="Objective" type="Label" parent="CanvasLayer2/Node2D"]
+visible = false
+offset_right = 194.0
+offset_bottom = 53.0
+text = "Objective"
+label_settings = SubResource("LabelSettings_lcvkh")
+
+[node name="Objective2" type="Label" parent="CanvasLayer2/Node2D/Objective"]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 172.0
+text = "As the President of a nation, your primary goal is to maintain high popularity across districts to secure re-election every two years via the Electoral College system. Make strategic decisions to manage industries, taxation, and disasters while guiding your country to prosperity. If you lose an election, the game ends."
+label_settings = SubResource("LabelSettings_ias7f")
+autowrap_mode = 2
+
+[node name="Objective2" type="Label" parent="CanvasLayer2/Node2D"]
+visible = false
+offset_right = 209.0
+offset_bottom = 53.0
+text = "How to Play"
+label_settings = SubResource("LabelSettings_lcvkh")
+
+[node name="Objective2" type="Label" parent="CanvasLayer2/Node2D/Objective2"]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 172.0
+text = "The game is turn-based, with each turn representing 6 months.
+During each turn, you can take unlimited actions. When done, press “Advance” to proceed to the next turn.
+Every two years, an election is held. Win the majority of electoral votes to continue. Lose, and the game ends.
+"
+label_settings = SubResource("LabelSettings_3sm02")
+autowrap_mode = 2
+
+[node name="Objective3" type="Label" parent="CanvasLayer2/Node2D"]
+visible = false
+offset_right = 358.0
+offset_bottom = 53.0
+text = "District Management"
+label_settings = SubResource("LabelSettings_lcvkh")
+
+[node name="Objective2" type="Label" parent="CanvasLayer2/Node2D/Objective3"]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 341.0
+text = "Your country is divided into multiple districts. Click on a district to view:
+    Popularity, Population, Current Industry, and Tax Rate
+Actions in Each District:
+    Build Industry (only one per district) (use left and right arrows):
+        Grain – Produces food, cheap
+        Meat – Produces food, moderate cost
+
+    Continued next page    
+	
+"
+label_settings = SubResource("LabelSettings_77opn")
+autowrap_mode = 2
+
+[node name="Objective4" type="Label" parent="CanvasLayer2/Node2D"]
+visible = false
+offset_right = 358.0
+offset_bottom = 53.0
+text = "District Management"
+label_settings = SubResource("LabelSettings_lcvkh")
+
+[node name="Objective2" type="Label" parent="CanvasLayer2/Node2D/Objective4"]
+layout_mode = 0
+offset_right = 426.0
+offset_bottom = 341.0
+text = "        Fish – Produces food, coastal only, low-moderate cost
+        Factory – Allows production of other industries, moderate-high cost
+	        Oil – Produces energy, high cost
+        Research Facility – Produces research points, high cost, requires energy
+    Every industry (except for factory) requires a factory to build
+
+Adjust Tax Rate (Increase or decrease) (use up and down arrows):
+    Affects money earned and district popularity.
+"
+label_settings = SubResource("LabelSettings_77opn")
+autowrap_mode = 2
+
+[node name="Objective5" type="Label" parent="CanvasLayer2/Node2D"]
+visible = false
+offset_right = 358.0
+offset_bottom = 53.0
+text = "Disasters"
+label_settings = SubResource("LabelSettings_lcvkh")
+
+[node name="Objective2" type="Label" parent="CanvasLayer2/Node2D/Objective5"]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 341.0
+text = "As the game progresses, the temperature will increase, and extreme weather events will become more frequent and severe:
+    May destroy industries
+    May reduce population
+Prepare by spreading industry risk and researching disaster resistance.
+"
+label_settings = SubResource("LabelSettings_s54ar")
+autowrap_mode = 2
+
+[node name="instruct" type="Label" parent="CanvasLayer2/Node2D"]
+visible = false
+offset_left = -1.0
+offset_top = 174.0
+offset_right = 399.0
+offset_bottom = 346.0
+text = "Press space to continue and press escape to return to main menu"
+label_settings = SubResource("LabelSettings_ias7f")
+autowrap_mode = 2
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="vol_up" to="." method="_on_vol_up_pressed"]
 [connection signal="pressed" from="vol_down" to="." method="_on_vol_down_pressed"]
+[connection signal="pressed" from="peaceful" to="." method="_on_peaceful_pressed"]
+[connection signal="pressed" from="pink" to="." method="_on_pink_pressed"]
