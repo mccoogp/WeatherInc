@@ -176,10 +176,12 @@ func _input(event):
 				frame = 2
 				$Camera2D.position = frame2pos
 				$Camera2D.zoom = Vector2(1,1)
-				previousvis = [$CanvasLayer.visible, $"Popularity bar".visible, $Start.visible]
+				previousvis = [$CanvasLayer.visible, $"Popularity bar".visible, $Start.visible, $TopBar.visible]
 				$CanvasLayer.visible = false
 				$"Popularity bar".visible =  false
 				$Start.visible = false
+				$TopBar.visible = false
+				
 	
 	if Input.is_key_pressed(KEY_SPACE):
 		spaceclicked = true
@@ -561,6 +563,7 @@ func _input(event):
 				$CanvasLayer.visible = previousvis[0]
 				$"Popularity bar".visible =  previousvis[1]
 				$Start.visible = previousvis[2]
+				$TopBar.visible = previousvis[3]
 
 func _process(delta: float) -> void:
 	$TopBar/Variables.text = "  = " + str(food) + "\n  = " + str(money)
@@ -766,6 +769,7 @@ func _process(delta: float) -> void:
 			else:
 				for district in 16:
 					districts[district].population *= food/totalpop
+					districts[district].popularity *=  randf_range(food/totalpop,1)
 				food = 0
 			food /= 2
 			food = floor(food)
