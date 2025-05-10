@@ -22,11 +22,6 @@ var factories = 0
 var energyprod = 0
 var research = 0
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	$TopBar/Variables.text = "  = " + str(food) + "\n   = " + str(money)
-	$TopBar/Variables2.text = "  = " + str(factories) + "\n   = " + str(energyprod)
-
 	
 var adjacents = {0: [1,4,6], 1: [0,4,2], 2: [1,3,4,5], 3: [2,5,10], 4: [0,1,2,5,6,7,8], 5: [2,3,4,8,9,10], 6: [0,4,7,11], 7: [4,6,8,11,12,13], 8: [4,5,7,9,13,14], 9: [5,8,10,14], 10: [3,5,9,14,15], 11:[6,7,12], 12: [11,7,13], 13: [12,7,8,14,15], 14: [8,9,10,13,15], 15: [10,13,14]}
 
@@ -51,6 +46,16 @@ var activateresearch = false
 
 var previousvis = [false, false, false]
 var frame = 0
+
+func _on_resume_game():
+	print("recived emit")
+	frame = 0
+	$Camera2D.position = defaultcenter
+	$Camera2D.zoom = Vector2(defaultzoom, defaultzoom)
+	$CanvasLayer.visible = previousvis[0]
+	$"Popularity bar".visible =  previousvis[1]
+	$Start.visible = previousvis[2]
+	
 
 func ElectResults(random = 0):
 	var totalpopulation = 0
@@ -121,7 +126,12 @@ func popularity_up(district):
 	'''
 	gains 5-15% of the population you are not popular amoung in the given inputed district number
 	'''
-	district.popularity += (100-districts[district].popularity)* randf_range(0.5,1.5)/10
+	if district.popularity < 60:
+		district.popularity *= randf_range(10.5,11.5)/10
+	elif district.popularity < 90:
+		district.popularity *= randf_range(10.1,10.5)/10
+	else:
+		pass
 	
 func disaster(temp):
 	'''
@@ -136,7 +146,12 @@ func disaster(temp):
 	
 
 
-	
+
+func _ready():
+	var pause_menu = $Pause
+	pause_menu.connect("resume_game", Callable(self, "_on_resume_game"))
+
+
 func _input(event):
 	if Input.is_key_pressed(KEY_ESCAPE) and $CanvasLayer/News/SkillTree.visible == false:
 				frame = 2
@@ -612,7 +627,6 @@ func _process(delta: float) -> void:
 			
 			year += 1
 			factories = 0
-			research = 0
 			totalpop = 0
 			foodprod = 0
 			
