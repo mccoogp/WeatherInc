@@ -35,6 +35,7 @@ var camerazoom = defaultzoom
 
 var frame1pos = Vector2(9200, 250)
 var frame2pos = Vector2(-5000, 250)
+var frameinfo = Vector2(-7450, 250)
 
 var spaceclicked = false
 
@@ -50,6 +51,9 @@ var frame = 0
 var peace = false
 var pink = false
 
+var instructcount = 0
+@export var instructions: Array[Label] = []
+
 var lostcount = 0
 var lost = false
 
@@ -61,6 +65,8 @@ func _on_resume_game():
 	$CanvasLayer.visible = previousvis[0]
 	$"Popularity bar".visible =  previousvis[1]
 	$Start.visible = previousvis[2]
+	$TopBar.visible = previousvis[3]
+	
 	
 
 func ElectResults(random = 0):
@@ -179,17 +185,21 @@ func _on_pink():
 
 func _input(event):
 	if Input.is_key_pressed(KEY_ESCAPE) and $CanvasLayer/News/SkillTree.visible == false:
-				frame = 2
+				
 				$Camera2D.position = frame2pos
 				$Camera2D.zoom = Vector2(1,1)
-				previousvis = [$CanvasLayer.visible, $"Popularity bar".visible, $Start.visible, $TopBar.visible]
+				if frame == 0:
+					previousvis = [$CanvasLayer.visible, $"Popularity bar".visible, $Start.visible, $TopBar.visible]
 				$CanvasLayer.visible = false
 				$"Popularity bar".visible =  false
 				$Start.visible = false
 				$TopBar.visible = false
+				$Pause/CanvasLayer2.visible = false
+				frame = 2
 				
 	
-	if Input.is_key_pressed(KEY_SPACE):
+	if Input.is_key_pressed(KEY_SPACE) and frame == 0:
+		
 		spaceclicked = true
 	
 	if frame == 0:
@@ -259,8 +269,7 @@ func _input(event):
 									else:
 										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
 										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
-									$TopBar/LeftMenu.extras[0] += 2
-									$TopBar/LeftMenu.extras[0] += 3
+									$TopBar/LeftMenu.extras[0] += 4
 								
 								
 								elif posprod[curprod] == "factory":
@@ -278,7 +287,6 @@ func _input(event):
 								elif posprod[curprod] == "oil":
 									$TopBar/LeftMenu/Industry/Label3.text += "
 									Requires: 2 factory"
-									$TopBar/LeftMenu.extras[0] += 2
 									$TopBar/LeftMenu/Industry/Label3.text += "
 									Cost: $100,000"
 									if money >= 100000 and factories >= 1:
@@ -287,7 +295,7 @@ func _input(event):
 									else:
 										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
 										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
-									$TopBar/LeftMenu.extras[0] += 2
+									$TopBar/LeftMenu.extras[0] += 3
 								
 								
 								elif posprod[curprod] == "grain":
@@ -349,16 +357,9 @@ func _input(event):
 									checkprod = true
 									$TopBar/LeftMenu.extras[0] += 1
 								else:
-									if len(districts[zoom].product) == 0:
-										$TopBar/LeftMenu/Industry/Label3.text += "
-										Press enter to confirm"
-										$TopBar/LeftMenu.extras[0] += 1
-									else:
-										$TopBar/LeftMenu/Industry/Label3.text += "
-										No available space"
-										$TopBar/LeftMenu.extras[0] += 1
-									
-									
+									districts[zoom].product = []
+									$TopBar/LeftMenu.extras[0] = 0
+									$TopBar/LeftMenu/Industry/Label3.text = " "
 									if posprod[curprod] == "fish":
 										$TopBar/LeftMenu/Industry/Label3.text += "
 										Requires: Water access"
@@ -372,8 +373,7 @@ func _input(event):
 										else:
 											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
 											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
-										$TopBar/LeftMenu.extras[0] += 2
-										$TopBar/LeftMenu.extras[0] += 3
+										$TopBar/LeftMenu.extras[0] += 4
 									
 									
 									elif posprod[curprod] == "factory":
@@ -391,7 +391,6 @@ func _input(event):
 									elif posprod[curprod] == "oil":
 										$TopBar/LeftMenu/Industry/Label3.text += "
 										Requires: 2 factory"
-										$TopBar/LeftMenu.extras[0] += 2
 										$TopBar/LeftMenu/Industry/Label3.text += "
 										Cost: $100,000"
 										if money >= 100000 and factories >= 1:
@@ -400,7 +399,7 @@ func _input(event):
 										else:
 											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
 											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
-										$TopBar/LeftMenu.extras[0] += 2
+										$TopBar/LeftMenu.extras[0] += 3
 									
 									
 									elif posprod[curprod] == "grain":
@@ -495,6 +494,7 @@ func _input(event):
 									$TopBar/LeftMenu/Industry/Label3.text = "
 									Press x to remove"
 									$TopBar/LeftMenu.extras[0] = 1
+									
 								
 				if event is InputEventKey and event.pressed:
 					if Input.is_key_pressed(KEY_BACKSPACE):
@@ -570,6 +570,20 @@ func _input(event):
 				$"Popularity bar".visible =  previousvis[1]
 				$Start.visible = previousvis[2]
 				$TopBar.visible = previousvis[3]
+	if frame == 5:
+		if Input.is_key_pressed(KEY_SPACE):
+			instructcount +=1
+			if instructcount == len(instructions):
+				instructcount = 0
+		for i in len(instructions):
+			if i == instructcount:
+				instructions[instructcount].visible = true
+				instructions[instructcount].global_position.y = 20
+
+			else:
+				instructions[i].visible = false
+			
+		
 
 func _process(delta: float) -> void:
 	$TopBar/Variables.text = "  = " + str(food) + "\n  = " + str(money)
@@ -827,3 +841,17 @@ func _process(delta: float) -> void:
 				await get_tree().create_timer(0.1).timeout
 				$ColorRect.color[3] += 0.001
 			get_tree().paused = true
+
+
+func _on_more_info_button_down() -> void:
+	$Camera2D.position = frameinfo
+	#$Camera2D.zoom = Vector2(0.9, 0.9)
+	$Pause/CanvasLayer2.visible = true
+	$Pause/CanvasLayer2/Node2D/Objective/Objective2.global_position.y = 100
+	$Pause/CanvasLayer2/Node2D/Objective2/Objective2.global_position.y = 120
+	$Pause/CanvasLayer2/Node2D/Objective3/Objective2.global_position.y = 100
+	$Pause/CanvasLayer2/Node2D/Objective4/Objective2.global_position.y = 100
+	$Pause/CanvasLayer2/Node2D/Objective5/Objective2.global_position.y = 100
+
+	$Pause/CanvasLayer2/Node2D/instruct.global_position.y = 500
+	frame = 5
