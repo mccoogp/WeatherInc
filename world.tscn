@@ -66,7 +66,7 @@ font_size = 26
 
 [sub_resource type="LabelSettings" id="LabelSettings_03d63"]
 font = ExtResource("16_6dtuk")
-font_size = 60
+font_size = 50
 
 [sub_resource type="LabelSettings" id="LabelSettings_13on7"]
 line_spacing = 9.0
@@ -88,7 +88,8 @@ font = ExtResource("16_6dtuk")
 font_size = 25
 
 [sub_resource type="LabelSettings" id="LabelSettings_luws0"]
-font_size = 45
+font = ExtResource("16_6dtuk")
+font_size = 2
 
 [sub_resource type="LabelSettings" id="LabelSettings_7wjru"]
 font_size = 40
@@ -374,7 +375,7 @@ position = Vector2(145, 295)
 scale = Vector2(1.34, 1.34)
 texture = ExtResource("16_dv0ow")
 script = ExtResource("17_uwtjx")
-extend = [NodePath("LeftMenuMiddle"), NodePath("LeftMenuMiddle2"), NodePath("LeftMenuMiddle3"), NodePath("LeftMenuMiddle4")]
+extend = [NodePath("LeftMenuMiddle"), NodePath("LeftMenuMiddle2"), NodePath("LeftMenuMiddle3"), NodePath("LeftMenuMiddle4"), NodePath("LeftMenuMiddle5")]
 
 [node name="LeftMenuBottom" type="Sprite2D" parent="TopBar/LeftMenu"]
 texture_filter = 1
@@ -403,6 +404,12 @@ texture = ExtResource("19_dcwrs")
 visible = false
 texture_filter = 1
 position = Vector2(-6, 121)
+texture = ExtResource("19_dcwrs")
+
+[node name="LeftMenuMiddle5" type="Sprite2D" parent="TopBar/LeftMenu"]
+visible = false
+texture_filter = 1
+position = Vector2(-6, 163)
 texture = ExtResource("19_dcwrs")
 
 [node name="Industry" type="Sprite2D" parent="TopBar/LeftMenu" node_paths=PackedStringArray("menu")]
@@ -657,6 +664,7 @@ offset_top = -1.49465e+06
 offset_right = 725772.0
 offset_bottom = -1.49442e+06
 scale = Vector2(4, 4)
+theme_override_font_sizes/font_size = 5
 label_settings = SubResource("LabelSettings_luws0")
 script = ExtResource("13_6327v")
 

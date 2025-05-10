@@ -1,6 +1,6 @@
 extends Sprite2D
 
-var extras = [0, 3]
+var extras = [0, 6]
 @export var extend: Array[Node2D] = []
 
 static func sum_array(array):
