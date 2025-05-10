@@ -731,6 +731,7 @@ func _process(delta: float) -> void:
 			else:
 				for district in 16:
 					districts[district].population *= food/totalpop
+					districts[district].popularity *=  randf_range(food/totalpop,1)
 				food = 0
 			food /= 2
 			food = floor(food)
