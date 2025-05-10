@@ -292,6 +292,7 @@ func _input(event):
 						cameracenter = districts[district].center
 						camerazoom = districts[district].zoom
 						districts[district].clicked = false
+						curprod = 0
 
 			else:
 				if event is InputEventKey and event.pressed:

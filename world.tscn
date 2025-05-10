@@ -40,7 +40,7 @@
 [ext_resource type="Texture2D" uid="uid://c483hywjwx8pt" path="res://4caster Art/variables/energy.png" id="21_mobic"]
 [ext_resource type="Texture2D" uid="uid://bcc6af5iy0tfm" path="res://4caster Art/industries/factory.png" id="22_jx0ki"]
 [ext_resource type="Texture2D" uid="uid://bepv4cc5d0a6f" path="res://4caster Art/variables/population.png" id="23_7gflr"]
-[ext_resource type="PackedScene" path="res://pause.tscn" id="25_irgum"]
+[ext_resource type="PackedScene" uid="uid://b6n21rixj3vjv" path="res://pause.tscn" id="25_irgum"]
 [ext_resource type="Texture2D" uid="uid://dsc86vr60qvhl" path="res://4caster Art/menu/menu.png" id="26_3urtx"]
 [ext_resource type="Texture2D" uid="uid://d4hn8p3qer7pl" path="res://icons/research.png" id="35_rjike"]
 [ext_resource type="AudioStream" uid="uid://ctej4kw1e8hlc" path="res://Masato Video Game Music.mp3" id="44_33rck"]
@@ -701,6 +701,14 @@ color = Color(0.14902, 0.14902, 0.14902, 0.384314)
 hide = true
 skillclicked = true
 
+[node name="ScrollContainer" parent="CanvasLayer/News" index="2"]
+offset_left = -0.480011
+offset_top = 0.231987
+offset_right = 0.479919
+offset_bottom = -0.231995
+horizontal_scroll_mode = 1
+vertical_scroll_mode = 1
+
 [node name="Master Node" parent="CanvasLayer/News/SkillTree" index="0"]
 visible = false
 
@@ -733,7 +741,7 @@ offset_bottom = 640.0
 scale = Vector2(1.75, 1.75)
 text = "descrip"
 
-[node name="UpdateToggle" parent="CanvasLayer/News" index="3"]
+[node name="UpdateToggle" parent="CanvasLayer/News" index="4"]
 offset_left = 854.0
 offset_top = 65.0
 offset_right = 1112.0
@@ -741,7 +749,7 @@ offset_bottom = 121.0
 scale = Vector2(1.08, 1.08)
 theme_override_font_sizes/font_size = 50
 
-[node name="SkillTreeToggle" parent="CanvasLayer/News" index="4"]
+[node name="SkillTreeToggle" parent="CanvasLayer/News" index="5"]
 visible = false
 offset_left = 870.0
 offset_top = 127.0
