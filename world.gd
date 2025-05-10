@@ -37,7 +37,10 @@ var defaultzoom = 0.9
 var cameracenter =  defaultcenter
 var camerazoom = defaultzoom
 
+var frame1pos = Vector2(9200, 250)
+var frame2pos = Vector2(-5000, 250)
 
+var spaceclicked = false
 
 var posprod = ["none", "grain", "meat", "fish", "factory", "oil", "research"]
 var curprod = 0
@@ -135,21 +138,24 @@ func disaster(temp):
 
 	
 func _input(event):
-	if Input.is_key_pressed(KEY_ESCAPE):
+	if Input.is_key_pressed(KEY_ESCAPE) and $CanvasLayer/News/SkillTree.visible == false:
 				frame = 2
-				$Camera2D.position = Vector2(-1420, 297)
+				$Camera2D.position = frame2pos
 				$Camera2D.zoom = Vector2(1,1)
 				previousvis = [$CanvasLayer.visible, $"Popularity bar".visible, $Start.visible]
 				$CanvasLayer.visible = false
 				$"Popularity bar".visible =  false
 				$Start.visible = false
 	
+	if Input.is_key_pressed(KEY_SPACE):
+		spaceclicked = true
+	
 	if frame == 0:
 		if phase == 2:
 			if zoom == -1:
 				curprod = 0
 				for district in 16:
-					if districts[district].clicked == true:
+					if districts[district].clicked == true and $CanvasLayer/News.skillclicked == false:
 						zoom = district
 						cameracenter = districts[district].center
 						camerazoom = districts[district].zoom
@@ -478,7 +484,7 @@ func _input(event):
 							
 						if $DistrictMenu.industry_clicked == true:
 							frame = 1
-							$Camera2D.position = Vector2(1920, 297)
+							$Camera2D.position = frame1pos
 							$Camera2D.zoom = Vector2(1,1)
 							$"Popularity bar".visible = false
 							$CanvasLayer.visible = false
@@ -572,8 +578,8 @@ func _process(delta: float) -> void:
 			
 	
 
-	if $CanvasLayer/News.clicked == true:
-		
+	if $CanvasLayer/News.clicked == true or spaceclicked == true:
+		spaceclicked = false
 		$CanvasLayer/News.clicked = false
 		phase += 1
 		if phase == 2:
@@ -586,14 +592,18 @@ func _process(delta: float) -> void:
 				$CanvasLayer/News/SkillTreeToggle.visible = true
 			
 		if phase == 3:
+			cameracenter =  defaultcenter
+			camerazoom = defaultzoom
+			zoom = -1
 			if year % 4 == 0:
 				print(ElectResults(5))
-				await get_tree().create_timer(5).timeout
-				ResetColor()
+				
+				
 			else:
 				phase += 1
 			$CanvasLayer/News.text = "Advance"
 		if phase == 4:
+			ResetColor()
 			var skill_tree_script = get_node('CanvasLayer/News/SkillTree')
 			food_modifier = 1.0 + skill_tree_script.levels[0] * 0.1
 			env_modifier = skill_tree_script.levels[2] * 0.1
@@ -723,6 +733,7 @@ func _process(delta: float) -> void:
 					districts[district].population *= food/totalpop
 				food = 0
 			food /= 2
+			food = floor(food)
 			
 			$CanvasLayer/News/SkillTreeToggle.visible = false
 			totalpop = 0

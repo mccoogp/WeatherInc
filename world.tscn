@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://dgo4cwa032h0v"]
+[gd_scene load_steps=57 format=3 uid="uid://dgo4cwa032h0v"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_3gon6"]
 [ext_resource type="PackedScene" uid="uid://cacfd62pudml6" path="res://district.tscn" id="2_41llr"]
@@ -43,6 +43,7 @@
 [ext_resource type="PackedScene" uid="uid://b6n21rixj3vjv" path="res://pause.tscn" id="25_irgum"]
 [ext_resource type="Texture2D" uid="uid://dsc86vr60qvhl" path="res://4caster Art/menu/menu.png" id="26_3urtx"]
 [ext_resource type="Texture2D" uid="uid://d4hn8p3qer7pl" path="res://icons/research.png" id="35_rjike"]
+[ext_resource type="AudioStream" uid="uid://ctej4kw1e8hlc" path="res://Masato Video Game Music.mp3" id="44_33rck"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_afd1u"]
 line_spacing = -20.0
@@ -277,7 +278,6 @@ scale = Vector2(1.34, 1.34)
 texture = ExtResource("26_3urtx")
 
 [node name="LeftMenu" type="Sprite2D" parent="TopBar" node_paths=PackedStringArray("extend")]
-visible = false
 texture_filter = 1
 position = Vector2(145, 295)
 scale = Vector2(1.34, 1.34)
@@ -424,6 +424,7 @@ text = "test"
 label_settings = SubResource("LabelSettings_03d63")
 
 [node name="TopMenu" type="Sprite2D" parent="TopBar"]
+visible = false
 texture_filter = 1
 position = Vector2(573, 355)
 scale = Vector2(1.34, 1.34)
@@ -573,10 +574,10 @@ position = Vector2(420, 297)
 scale = Vector2(0.7, 0.7)
 
 [node name="Label3" type="Label" parent="."]
-offset_left = 1563.1
-offset_top = -48.8095
-offset_right = 2923.1
-offset_bottom = 760.191
+offset_left = 10727.4
+offset_top = -269.048
+offset_right = 12087.4
+offset_bottom = 539.953
 scale = Vector2(0.839998, 0.839998)
 text = "POSSIBLE INDUSTRIES:
 🌾 Grain
@@ -654,6 +655,26 @@ offset_bottom = 183.0
 scale = Vector2(1.68, 1.68)
 focus_mode = 1
 
+[node name="Label" type="Label" parent="CanvasLayer/News"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 17.1642
+offset_top = -16.4179
+offset_right = 66.1642
+offset_bottom = 6.58209
+scale = Vector2(1.41791, 1.41791)
+label_settings = SubResource("LabelSettings_bx38f")
+
+[node name="Label2" type="Label" parent="CanvasLayer/News"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 17.1642
+offset_top = -16.4179
+offset_right = 66.1642
+offset_bottom = 6.58209
+scale = Vector2(1.41791, 1.41791)
+label_settings = SubResource("LabelSettings_bx38f")
+
 [node name="Start" type="CanvasLayer" parent="."]
 
 [node name="Label" type="Label" parent="Start"]
@@ -666,8 +687,12 @@ text = "Welcome President..."
 label_settings = SubResource("LabelSettings_3u6n6")
 
 [node name="Pause" parent="." instance=ExtResource("25_irgum")]
-position = Vector2(-1557.14, 2.38095)
+position = Vector2(-5907.14, 2.38095)
 scale = Vector2(3.42857, 3.42857)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("44_33rck")
+autoplay = true
 
 [editable path="CanvasLayer/News"]
 [editable path="CanvasLayer/News/SkillTree"]
