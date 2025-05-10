@@ -274,7 +274,6 @@ scale = Vector2(1.34, 1.34)
 texture = ExtResource("26_3urtx")
 
 [node name="LeftMenu" type="Sprite2D" parent="TopBar" node_paths=PackedStringArray("extend")]
-visible = false
 texture_filter = 1
 position = Vector2(145, 295)
 scale = Vector2(1.34, 1.34)
@@ -648,6 +647,7 @@ focus_mode = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/News"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 17.1642
 offset_top = -16.4179
 offset_right = 66.1642
@@ -657,6 +657,7 @@ label_settings = SubResource("LabelSettings_bx38f")
 
 [node name="Label2" type="Label" parent="CanvasLayer/News"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 17.1642
 offset_top = -16.4179
 offset_right = 66.1642
@@ -676,7 +677,7 @@ text = "Welcome President..."
 label_settings = SubResource("LabelSettings_3u6n6")
 
 [node name="Pause" parent="." instance=ExtResource("25_irgum")]
-position = Vector2(-1557.14, 2.38095)
+position = Vector2(-5907.14, 2.38095)
 scale = Vector2(3.42857, 3.42857)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

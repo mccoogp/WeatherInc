@@ -38,6 +38,7 @@ var cameracenter =  defaultcenter
 var camerazoom = defaultzoom
 
 var frame1pos = Vector2(9200, 250)
+var frame2pos = Vector2(-5000, 250)
 
 var spaceclicked = false
 
@@ -137,9 +138,9 @@ func disaster(temp):
 
 	
 func _input(event):
-	if Input.is_key_pressed(KEY_ESCAPE):
+	if Input.is_key_pressed(KEY_ESCAPE) and $CanvasLayer/News/SkillTree.visible == false:
 				frame = 2
-				$Camera2D.position = Vector2(-1420, 297)
+				$Camera2D.position = frame2pos
 				$Camera2D.zoom = Vector2(1,1)
 				previousvis = [$CanvasLayer.visible, $"Popularity bar".visible, $Start.visible]
 				$CanvasLayer.visible = false
