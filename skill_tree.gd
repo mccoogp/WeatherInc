@@ -69,7 +69,7 @@ func buy_skill(name) -> void:
 	var category = skill_dict[name.split('_')[0]]
 	
 	var energy_cost = 1000 * pow(level, 2)
-	var research_cost = pow(level, 2)
+	var research_cost = level
 
 	if levels[category] + 1 > level:
 		print("Already bought")

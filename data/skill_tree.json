@@ -10,39 +10,39 @@
 	},
 	"ag_2": {
 	  "name": "Agriculture Upgrade II",
-	  "description": "Advanced seeding methods\nexpand harvestable land.\nIncreases food productivity\nby 50% total.\nCost:\nEnergy: 4000\nResearch: 4",
+	  "description": "Advanced seeding methods\nexpand harvestable land.\nIncreases food productivity\nby 50% total.\nCost:\nEnergy: 4000\nResearch: 2",
 	  "cost": {
 		"energy": 4000,
-		"research": 4
+		"research": 2
 	  }
 	},
 	"ag_3": {
 	  "name": "Agriculture Upgrade III",
-	  "description": "Fertilization and pest\ncontrol reduce loss\nand accelerate growth.\nIncreases food productivity\nby 50% total.\nCost:\nEnergy: 9000\nResearch: 9",
+	  "description": "Fertilization and pest\ncontrol reduce loss\nand accelerate growth.\nIncreases food productivity\nby 50% total.\nCost:\nEnergy: 9000\nResearch: 3",
 	  "cost": {
 		"energy": 9000,
-		"research": 9
+		"research": 3
 	  }
 	},
 	"ag_4": {
 	  "name": "Agriculture Upgrade IV",
-	  "description": "Mechanized farming boosts\nefficiency and speed.\nIncreases food productivity\nby 50% total.\nCost:\nEnergy: 16000\nResearch: 16",
+	  "description": "Mechanized farming boosts\nefficiency and speed.\nIncreases food productivity\nby 50% total.\nCost:\nEnergy: 16000\nResearch: 4",
 	  "cost": {
 		"energy": 16000,
-		"research": 16
+		"research": 4
 	  }
 	},
 	"ag_5": {
 	  "name": "Agriculture Upgrade V",
-	  "description": "Genetically optimized crops\nmaximize yields.\nIncreases food productivity\nby 50% total.\nCost:\nEnergy: 25000\nResearch: 25",
+	  "description": "Genetically optimized crops\nmaximize yields.\nIncreases food productivity\nby 50% total.\nCost:\nEnergy: 25000\nResearch: 5",
 	  "cost": {
 		"energy": 25000,
-		"research": 25
+		"research": 5
 	  }
 	},
 	"in_1": {
 	  "name": "Industry Upgrade I",
-	  "description": "Basic manufacturing\ntechniques improve production\nspeed and reduce\nmaterial waste by\n5%.\nCost:\nEnergy: 1000\nResearch: 1",
+	  "description": "Basic manufacturing\ntechniques improve production\nenergy production\n+50%\n\nCost:\nEnergy: 1000\nResearch: 1",
 	  "cost": {
 		"energy": 1000,
 		"research": 1
@@ -50,34 +50,34 @@
 	},
 	"in_2": {
 	  "name": "Industry Upgrade II",
-	  "description": "Introduction of assembly\nline processes increases\nfactory efficiency.\nProduction output\nrises by 10%.\nCost:\nEnergy: 4000\nResearch: 4",
+	  "description": "Introduction of assembly\nline processes increases\nfactory efficiency.\n\nenergy production\n+50%\nCost:\nEnergy: 4000\nResearch: 2",
 	  "cost": {
 		"energy": 4000,
-		"research": 4
+		"research": 2
 	  }
 	},
 	"in_3": {
 	  "name": "Industry Upgrade III",
-	  "description": "Automation and robotics\nreduce labor costs\nand speed up\nmanufacturing. Production\noutput increases by\n15%.\nCost:\nEnergy: 9000\nResearch: 9",
+	  "description": "Automation and robotics\nreduce labor costs\nand speed up\nmanufacturing. \nenergy production\n+50%\nCost:\nEnergy: 9000\nResearch: 3",
 	  "cost": {
 		"energy": 9000,
-		"research": 9
+		"research": 3
 	  }
 	},
 	"in_4": {
 	  "name": "Industry Upgrade IV",
-	  "description": "Advanced supply chain\nmanagement optimizes\nresource flow and\nminimizes downtime.\nProduction output\nrises by 20%.\nCost:\nEnergy: 16000\nResearch: 16",
+	  "description": "Advanced supply chain\nmanagement optimizes\nresource flow and\nminimizes downtime.\n\nenergy production\n+50%\nCost:\nEnergy: 16000\nResearch: 4",
 	  "cost": {
 		"energy": 16000,
-		"research": 16
+		"research": 4
 	  }
 	},
 	"in_5": {
 	  "name": "Industry Upgrade V",
-	  "description": "Cutting-edge smart\nfactories integrate AI-\ndriven optimization,\nmaximizing industrial\nefficiency. Production\noutput increases by\n25%.\nCost:\nEnergy: 25000\nResearch: 25",
+	  "description": "Cutting-edge smart\nfactories integrate AI-\ndriven optimization,\nmaximizing industrial\nefficiency. Production\nenergy production\n+50%\nCost:\nEnergy: 25000\nResearch: 5",
 	  "cost": {
 		"energy": 25000,
-		"research": 25
+		"research": 5
 	  }
 	},
 	"en_1": {
@@ -90,34 +90,34 @@
 	},
 	"en_2": {
 	  "name": "Environment Upgrade II",
-	  "description": "Renewable energy\nreduces fossil fuel\nuse. Decreases global\ntemperature by 5°C\nand slows the rate\nof temperature increase.\nCost:\nEnergy: 4000\nResearch: 4",
+	  "description": "Renewable energy\nreduces fossil fuel\nuse. Decreases global\ntemperature by 5°C\nand slows the rate\nof temperature increase.\nCost:\nEnergy: 4000\nResearch: 2",
 	  "cost": {
 		"energy": 4000,
-		"research": 4
+		"research": 2
 	  }
 	},
 	"en_3": {
 	  "name": "Environment Upgrade III",
-	  "description": "Recycling and waste\nmanagement minimize\nresource waste.\nDecreases global temperature\nby 5°C and slows\nthe rate of temperature\nincrease.\nCost:\nEnergy: 9000\nResearch: 9",
+	  "description": "Recycling and waste\nmanagement minimize\nresource waste.\nDecreases global temperature\nby 5°C and slows\nthe rate of temperature\nincrease.\nCost:\nEnergy: 9000\nResearch: 3",
 	  "cost": {
 		"energy": 9000,
-		"research": 9
+		"research": 3
 	  }
 	},
 	"en_4": {
 	  "name": "Environment Upgrade IV",
-	  "description": "Reforestation and\nhabitat restoration\nimprove biodiversity.\nDecreases global temperature\nby 5°C and slows\nthe rate of temperature\nincrease.\nCost:\nEnergy: 16000\nResearch: 16",
+	  "description": "Reforestation and\nhabitat restoration\nimprove biodiversity.\nDecreases global temperature\nby 5°C and slows\nthe rate of temperature\nincrease.\nCost:\nEnergy: 16000\nResearch: 4",
 	  "cost": {
 		"energy": 16000,
-		"research": 16
+		"research": 4
 	  }
 	},
 	"en_5": {
 	  "name": "Environment Upgrade V",
-	  "description": "Sustainable infrastructure\nensures long-term\nenvironmental balance.\nDecreases global temperature\nby 5°C and slows\nthe rate of temperature\nincrease.\nCost:\nEnergy: 25000\nResearch: 25",
+	  "description": "Sustainable infrastructure\nensures long-term\nenvironmental balance.\nDecreases global temperature\nby 5°C and slows\nthe rate of temperature\nincrease.\nCost:\nEnergy: 25000\nResearch: 5",
 	  "cost": {
 		"energy": 25000,
-		"research": 25
+		"research": 5
 	  }
 	},
 	"te_1": {
@@ -130,34 +130,34 @@
 	},
 	"te_2": {
 	  "name": "Technology Upgrade II",
-	  "description": "Computing advancements\naccelerate research\nand enable complex\ndata analysis.\nResearch output increases\nby 10%.\nCost:\nEnergy: 4000\nResearch: 4",
+	  "description": "Computing advancements\naccelerate research\nand enable complex\ndata analysis.\nResearch output increases\nby 10%.\nCost:\nEnergy: 4000\nResearch: 2",
 	  "cost": {
 		"energy": 4000,
-		"research": 4
+		"research": 2
 	  }
 	},
 	"te_3": {
 	  "name": "Technology Upgrade III",
-	  "description": "Advanced materials\nand electronics open\nnew engineering possibilities.\nResearch and production\nefficiency rise by\n15%.\nCost:\nEnergy: 9000\nResearch: 9",
+	  "description": "Advanced materials\nand electronics open\nnew engineering possibilities.\nResearch and production\nefficiency rise by\n15%.\nCost:\nEnergy: 9000\nResearch: 3",
 	  "cost": {
 		"energy": 9000,
-		"research": 9
+		"research": 3
 	  }
 	},
 	"te_4": {
 	  "name": "Technology Upgrade IV",
-	  "description": "Artificial intelligence\nrevolutionizes design\nand discovery.\nResearch output increases\nby 20%.\nCost:\nEnergy: 16000\nResearch: 16",
+	  "description": "Artificial intelligence\nrevolutionizes design\nand discovery.\nResearch output increases\nby 20%.\nCost:\nEnergy: 16000\nResearch: 4",
 	  "cost": {
 		"energy": 16000,
-		"research": 16
+		"research": 4
 	  }
 	},
 	"te_5": {
 	  "name": "Technology Upgrade V",
-	  "description": "Nanotechnology and\nquantum computing\nredefine tech\ncapabilities.\nResearch output\nincreases by 25%.\nCost:\nEnergy: 25000\nResearch: 25",
+	  "description": "Nanotechnology and\nquantum computing\nredefine tech\ncapabilities.\nResearch output\nincreases by 25%.\nCost:\nEnergy: 25000\nResearch: 5",
 	  "cost": {
 		"energy": 25000,
-		"research": 25
+		"research": 5
 	  }
 	}
   }
