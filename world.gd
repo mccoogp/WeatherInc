@@ -738,11 +738,13 @@ func _process(delta: float) -> void:
 						districts[district].disaster = ["tornado"]
 						districts[district].product = []
 						districts[district].population *= 0.75
+						popularity_down(districts[district])
 					
 					elif thing == "drought":
 						if districts[district].water:
 							pass
 						else:
+							popularity_down(districts[district])
 							districts[district].disaster = ["drought"]
 							if "meat" in districts[district].product:
 									districts[district].product = []
@@ -751,8 +753,11 @@ func _process(delta: float) -> void:
 								districts[district].population *= 0.75
 					elif thing == "rain":
 						if not districts[district].water:
-							pass
+							popularity_down(districts[district])
+							districts[district].disaster = ["rain"]
+							districts[district].population *= 0.75
 						else:
+							popularity_down(districts[district])
 							districts[district].disaster = ["rain"]
 							districts[district].product = []
 							districts[district].population *= 0.75
@@ -761,11 +766,14 @@ func _process(delta: float) -> void:
 						districts[district].disaster = ["fire"]
 						if districts[district].water:
 							districts[district].population *= 0.90
+							popularity_down(districts[district])
 						else:
 							districts[district].product = []
 							districts[district].population *= 0.75
+							popularity_down(districts[district])
 					
 					elif thing == "volcano":
+						popularity_down(districts[district])
 						districts[district].disaster = ["volcano"]
 						districts[district].population *= 0.90
 						var moving = districts[district].population * randf_range(20,60)/100
@@ -775,6 +783,7 @@ func _process(delta: float) -> void:
 							districts[district].population -= movement
 							
 					elif thing == "disease":
+						popularity_down(districts[district])
 						districts[district].disaster = ["disease"]
 						
 									
