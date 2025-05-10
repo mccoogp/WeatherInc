@@ -821,10 +821,10 @@ scale = Vector2(3.42857, 3.42857)
 offset_left = 0.0
 offset_right = 405.0
 
-[node name="Button2" parent="Pause" index="10"]
+[node name="Button2" parent="Pause" index="11"]
 focus_mode = 0
 
-[node name="CanvasLayer2" parent="Pause" index="11"]
+[node name="CanvasLayer2" parent="Pause" index="12"]
 visible = false
 
 [node name="Objective2" parent="Pause/CanvasLayer2/Node2D/Objective4" index="0"]
