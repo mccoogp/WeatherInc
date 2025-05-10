@@ -9,13 +9,13 @@ var totalpop = 0
 var foodprod = 0
 
 var food_modifier = 1.0
-var env_modifier = 0.0
+var env_modifier = 1.0
 var ind_modifier = 1.0
 var tech_modifier = 1.0
 
 var phase = 3
 var food = 0
-var money = 20000
+var money = 2000000
 
 var temp = 60
 var year = 1
@@ -656,7 +656,7 @@ func _process(delta: float) -> void:
 				ResetColor()
 				var skill_tree_script = get_node('CanvasLayer/News/SkillTree')
 				food_modifier = 1.0 + skill_tree_script.levels[0] * 0.1
-				env_modifier = skill_tree_script.levels[2] * 0.1
+				env_modifier = 1.0 + skill_tree_script.levels[2] * 0.1
 				ind_modifier = 1.0 + skill_tree_script.levels[1] * 0.1
 				tech_modifier = 1.0 + skill_tree_script.levels[3] * 0.1
 				

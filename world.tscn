@@ -216,6 +216,7 @@ texture_filter = 1
 position = Vector2(613.095, 261.905)
 scale = Vector2(67, 67)
 DistrictNumber = 10
+product = ["research"]
 center = Vector2(629, 290)
 zoom = 3.2
 image = ExtResource("13_23l0j")
@@ -618,6 +619,9 @@ color = Color(0.14902, 0.14902, 0.14902, 0.384314)
 hide = true
 skillclicked = true
 
+[node name="Master Node" parent="CanvasLayer/News/SkillTree" index="0"]
+visible = false
+
 [node name="Ag 4" parent="CanvasLayer/News/SkillTree/Agriculture2" index="3"]
 visible = false
 
@@ -642,8 +646,9 @@ text = "name"
 [node name="Description" parent="CanvasLayer/News/SkillTree/Skill Descriptions" index="2"]
 offset_left = 759.0
 offset_top = 250.0
-offset_right = 1127.0
+offset_right = 1059.0
 offset_bottom = 640.0
+scale = Vector2(1.75, 1.75)
 text = "descrip"
 
 [node name="UpdateToggle" parent="CanvasLayer/News" index="2"]
