@@ -16,8 +16,8 @@ district = NodePath("..")
 
 [node name="ProductionImage" type="Sprite2D" parent="."]
 position = Vector2(0.300001, 0.309999)
-scale = Vector2(0.0118939, 0.011857)
+scale = Vector2(0.032, 0.032)
 
 [node name="Disaster" type="Sprite2D" parent="."]
 position = Vector2(0.5, 0.5)
-scale = Vector2(0.01, 0.01)
+scale = Vector2(0.03, 0.03)
