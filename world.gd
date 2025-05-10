@@ -677,6 +677,7 @@ func _process(delta: float) -> void:
 				factories = 0
 				totalpop = 0
 				foodprod = 0
+				research = 0
 				
 				#disasters
 				for district in 16:
