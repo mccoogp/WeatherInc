@@ -787,6 +787,8 @@ func _process(delta: float) -> void:
 			$TopBar/Variables3.text = "  = " + str(totalpop) 
 			
 			var estimate = GenPopularity(10)
+			$AudioStreamPlayer.pitch_scale = estimate / 35
+
 			$"Popularity bar/ColorRect".size.x = estimate
 			$"Popularity bar/ColorRect2".size.x = 100 - estimate
 			$"Popularity bar/ColorRect2".position.x = 49 + 2*estimate
