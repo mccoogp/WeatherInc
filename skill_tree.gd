@@ -77,6 +77,8 @@ func buy_skill(name) -> void:
 		print("Need prerequisite upgrade")
 	else:
 		var world = find_parent('world')
+		var news = get_node("../ScrollContainer")
+		world.research_text += name + " "
 		if world.energyprod >= energy_cost and world.research >= research_cost:
 			levels[category] += 1
 			world.energyprod -= energy_cost

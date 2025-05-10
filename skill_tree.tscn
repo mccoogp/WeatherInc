@@ -473,5 +473,5 @@ icon_alignment = 1
 [connection signal="pressed" from="Technology/Te 3" to="." method="_on_te_3_pressed"]
 [connection signal="pressed" from="Technology/Te 4" to="." method="_on_te_4_pressed"]
 [connection signal="pressed" from="Technology/Te 5" to="." method="_on_te_5_pressed"]
-[connection signal="pressed" from="Skill Descriptions/buy_button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Skill Descriptions/buy_button" to="." method="_on_buy_button_pressed"]
+[connection signal="pressed" from="Skill Descriptions/buy_button" to="." method="_on_button_pressed"]

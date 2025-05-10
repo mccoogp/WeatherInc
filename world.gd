@@ -25,6 +25,7 @@ var year = 1
 var factories = 0
 var energyprod = 0
 var research = 0
+var research_text = ""
 
 #camera stuff
 var adjacents = {0: [1,4,6], 1: [0,4,2], 2: [1,3,4,5], 3: [2,5,10], 4: [0,1,2,5,6,7,8], 5: [2,3,4,8,9,10], 6: [0,4,7,11], 7: [4,6,8,11,12,13], 8: [4,5,7,9,13,14], 9: [5,8,10,14], 10: [3,5,9,14,15], 11:[6,7,12], 12: [11,7,13], 13: [12,7,8,14,15], 14: [8,9,10,13,15], 15: [10,13,14]}
@@ -742,6 +743,9 @@ func _process(delta: float) -> void:
 				if activateresearch:
 					$CanvasLayer/News/SkillTreeToggle.visible = true
 				
+
+				
+				
 			if phase == 3:
 				cameracenter =  defaultcenter
 				camerazoom = defaultzoom
@@ -760,6 +764,7 @@ func _process(delta: float) -> void:
 				
 				
 			if phase == 4:
+				var research_text = ""
 				
 				#every end of phase thing is calulated and math is done to see production and disasters etc
 				
@@ -834,6 +839,7 @@ func _process(delta: float) -> void:
 					elif thing == "disease":
 						popularity_down(districts[district])
 						districts[district].disaster = ["disease"]
+						districts[district].population *= 0.60
 						
 									
 				
@@ -927,6 +933,7 @@ func _process(delta: float) -> void:
 				$CanvasLayer/News.hide = false
 				$CanvasLayer/News.text = "Next"
 				#temp calculator
+
 				var new_temp = 0
 				for district in 16:
 					if "meat" in districts[district].product or "oil" in districts[district].product or "factory" in districts[district].product:
@@ -942,12 +949,35 @@ func _process(delta: float) -> void:
 					$TopBar/Variables3.text = "  = " + str(totalpop) + "\n  = " + str(research)
 				money = floor(money)
 				#news stuff
-				$CanvasLayer/News/ScrollContainer/TextureRect/VBoxContainer/Production_title/Temp.text = "Average surface\ntempurature: " + str(temp) + "°F"
-				if foodprod >= totalpop:
-					$CanvasLayer/News/ScrollContainer/TextureRect/VBoxContainer/Production_title/Food_calc.text = str(foodprod) + "\n-" + str(totalpop) + "\n________\n+" + str(foodprod - totalpop)
+				$CanvasLayer/News/ScrollContainer/VBoxContainer/Temp/Temp_Data.text = str(temp) + "°F"
+				$CanvasLayer/News/ScrollContainer/VBoxContainer/Food/Food_Data.text = str(foodprod - totalpop) + " Tons"
+				var disaster_descriptions = {
+					"tornado": "Strong winds destroy buildings, reducing population by 25%",
+					"drought":"Meat industries are wiped out by extensive drought. Population reduced by 35%",
+					"fire":"Wildfires reduce population by 25%. Districts with water have reduced effect, losing only 10%",
+					"rain":"Massive storms batter the district, reduing population by 25%",
+					"volcano":"A volcano erupts in the district reducing population by 10%. The disruption causes mass migration",
+					"disease":"An unknown pathegen sweeps through the district, wiping out 40% of the population"
+				}
+				var disaster_text = ""
+				for district in  16:
+					if districts[district].disaster != []:
+						disaster_text = disaster_text + "District " + str(district) + " has been hit with a " + districts[district].disaster[0] + "!\n" + disaster_descriptions[districts[district].disaster[0]]
+				if disaster_text == "":
+					disaster_text = "No disasters, Hooray!"
+				$CanvasLayer/News/ScrollContainer/VBoxContainer/Disasters.text = disaster_text
+				if research_text == "":
+					research_text = "nothing"
+				$CanvasLayer/News/ScrollContainer/VBoxContainer/Research/Research_Data.text = research_text
+				if year % 4 == 0:
+					$CanvasLayer/News/ScrollContainer/VBoxContainer/Year.text = "You are in an election year"
+				elif year % 4 == 3: 
+					$CanvasLayer/News/ScrollContainer/VBoxContainer/Year.text = "    You are " + str(4 - year%4) + " year away from the next election"
 				else:
-					$CanvasLayer/News/ScrollContainer/TextureRect/VBoxContainer/Production_title/Food_calc.text = str(foodprod) + "\n-" + str(totalpop) + "\n________\n-" + str(foodprod - totalpop)
-				$CanvasLayer/News.show()
+					$CanvasLayer/News/ScrollContainer/VBoxContainer/Year.text = "    You are " + str(4 - year%4) + " years away from the next election"
+				
+
+				
 	else:
 		$TopBar.visible = false
 		$"Popularity bar".visible = false
