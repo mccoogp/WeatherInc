@@ -940,7 +940,7 @@ func _process(delta: float) -> void:
 				if activateresearch:
 					$TopBar/Variables3/Research.visible = true
 					$TopBar/Variables3.text = "  = " + str(totalpop) + "\n  = " + str(research)
-				
+				money = floor(money)
 				#news stuff
 				$CanvasLayer/News/ScrollContainer/TextureRect/VBoxContainer/Production_title/Temp.text = "Average surface\ntempurature: " + str(temp) + "°F"
 				if foodprod >= totalpop:
