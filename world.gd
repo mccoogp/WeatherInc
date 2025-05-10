@@ -431,155 +431,155 @@ func _input(event):
 							districts[zoom].newtax = 0
 
 							$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax) + "%\nUse arrow keys\n to edit\nTab to close"
-						#codes what happens when something is already owned in the production menu
-						if Input.is_key_pressed(KEY_X):
-							if posprod[curprod] in districts[zoom].product:
-								if checkprod == false:
+					#codes what happens when something is already owned in the production menu
+					if Input.is_key_pressed(KEY_X):
+						if posprod[curprod] in districts[zoom].product:
+							if checkprod == false:
+								$TopBar/LeftMenu/Industry/Label3.text += "
+								Press X to confirm."
+								checkprod = true
+								$TopBar/LeftMenu.extras[0] += 1
+							else:
+								districts[zoom].product = []
+								$TopBar/LeftMenu.extras[0] = 0
+								$TopBar/LeftMenu/Industry/Label3.text = " "
+								if posprod[curprod] == "fish":
 									$TopBar/LeftMenu/Industry/Label3.text += "
-									Press X to confirm."
-									checkprod = true
-									$TopBar/LeftMenu.extras[0] += 1
-								else:
-									districts[zoom].product = []
-									$TopBar/LeftMenu.extras[0] = 0
-									$TopBar/LeftMenu/Industry/Label3.text = " "
-									if posprod[curprod] == "fish":
-										$TopBar/LeftMenu/Industry/Label3.text += "
-										Requires: Water access"
-										$TopBar/LeftMenu/Industry/Label3.text += "
-										Cost: $12,000"
-										$TopBar/LeftMenu/Industry/Label3.text += "
-										Requires: 1 factory"
-										if money >= 12000 and districts[zoom].water == true and factories > 0:
-											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
-											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
-										else:
-											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
-											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
-										$TopBar/LeftMenu.extras[0] += 4
-									
-									
-									elif posprod[curprod] == "factory":
-										$TopBar/LeftMenu/Industry/Label3.text += "
-										Cost: $100,000"
-										if money >= 100000:
-											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
-											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
-										else:
-											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
-											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
-										$TopBar/LeftMenu.extras[0] += 2
-									
-									
-									elif posprod[curprod] == "oil":
-										$TopBar/LeftMenu/Industry/Label3.text += "
-										Requires: 2 factory"
-										$TopBar/LeftMenu/Industry/Label3.text += "
-										Cost: $100,000"
-										if money >= 100000 and factories >= 1:
-											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
-											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
-										else:
-											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
-											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
-										$TopBar/LeftMenu.extras[0] += 3
-									
-									
-									elif posprod[curprod] == "grain":
-										$TopBar/LeftMenu/Industry/Label3.text += "
-										Cost: $5,000"
-										$TopBar/LeftMenu/Industry/Label3.text += "
-										Requires: 1 factory"
-										if money >= 5000 and factories > 0:
-											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
-											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
-										else:
-											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
-											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
-										$TopBar/LeftMenu.extras[0] += 3
-									
-									
-									elif posprod[curprod] == "meat":
-										$TopBar/LeftMenu/Industry/Label3.text += "
-										Cost: $20,000"
-										$TopBar/LeftMenu/Industry/Label3.text += "
-										Requires: 1 factory"
-										if money >= 20000 and factories > 0:
-											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
-											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
-										else:
-											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
-											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
-										$TopBar/LeftMenu.extras[0] += 3
-									
-									
-									elif posprod[curprod] == "research":
-										$TopBar/LeftMenu/Industry/Label3.text += "
-										Cost: $300,000
-										Requires 2 factory"
-										if money >= 300000 and factories >= 2:
-											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
-											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
-										else:
-											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
-											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
-										$TopBar/LeftMenu.extras[0] += 3
+									Requires: Water access"
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Cost: $12,000"
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Requires: 1 factory"
+									if money >= 12000 and districts[zoom].water == true and factories > 0:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
 									else:
-										$TopBar/LeftMenu/Industry/Label2.text = ""
-										
-						if Input.is_key_pressed(KEY_ENTER):
-							#this builds the production after checking to see if you have the required resources
-							if len(districts[zoom].product) == 0:
-								var changed = false
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+									$TopBar/LeftMenu.extras[0] += 4
 								
-								if posprod[curprod] == "grain" and money >= 5000 and factories > 0:
-									money -= 5000
-									factories -= 1
-									changed = true
-									districts[zoom].popularity += (100-districts[zoom].popularity)* randf_range(0,1)/10
 								
-								if posprod[curprod] == "meat" and factories > 0 and money >= 20000:
-									money -= 20000
-									factories -= 1
-									changed = true
-									districts[zoom].setup = 0
-									districts[zoom].popularity += (100-districts[zoom].popularity)* randf_range(0.5, 1.5)/10
+								elif posprod[curprod] == "factory":
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Cost: $100,000"
+									if money >= 100000:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+									else:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+									$TopBar/LeftMenu.extras[0] += 2
 								
-								if posprod[curprod] == "fish" and districts[zoom].water == true and money >= 12000 and factories > 0:
-									factories -= 1
-									money-=12000
-									changed = true
-									districts[zoom].popularity *= randf_range(8.5,9.5)/10
 								
-								if posprod[curprod] == "factory" and money >= 100000:
-									districts[zoom].setup = 0
-									money -= 100000
-									changed = true
-									districts[zoom].popularity += (100-districts[zoom].popularity)* randf_range(1.5,3)/10
-									for dist in adjacents[zoom]:
-										districts[dist].popularity *=  randf_range(8,10)/10
+								elif posprod[curprod] == "oil":
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Requires: 2 factory"
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Cost: $100,000"
+									if money >= 100000 and factories >= 1:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+									else:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+									$TopBar/LeftMenu.extras[0] += 3
 								
-								if posprod[curprod] == "oil" and factories > 1 and money >= 100000:
-									districts[zoom].setup = 0
-									money -= 100000
-									factories -= 2
-									changed = true
 								
-								if posprod[curprod] == "research" and factories > 1 and money >= 300000:
-									districts[zoom].setup = 0
-									factories -= 2
-									money -= 300000
-									changed = true
+								elif posprod[curprod] == "grain":
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Cost: $5,000"
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Requires: 1 factory"
+									if money >= 5000 and factories > 0:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+									else:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+									$TopBar/LeftMenu.extras[0] += 3
 								
-								if changed == true:
-									districts[zoom].product.append(posprod[curprod])
-									$TopBar/LeftMenu/Industry/Label.text = "Industry:
-									" + posprod[curprod]
-									$TopBar/LeftMenu/Industry/Label3.text = "
-									Press x to remove"
-									$TopBar/LeftMenu.extras[0] = 1
+								
+								elif posprod[curprod] == "meat":
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Cost: $20,000"
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Requires: 1 factory"
+									if money >= 20000 and factories > 0:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+									else:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+									$TopBar/LeftMenu.extras[0] += 3
+								
+								
+								elif posprod[curprod] == "research":
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Cost: $300,000
+									Requires 2 factory"
+									if money >= 300000 and factories >= 2:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+									else:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+									$TopBar/LeftMenu.extras[0] += 3
+								else:
+									$TopBar/LeftMenu/Industry/Label2.text = ""
 									
+					if Input.is_key_pressed(KEY_ENTER):
+						#this builds the production after checking to see if you have the required resources
+						if len(districts[zoom].product) == 0:
+							var changed = false
+							
+							if posprod[curprod] == "grain" and money >= 5000 and factories > 0:
+								money -= 5000
+								factories -= 1
+								changed = true
+								districts[zoom].popularity += (100-districts[zoom].popularity)* randf_range(0,1)/10
+							
+							if posprod[curprod] == "meat" and factories > 0 and money >= 20000:
+								money -= 20000
+								factories -= 1
+								changed = true
+								districts[zoom].setup = 0
+								districts[zoom].popularity += (100-districts[zoom].popularity)* randf_range(0.5, 1.5)/10
+							
+							if posprod[curprod] == "fish" and districts[zoom].water == true and money >= 12000 and factories > 0:
+								factories -= 1
+								money-=12000
+								changed = true
+								districts[zoom].popularity *= randf_range(8.5,9.5)/10
+							
+							if posprod[curprod] == "factory" and money >= 100000:
+								districts[zoom].setup = 0
+								money -= 100000
+								changed = true
+								districts[zoom].popularity += (100-districts[zoom].popularity)* randf_range(1.5,3)/10
+								for dist in adjacents[zoom]:
+									districts[dist].popularity *=  randf_range(8,10)/10
+							
+							if posprod[curprod] == "oil" and factories > 1 and money >= 100000:
+								districts[zoom].setup = 0
+								money -= 100000
+								factories -= 2
+								changed = true
+							
+							if posprod[curprod] == "research" and factories > 1 and money >= 300000:
+								districts[zoom].setup = 0
+								factories -= 2
+								money -= 300000
+								changed = true
+							
+							if changed == true:
+								districts[zoom].product.append(posprod[curprod])
+								$TopBar/LeftMenu/Industry/Label.text = "Industry:
+								" + posprod[curprod]
+								$TopBar/LeftMenu/Industry/Label3.text = "
+								Press x to remove"
+								$TopBar/LeftMenu.extras[0] = 1
 								
+							
 				if event is InputEventKey and event.pressed:
 					
 					#tab and backspace goto the start screen
