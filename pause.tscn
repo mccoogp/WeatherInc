@@ -1,8 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://b6n21rixj3vjv"]
+[gd_scene load_steps=16 format=3 uid="uid://dk1q3tk4phvqw"]
 
 [ext_resource type="Script" path="res://pause.gd" id="1_2q88n"]
 [ext_resource type="Texture2D" uid="uid://cuamw7cxdnd2h" path="res://4caster Art/menu/menu_top.png" id="2_h8gfo"]
+[ext_resource type="Texture2D" uid="uid://dncv3igb3rhwx" path="res://4caster Art/flag.png" id="3_87i3a"]
 [ext_resource type="FontFile" uid="uid://bdw8tj5ekkyoi" path="res://m5x7.ttf" id="3_d4ik4"]
+[ext_resource type="Theme" uid="uid://bs33wb320xbd8" path="res://themes/ui_button.tres" id="5_h2ci0"]
+[ext_resource type="Texture2D" uid="uid://bmuc3xesndupg" path="res://icons/godot_button_v2.png" id="6_u0ilt"]
+[ext_resource type="Texture2D" uid="uid://dl2d0u1g1a8t7" path="res://icons/wide_btn.png" id="7_ylquf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2twnc"]
 font = ExtResource("3_d4ik4")
@@ -10,19 +14,12 @@ font_size = 25
 
 [sub_resource type="Theme" id="Theme_yn1gy"]
 default_font = ExtResource("3_d4ik4")
-default_font_size = 33
+default_font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_xwcs3"]
 font = ExtResource("3_d4ik4")
-font_size = 33
-
-[sub_resource type="Theme" id="Theme_jps3d"]
-default_font = ExtResource("3_d4ik4")
-default_font_size = 22
-
-[sub_resource type="Theme" id="Theme_ntt0g"]
-default_font = ExtResource("3_d4ik4")
-default_font_size = 28
+font_size = 32
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_lcvkh"]
 font = ExtResource("3_d4ik4")
@@ -51,10 +48,14 @@ position = Vector2(800, 992)
 scale = Vector2(4.04581, 4.04581)
 texture = ExtResource("2_h8gfo")
 
+[node name="Flag" type="Sprite2D" parent="."]
+position = Vector2(264, 73)
+scale = Vector2(0.2042, 0.2042)
+texture = ExtResource("3_87i3a")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 offset_left = 62.9999
 offset_top = -43.0
 offset_right = 468.0
@@ -81,65 +82,90 @@ label_settings = SubResource("LabelSettings_2twnc")
 
 [node name="Button" type="Button" parent="."]
 texture_filter = 1
-offset_left = 348.0
-offset_top = -26.0
-offset_right = 397.0
-offset_bottom = 9.0
+offset_left = 417.0
+offset_top = -52.0
+offset_right = 449.0
+offset_bottom = -18.0
 scale = Vector2(1.88, 1.88)
 focus_mode = 0
 theme = SubResource("Theme_yn1gy")
-text = "Exit
-"
+text = "X"
+flat = true
 
 [node name="volume" type="Label" parent="."]
-offset_left = 88.0
-offset_top = -19.0
-offset_right = 224.0
-offset_bottom = 8.0
+texture_filter = 1
+offset_left = 83.0
+offset_top = 44.0
+offset_right = 219.0
+offset_bottom = 71.0
 scale = Vector2(1.5, 1.5)
 text = "Volume: 100%"
 label_settings = SubResource("LabelSettings_xwcs3")
 
 [node name="vol_up" type="Button" parent="."]
-offset_left = 301.0
-offset_top = -31.0
-offset_right = 321.0
+texture_filter = 1
+offset_left = 320.0
+offset_top = 35.0
+offset_right = 468.0
+offset_bottom = 91.0
 focus_mode = 0
+theme = ExtResource("5_h2ci0")
 text = "↑"
+icon = ExtResource("6_u0ilt")
+flat = true
+icon_alignment = 1
 
 [node name="vol_down" type="Button" parent="."]
-offset_left = 301.0
-offset_top = 3.0
-offset_right = 321.0
-offset_bottom = 34.0
+texture_filter = 1
+offset_left = 321.0
+offset_top = 83.0
+offset_right = 469.0
+offset_bottom = 139.0
 focus_mode = 0
+theme = ExtResource("5_h2ci0")
 text = "↓"
+icon = ExtResource("6_u0ilt")
+flat = true
+icon_alignment = 1
 
 [node name="peaceful" type="Button" parent="."]
-offset_left = 340.0
-offset_top = 103.0
-offset_right = 462.0
-offset_bottom = 134.0
+texture_filter = 1
+offset_left = 66.0
+offset_top = 83.0
+offset_right = 324.0
+offset_bottom = 139.0
 focus_mode = 0
-theme = SubResource("Theme_jps3d")
+theme = ExtResource("5_h2ci0")
 text = "Peaceful Mode"
+icon = ExtResource("7_ylquf")
+flat = true
+icon_alignment = 1
 
 [node name="pink" type="Button" parent="."]
-offset_left = 295.0
-offset_top = 140.0
-offset_right = 463.0
-offset_bottom = 171.0
+texture_filter = 1
+offset_left = 212.0
+offset_top = 130.0
+offset_right = 470.0
+offset_bottom = 186.0
 focus_mode = 0
-theme = SubResource("Theme_ntt0g")
+theme = ExtResource("5_h2ci0")
 text = "Toggle Color Blind"
+icon = ExtResource("7_ylquf")
+flat = true
+icon_alignment = 1
 
 [node name="Button2" type="Button" parent="."]
-offset_left = 76.0
-offset_top = 142.0
-offset_right = 160.0
-offset_bottom = 173.0
+texture_filter = 1
+offset_left = 66.0
+offset_top = 130.0
+offset_right = 214.0
+offset_bottom = 186.0
+theme = ExtResource("5_h2ci0")
 text = "More Info
 "
+icon = ExtResource("6_u0ilt")
+flat = true
+icon_alignment = 1
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 offset = Vector2(30, 0)
