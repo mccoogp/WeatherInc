@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://world.gd" id="1_3gon6"]
 [ext_resource type="PackedScene" uid="uid://cacfd62pudml6" path="res://district.tscn" id="2_41llr"]
 [ext_resource type="Texture2D" uid="uid://b42u6galvg4kj" path="res://ogpc_map/mapfr.png" id="2_yw1kr"]
-[ext_resource type="Texture2D" uid="uid://bhpv0c01dqllh" path="res://4caster Art/new map/expanded island.jpeg" id="3_cscas"]
+[ext_resource type="Texture2D" uid="uid://c17nfm0cwkwit" path="res://4caster Art/new map/mamapsmapmapamp.png" id="3_w1gwx"]
 [ext_resource type="Texture2D" uid="uid://csgnvamjyfsfx" path="res://icon.svg" id="3_w2861"]
 [ext_resource type="Texture2D" uid="uid://m467oey86fmp" path="res://4caster Art/new map/district1.png" id="4_beqg1"]
 [ext_resource type="Texture2D" uid="uid://0u746ocid1y2" path="res://4caster Art/new map/district2.png" id="5_ec8ym"]
@@ -119,7 +119,7 @@ texture = ExtResource("2_yw1kr")
 texture_filter = 1
 position = Vector2(416.667, 217.857)
 scale = Vector2(0.720001, 0.716921)
-texture = ExtResource("3_cscas")
+texture = ExtResource("3_w1gwx")
 
 [node name="District" parent="." instance=ExtResource("2_41llr")]
 position = Vector2(20.2381, 92.8571)
@@ -146,7 +146,7 @@ texture_filter = 1
 position = Vector2(398.809, 9.52381)
 scale = Vector2(67, 67)
 DistrictNumber = 3
-product = ["meat"]
+product = ["grain"]
 center = Vector2(410, 50)
 zoom = 3.5
 image = ExtResource("6_fi25x")
@@ -661,6 +661,7 @@ offset_top = 127.0
 offset_right = 1018.0
 offset_bottom = 183.0
 scale = Vector2(1.68, 1.68)
+focus_mode = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/News"]
 texture_filter = 1
@@ -724,7 +725,6 @@ scale = Vector2(3.42857, 3.42857)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("44_33rck")
-pitch_scale = 0.66
 autoplay = true
 
 [node name="LoseMenu" type="CanvasLayer" parent="."]

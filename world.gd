@@ -47,6 +47,8 @@ var activateresearch = false
 
 var previousvis = [false, false, false]
 var frame = 0
+var peace = false
+var pink = false
 
 var lostcount = 0
 var lost = false
@@ -156,6 +158,23 @@ func disaster(temp):
 func _ready():
 	var pause_menu = $Pause
 	pause_menu.connect("resume_game", Callable(self, "_on_resume_game"))
+	pause_menu.connect("peaceful", Callable(self, "_on_peaceful"))
+	pause_menu.connect("pink", Callable(self, "_on_pink"))
+func _on_peaceful():
+	temp = 0
+	peace = true
+
+func _on_pink():
+	if not pink:
+		var pink_color = Color(1.0, 0.4, 0.7, 1.0)
+		var tween = create_tween()
+		tween.tween_property(self, "modulate", pink_color, 0.3)
+		pink = true
+	else:
+		var pink_color = Color(1,1,1,1)
+		var tween = create_tween()
+		tween.tween_property(self, "modulate", pink_color, 0.3)
+		pink = false
 
 
 func _input(event):
@@ -625,9 +644,6 @@ func _process(delta: float) -> void:
 					if results < 270:
 						print("lose")
 						lost = true
-						
-
-					
 				else:
 					phase += 1
 				$CanvasLayer/News.text = "Advance"
@@ -647,6 +663,8 @@ func _process(delta: float) -> void:
 				#disasters
 				for district in 16:
 					var thing = disaster(temp)
+					if peace:
+						thing = "none"
 					if thing == "none":
 						districts[district].disaster = []
 					elif thing == "tornado":
@@ -660,14 +678,10 @@ func _process(delta: float) -> void:
 						else:
 							districts[district].disaster = ["drought"]
 							if "meat" in districts[district].product:
-								districts[district].product = []
-								districts[district].population *= 0.75
-							elif "grain" in districts[district].product:
-								districts[district].product = []
-								districts[district].population *= 0.75
+									districts[district].product = []
+									districts[district].population *= 0.65
 							else:
 								districts[district].population *= 0.75
-					
 					elif thing == "rain":
 						if not districts[district].water:
 							pass
@@ -695,13 +709,8 @@ func _process(delta: float) -> void:
 							
 					elif thing == "disease":
 						districts[district].disaster = ["disease"]
-						if "meat" in districts[district].product:
-								districts[district].product = []
-								districts[district].population *= 0.65
-						else:
-							districts[district].population *= 0.75
 						
-								
+									
 				
 				#taxes
 				for district in 16:
@@ -818,4 +827,3 @@ func _process(delta: float) -> void:
 				await get_tree().create_timer(0.1).timeout
 				$ColorRect.color[3] += 0.001
 			get_tree().paused = true
-			
