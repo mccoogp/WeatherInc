@@ -200,10 +200,11 @@ func _input(event):
 				$Pause/CanvasLayer2.visible = false
 				frame = 2
 				
-	
-	if Input.is_key_pressed(KEY_SPACE) and frame == 0:
-		
-		spaceclicked = true
+	if event is InputEventKey and event.pressed:
+		if Input.is_key_pressed(KEY_SPACE) and frame == 0:
+			await get_tree().create_timer(0.1).timeout
+			spaceclicked = true
+			
 	
 	if frame == 0:
 		if phase == 2:
