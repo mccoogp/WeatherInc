@@ -1,20 +1,31 @@
 [gd_scene load_steps=17 format=3 uid="uid://s2poj2l4nlfc"]
 
 [ext_resource type="Script" path="res://scroll_container.gd" id="1_esmcc"]
-[ext_resource type="Texture2D" uid="uid://d37hrhx7v44rg" path="res://tan background.jpg" id="1_iok06"]
 [ext_resource type="Script" path="res://news.gd" id="1_kqrqo"]
+[ext_resource type="Texture2D" uid="uid://c6lkxh2njmyki" path="res://icons/Menu Panel v3-export.png" id="2_fv6j2"]
 [ext_resource type="LabelSettings" uid="uid://bw83k6s3dh6ys" path="res://labels/title.tres" id="2_i62pv"]
 [ext_resource type="Script" path="res://update_btn.gd" id="3_gt6nm"]
-[ext_resource type="Theme" uid="uid://bx8rqgpo0au6f" path="res://themes/news.tres" id="4_cbdac"]
-[ext_resource type="Texture2D" uid="uid://dj424tw2qv7j0" path="res://icons/grain.png" id="4_dw5ri"]
-[ext_resource type="Texture2D" uid="uid://d4hn8p3qer7pl" path="res://icons/research.png" id="5_g0iih"]
 [ext_resource type="FontFile" uid="uid://bdw8tj5ekkyoi" path="res://m5x7.ttf" id="6_tkmg7"]
-[ext_resource type="Texture2D" uid="uid://blgwak8ty3to5" path="res://icons/oil.png" id="6_wc150"]
 [ext_resource type="Theme" uid="uid://bs33wb320xbd8" path="res://themes/ui_button.tres" id="8_y2hmj"]
 [ext_resource type="PackedScene" uid="uid://ca2ikrfjlamsp" path="res://skill_tree.tscn" id="10_2dcy7"]
 [ext_resource type="Texture2D" uid="uid://dl2d0u1g1a8t7" path="res://icons/wide_btn.png" id="10_4nyke"]
 
+[sub_resource type="Theme" id="Theme_yb60j"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_fe4eg"]
+font = ExtResource("6_tkmg7")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_06lrl"]
+line_spacing = -12.0
+font = ExtResource("6_tkmg7")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_qm6i6"]
+font = ExtResource("6_tkmg7")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_8klag"]
 font = ExtResource("6_tkmg7")
 font_size = 32
 
@@ -35,6 +46,24 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kqrqo")
 
+[node name="Transparent_bg" type="Panel" parent="."]
+layout_mode = 2
+offset_left = -422.0
+offset_top = -363.0
+offset_right = 1578.0
+offset_bottom = 1637.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 276.0
+offset_top = 124.0
+offset_right = 876.0
+offset_bottom = 524.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_fv6j2")
+expand_mode = 5
+
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_direction = 1
 layout_mode = 1
@@ -43,35 +72,29 @@ anchor_left = 0.24
 anchor_top = 0.191
 anchor_right = 0.76
 anchor_bottom = 0.809
-offset_left = -0.480011
-offset_top = 0.231987
-offset_right = 0.479919
-offset_bottom = -0.231995
+offset_left = 28.52
+offset_top = 16.232
+offset_right = -24.52
+offset_bottom = -20.232
 grow_horizontal = 2
 grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
 script = ExtResource("1_esmcc")
 
-[node name="TextureRect" type="TextureRect" parent="ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource("1_iok06")
-expand_mode = 5
+theme = SubResource("Theme_yb60j")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/TextureRect"]
+[node name="Updates" type="Label" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
-offset_right = 600.0
-offset_bottom = 390.0
-theme = ExtResource("4_cbdac")
+text = "Updates
 
-[node name="Label" type="Label" parent="ScrollContainer/TextureRect/VBoxContainer"]
-layout_mode = 2
-text = "Updates"
+"
 label_settings = ExtResource("2_i62pv")
 horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="ScrollContainer/TextureRect/VBoxContainer"]
+[node name="Disasters" type="Label" parent="ScrollContainer/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 text = "On December 15, an explosion at a chemical plant injured 20 workers. They demand compensation from the plant."
@@ -79,58 +102,66 @@ label_settings = SubResource("LabelSettings_fe4eg")
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Label3" type="Label" parent="ScrollContainer/TextureRect/VBoxContainer"]
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
-text = "Breaking News"
-label_settings = ExtResource("2_i62pv")
+text = "Resources
+------------------------------"
+label_settings = SubResource("LabelSettings_06lrl")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label4" type="Label" parent="ScrollContainer/TextureRect/VBoxContainer"]
+[node name="Temp" type="Label" parent="ScrollContainer/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
-text = "Georgia Wabbam, Shazzam, news, news, news, news, news, news, news, news, news, news, news, news, news, news, news, "
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="Production_title" type="Label" parent="ScrollContainer/TextureRect/VBoxContainer"]
-layout_mode = 2
-text = "Numbers"
-label_settings = ExtResource("2_i62pv")
-horizontal_alignment = 1
+text = "    Average tempurature:"
+label_settings = SubResource("LabelSettings_qm6i6")
 vertical_alignment = 1
 
-[node name="Food indicator" type="Sprite2D" parent="ScrollContainer/TextureRect/VBoxContainer/Production_title"]
-position = Vector2(59, 64)
-texture = ExtResource("4_dw5ri")
-
-[node name="Research indicator" type="Sprite2D" parent="ScrollContainer/TextureRect/VBoxContainer/Production_title"]
-position = Vector2(288, 64)
-texture = ExtResource("5_g0iih")
-
-[node name="Energy indicator" type="Sprite2D" parent="ScrollContainer/TextureRect/VBoxContainer/Production_title"]
-position = Vector2(455, 66)
-texture = ExtResource("6_wc150")
-
-[node name="Food_calc" type="Label" parent="ScrollContainer/TextureRect/VBoxContainer/Production_title"]
+[node name="Temp_Data" type="Label" parent="ScrollContainer/VBoxContainer/Temp"]
 layout_mode = 0
-offset_left = 19.0
-offset_top = 96.0
-offset_right = 96.0
-offset_bottom = 137.0
-label_settings = ExtResource("2_i62pv")
-horizontal_alignment = 1
+offset_left = 276.0
+offset_top = 2.0
+offset_right = 335.0
+offset_bottom = 28.0
+text = "60°F"
+label_settings = SubResource("LabelSettings_8klag")
+
+[node name="Food" type="Label" parent="ScrollContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "    Food Production:"
+label_settings = SubResource("LabelSettings_qm6i6")
 vertical_alignment = 1
 
-[node name="Temp" type="Label" parent="ScrollContainer/TextureRect/VBoxContainer/Production_title"]
+[node name="Food_Data" type="Label" parent="ScrollContainer/VBoxContainer/Food"]
 layout_mode = 0
-offset_left = 112.0
-offset_top = 50.0
-offset_right = 234.0
-offset_bottom = 92.0
-text = "Average surface
-tempurature: 60°F"
-label_settings = ExtResource("2_i62pv")
-horizontal_alignment = 1
+offset_left = 218.0
+offset_top = 2.0
+offset_right = 277.0
+offset_bottom = 28.0
+text = "1000 Tons"
+label_settings = SubResource("LabelSettings_8klag")
+
+[node name="Research" type="Label" parent="ScrollContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "    Research: Developed "
+label_settings = SubResource("LabelSettings_qm6i6")
+vertical_alignment = 1
+
+[node name="Research_Data" type="Label" parent="ScrollContainer/VBoxContainer/Research"]
+layout_mode = 0
+offset_left = 258.0
+offset_top = 2.0
+offset_right = 370.0
+offset_bottom = 28.0
+label_settings = SubResource("LabelSettings_8klag")
+
+[node name="Year" type="Label" parent="ScrollContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+label_settings = SubResource("LabelSettings_qm6i6")
 vertical_alignment = 1
 
 [node name="SkillTree" parent="." instance=ExtResource("10_2dcy7")]
