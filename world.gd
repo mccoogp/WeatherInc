@@ -78,6 +78,34 @@ func _on_resume_game():
 func ElectResults(random = 0):
 	'''
 	calculates your popularity in every district and checks if you win, districts turn to green or purple depending on wether you won them or not creating an eleectoral map
+	FUNCTION ElectResults(random = 0):
+	SET total_population TO 0
+	SET populations TO empty list
+
+	FOR each district index FROM 0 TO 15:
+		ADD district's population TO total_population
+		ADD [district_population, index] TO populations
+		SET district's votes TO 2
+
+	FOR 504 iterations:
+		SORT populations BY size ascending
+		INCREASE vote count of district with largest remaining pop
+		DECREASE that district's pop proportionally
+		RE-SORT populations
+
+	SET district_nodes TO list of all district UI nodes
+	SET total_votes TO 0
+
+	FOR each district index FROM 0 TO 15:
+		CALCULATE popularity with randomness
+		IF popularity > 50:
+			SET district color TO green
+			INCREASE total_votes BY district's vote count
+		ELSE:
+			SET district color TO purple
+
+	RETURN total_votes
+
 	'''
 	var totalpopulation = 0
 	var populations = []
@@ -121,6 +149,16 @@ func ElectResults(random = 0):
 func GenPopularity(random = 0):
 	'''
 	caluclates popularity with a bit of randomness included
+	FUNCTION GenPopularity(random = 0):
+	SET total_population TO 0
+	SET weighted_popularity_sum TO 0
+
+	FOR each district index FROM 0 TO 15:
+		ADD district's population TO total_population
+		ADD (district population × (popularity + randomness)) TO weighted_popularity_sum
+
+	RETURN weighted_popularity_sum / total_population
+
 	'''
 	var totalpopulation = 0
 	var popularity = 0
@@ -132,7 +170,13 @@ func GenPopularity(random = 0):
 func ResetColor():
 	'''
 	resets the district color change that occuers in the caluclate popularity section in the election
+	FUNCTION ResetColor():
+	SET district_nodes TO list of all district UI nodes
+
+	FOR each district index FROM 0 TO 15:
+		SET district's UI color TO white over 1 second
 	'''
+	
 	var district_nodes = [$District, $District2, $District3, $District4,
 	$District5, $District6, $District7, $District8,
 	$District9, $District10, $District11, $District12,
