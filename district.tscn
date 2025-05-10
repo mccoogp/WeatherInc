@@ -1,44 +1,34 @@
-[gd_scene load_steps=6 format=3 uid="uid://cacfd62pudml6"]
+[gd_scene load_steps=3 format=3 uid="uid://cacfd62pudml6"]
 
 [ext_resource type="Script" path="res://district.gd" id="1_gpufd"]
-[ext_resource type="Texture2D" uid="uid://dlgystj22v1a6" path="res://4caster Art/new map/district16.png" id="2_75sb1"]
 [ext_resource type="Script" path="res://districtsprite.gd" id="3_mvpsf"]
-[ext_resource type="Texture2D" uid="uid://bcc6af5iy0tfm" path="res://4caster Art/industries/factory.png" id="4_2ef7k"]
-[ext_resource type="Texture2D" uid="uid://d0og4n3myo5uy" path="res://4caster Art/disasters/drought.png" id="5_niicu"]
 
 [node name="District" type="Node2D"]
 position = Vector2(0, 1)
 scale = Vector2(100, 100)
 script = ExtResource("1_gpufd")
 
-[node name="Main" type="Sprite2D" parent="." node_paths=PackedStringArray("district")]
+[node name="Main" type="Sprite2D" parent="."]
 position = Vector2(0.71, 0.71)
 scale = Vector2(0.0107812, 0.0107812)
-texture = ExtResource("2_75sb1")
 script = ExtResource("3_mvpsf")
-district = NodePath("..")
 
 [node name="ProductionImage" type="Sprite2D" parent="."]
 position = Vector2(0.9, 0.51)
 scale = Vector2(0.032, 0.032)
-texture = ExtResource("4_2ef7k")
 
 [node name="Disaster" type="Sprite2D" parent="."]
 position = Vector2(-0.09, -0.37)
 scale = Vector2(0.015, 0.015)
-texture = ExtResource("5_niicu")
 
 [node name="Disaster2" type="Sprite2D" parent="."]
 position = Vector2(1.35, -0.41)
 scale = Vector2(0.015, 0.015)
-texture = ExtResource("5_niicu")
 
 [node name="Disaster3" type="Sprite2D" parent="."]
 position = Vector2(-0.0800002, 0.57)
 scale = Vector2(0.015, 0.015)
-texture = ExtResource("5_niicu")
 
 [node name="Disaster4" type="Sprite2D" parent="."]
 position = Vector2(0.75, 1.45)
 scale = Vector2(0.015, 0.015)
-texture = ExtResource("5_niicu")

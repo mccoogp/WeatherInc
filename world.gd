@@ -165,6 +165,11 @@ func _ready():
 	pause_menu.connect("resume_game", Callable(self, "_on_resume_game"))
 	pause_menu.connect("peaceful", Callable(self, "_on_peaceful"))
 	pause_menu.connect("pink", Callable(self, "_on_pink"))
+	await get_tree().create_timer(1).timeout
+	for i in 10:
+		await get_tree().create_timer(0.1).timeout
+		$CanvasLayer2/Sprite2D.modulate[3] -= 0.1
+	
 func _on_peaceful():
 	if not peace:
 		temp = 0
