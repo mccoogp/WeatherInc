@@ -14,8 +14,8 @@ var ind_modifier = 1.0
 var tech_modifier = 1.0
 
 var phase = 3
-var food = 10000
-var money = 50000
+var food = 0
+var money = 0
 var temp = 60
 var year = 1
 var factories = 0
@@ -196,16 +196,25 @@ func _input(event):
 									$TopBar/LeftMenu/Industry/Label3.text += "
 									No available space"
 									$TopBar/LeftMenu.extras[0] += 1
+								
+								
 								if posprod[curprod] == "fish":
 									$TopBar/LeftMenu/Industry/Label3.text += "
 									Requires: Water access"
-									if districts[zoom].water == true:
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Cost: $12,000"
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Requires: 1 factory"
+									if money >= 12000 and districts[zoom].water == true and factories > 0:
 										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
 										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
 									else:
 										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
 										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
 									$TopBar/LeftMenu.extras[0] += 2
+									$TopBar/LeftMenu.extras[0] += 3
+								
+								
 								elif posprod[curprod] == "factory":
 									$TopBar/LeftMenu/Industry/Label3.text += "
 									Cost: $100,000"
@@ -216,21 +225,56 @@ func _input(event):
 										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
 										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
 									$TopBar/LeftMenu.extras[0] += 2
+								
+								
 								elif posprod[curprod] == "oil":
 									$TopBar/LeftMenu/Industry/Label3.text += "
-									Requires: 1 factory"
+									Requires: 2 factory"
 									$TopBar/LeftMenu.extras[0] += 2
-									if factories >= 1:
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Cost: $100,000"
+									if money >= 100000 and factories >= 1:
 										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
 										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
 									else:
 										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
 										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+									$TopBar/LeftMenu.extras[0] += 2
+								
+								
+								elif posprod[curprod] == "grain":
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Cost: $5,000"
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Requires: 1 factory"
+									if money >= 5000 and factories > 0:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+									else:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+									$TopBar/LeftMenu.extras[0] += 3
+								
+								
+								elif posprod[curprod] == "meat":
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Cost: $20,000"
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Requires: 1 factory"
+									if money >= 20000 and factories > 0:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+									else:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+									$TopBar/LeftMenu.extras[0] += 3
+								
+								
 								elif posprod[curprod] == "research":
 									$TopBar/LeftMenu/Industry/Label3.text += "
-									Cost: $500,000
-									Requires 1 factory"
-									if money >= 500000 and factories >= 1:
+									Cost: $300,000
+									Requires 2 factory"
+									if money >= 300000 and factories >= 2:
 										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
 										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
 									else:
@@ -257,11 +301,6 @@ func _input(event):
 									checkprod = true
 									$TopBar/LeftMenu.extras[0] += 1
 								else:
-									districts[zoom].popularity *= randf_range(7.5,9.5)/10
-									districts[zoom].product.erase(posprod[curprod])
-									checkprod = false
-									$TopBar/LeftMenu/Industry/Label.text = "Industry:
-									" + posprod[curprod]
 									if len(districts[zoom].product) == 0:
 										$TopBar/LeftMenu/Industry/Label3.text += "
 										Press enter to confirm"
@@ -270,35 +309,117 @@ func _input(event):
 										$TopBar/LeftMenu/Industry/Label3.text += "
 										No available space"
 										$TopBar/LeftMenu.extras[0] += 1
-									if posprod[curprod] == "factory":
+									
+									
+									if posprod[curprod] == "fish":
+										$TopBar/LeftMenu/Industry/Label3.text += "
+										Requires: Water access"
+										$TopBar/LeftMenu/Industry/Label3.text += "
+										Cost: $12,000"
+										$TopBar/LeftMenu/Industry/Label3.text += "
+										Requires: 1 factory"
+										if money >= 12000 and districts[zoom].water == true and factories > 0:
+											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
+											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+										else:
+											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
+											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+										$TopBar/LeftMenu.extras[0] += 2
+										$TopBar/LeftMenu.extras[0] += 3
+									
+									
+									elif posprod[curprod] == "factory":
 										$TopBar/LeftMenu/Industry/Label3.text += "
 										Cost: $100,000"
-										$TopBar/LeftMenu.extras[0] += 1
-
-									if posprod[curprod] == "oil":
-										$TopBar/LeftMenu/Industry/Label3.text += "
-										Requires: 1 factory"
-										$TopBar/LeftMenu.extras[0] += 1
-									if posprod[curprod] == "research":
-										$TopBar/LeftMenu/Industry/Label3.text += "
-										Cost: $500,000
-										Requires: 1 factory"
+										if money >= 100000:
+											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
+											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+										else:
+											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
+											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
 										$TopBar/LeftMenu.extras[0] += 2
 									
+									
+									elif posprod[curprod] == "oil":
+										$TopBar/LeftMenu/Industry/Label3.text += "
+										Requires: 2 factory"
+										$TopBar/LeftMenu.extras[0] += 2
+										$TopBar/LeftMenu/Industry/Label3.text += "
+										Cost: $100,000"
+										if money >= 100000 and factories >= 1:
+											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
+											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+										else:
+											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
+											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+										$TopBar/LeftMenu.extras[0] += 2
+									
+									
+									elif posprod[curprod] == "grain":
+										$TopBar/LeftMenu/Industry/Label3.text += "
+										Cost: $5,000"
+										$TopBar/LeftMenu/Industry/Label3.text += "
+										Requires: 1 factory"
+										if money >= 5000 and factories > 0:
+											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
+											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+										else:
+											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
+											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+										$TopBar/LeftMenu.extras[0] += 3
+									
+									
+									elif posprod[curprod] == "meat":
+										$TopBar/LeftMenu/Industry/Label3.text += "
+										Cost: $20,000"
+										$TopBar/LeftMenu/Industry/Label3.text += "
+										Requires: 1 factory"
+										if money >= 20000 and factories > 0:
+											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
+											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+										else:
+											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
+											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+										$TopBar/LeftMenu.extras[0] += 3
+									
+									
+									elif posprod[curprod] == "research":
+										$TopBar/LeftMenu/Industry/Label3.text += "
+										Cost: $300,000
+										Requires 2 factory"
+										if money >= 300000 and factories >= 2:
+											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
+											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+										else:
+											$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
+											$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+										$TopBar/LeftMenu.extras[0] += 3
+									else:
+										$TopBar/LeftMenu/Industry/Label2.text = ""
+										
 						if Input.is_key_pressed(KEY_ENTER):
 							if len(districts[zoom].product) == 0:
 								var changed = false
 								
-								if posprod[curprod] == "grain":
+								if posprod[curprod] == "grain" and money >= 5000 and factories > 0:
+									money -= 5000
+									factories -= 1
 									changed = true
 									districts[zoom].popularity += (100-districts[zoom].popularity)* randf_range(0,1)/10
-								if posprod[curprod] == "meat":
+								
+								if posprod[curprod] == "meat" and factories > 0 and money >= 20000:
+									money -= 20000
+									factories -= 1
 									changed = true
 									districts[zoom].setup = 0
 									districts[zoom].popularity += (100-districts[zoom].popularity)* randf_range(0.5, 1.5)/10
-								if posprod[curprod] == "fish" and districts[zoom].water == true:
+								
+								if posprod[curprod] == "fish" and districts[zoom].water == true and money >= 12000 and factories > 0:
+									factories -= 1
+									money-=12000
 									changed = true
 									districts[zoom].popularity *= randf_range(8.5,9.5)/10
+								
 								if posprod[curprod] == "factory" and money >= 100000:
 									districts[zoom].setup = 0
 									money -= 100000
@@ -306,14 +427,17 @@ func _input(event):
 									districts[zoom].popularity += (100-districts[zoom].popularity)* randf_range(1.5,3)/10
 									for dist in adjacents[zoom]:
 										districts[dist].popularity *=  randf_range(8,10)/10
-								if posprod[curprod] == "oil" and factories > 0:
+								
+								if posprod[curprod] == "oil" and factories > 1 and money >= 100000:
 									districts[zoom].setup = 0
-									factories -= 1
+									money -= 100000
+									factories -= 2
 									changed = true
-								if posprod[curprod] == "research" and factories > 0 and money >= 500000:
+								
+								if posprod[curprod] == "research" and factories > 1 and money >= 300000:
 									districts[zoom].setup = 0
-									factories -= 1
-									money -= 500000
+									factories -= 2
+									money -= 300000
 									changed = true
 								
 								if changed == true:
@@ -556,34 +680,39 @@ func _process(delta: float) -> void:
 			#production	
 			for district in 16:
 				if "oil" in districts[district].product:
-					energyprod +=  districts[district].productivity * districts[district].population * districts[district].setup * ind_modifier
-				
+					energyprod +=  districts[district].population * districts[district].setup * ind_modifier * 0.1
+					money += energyprod * districts[district].tax
+					districts[district].setup = 1
+					
 			for district in 16:
 				totalpop += districts[district].population
 				if "grain" in districts[district].product:
-					var district_foodprod = 3 * districts[district].productivity * districts[district].population
+					var district_foodprod = 1.5 * districts[district].population * food_modifier
 					foodprod += district_foodprod
-					money += district_foodprod * districts[district].tax
+					money += district_foodprod * districts[district].tax * 0.1
+				
 				if "meat" in districts[district].product or "fish" in districts[district].product:
-					var district_foodprod = 5 * districts[district].productivity * districts[district].population * districts[district].setup
+					var district_foodprod = 3  * districts[district].population * districts[district].setup
 					foodprod += district_foodprod
-					money += district_foodprod * districts[district].tax
+					money += district_foodprod * districts[district].tax * 0.1
 					districts[district].setup = 1
+				
 				if "factory" in districts[district].product:
 					factories += 1
 					activatefact = true
 					districts[district].setup = 1
-				if "oil" in districts[district].product:
-					districts[district].setup = 1
+					money += districts[district].population * districts[district].tax * 0.5
+					
 				if "research" in districts[district].product:
 					districts[district].setup = 1
 					research += 1
+					money += districts[district].population * districts[district].tax * 0.25
 					activateresearch = true
 			
 			
-			food += foodprod * food_modifier
+			food += foodprod
 			if food >= totalpop * 1.2:
-				food -= totalpop *1.2
+				food -= totalpop * 1.2
 				for district in 16:
 					districts[district].population *= randf_range(100,110)/100
 					districts[district].popularity += (100-districts[district].popularity)* randf_range(0,1)/10

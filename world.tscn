@@ -225,6 +225,7 @@ image = ExtResource("14_5hcpw")
 [node name="District12" parent="." instance=ExtResource("2_41llr")]
 position = Vector2(35.7143, 505.952)
 scale = Vector2(67, 67)
+product = ["grain"]
 center = Vector2(30, 470)
 zoom = 1.8
 image = ExtResource("15_h5cav")
@@ -239,6 +240,7 @@ image = ExtResource("16_nqpus")
 [node name="District14" parent="." instance=ExtResource("2_41llr")]
 position = Vector2(527.381, 502.381)
 scale = Vector2(67, 67)
+product = ["factory"]
 center = Vector2(530, 510)
 zoom = 2.5
 image = ExtResource("17_b736m")
@@ -246,6 +248,7 @@ image = ExtResource("17_b736m")
 [node name="District15" parent="." instance=ExtResource("2_41llr")]
 position = Vector2(616.667, 365.476)
 scale = Vector2(67, 67)
+product = ["factory"]
 center = Vector2(675, 385)
 zoom = 2.7
 image = ExtResource("18_6jcjn")
@@ -254,6 +257,7 @@ image = ExtResource("18_6jcjn")
 position = Vector2(791.667, 477.381)
 scale = Vector2(67, 67)
 water = true
+product = ["factory"]
 center = Vector2(840, 495)
 zoom = 2.5
 image = ExtResource("19_05ytu")
@@ -279,7 +283,7 @@ position = Vector2(145, 295)
 scale = Vector2(1.34, 1.34)
 texture = ExtResource("16_dv0ow")
 script = ExtResource("17_uwtjx")
-extend = [NodePath("LeftMenuMiddle"), NodePath("LeftMenuMiddle2"), NodePath("LeftMenuMiddle3")]
+extend = [NodePath("LeftMenuMiddle"), NodePath("LeftMenuMiddle2"), NodePath("LeftMenuMiddle3"), NodePath("LeftMenuMiddle4")]
 
 [node name="LeftMenuBottom" type="Sprite2D" parent="TopBar/LeftMenu"]
 texture_filter = 1
@@ -302,6 +306,12 @@ texture = ExtResource("19_dcwrs")
 visible = false
 texture_filter = 1
 position = Vector2(-6, 79)
+texture = ExtResource("19_dcwrs")
+
+[node name="LeftMenuMiddle4" type="Sprite2D" parent="TopBar/LeftMenu"]
+visible = false
+texture_filter = 1
+position = Vector2(-6, 121)
 texture = ExtResource("19_dcwrs")
 
 [node name="Industry" type="Sprite2D" parent="TopBar/LeftMenu" node_paths=PackedStringArray("menu")]
