@@ -292,6 +292,7 @@ func _input(event):
 						cameracenter = districts[district].center
 						camerazoom = districts[district].zoom
 						districts[district].clicked = false
+						curprod = 0
 
 			else:
 				if event is InputEventKey and event.pressed:
@@ -946,7 +947,7 @@ func _process(delta: float) -> void:
 				if activateresearch:
 					$TopBar/Variables3/Research.visible = true
 					$TopBar/Variables3.text = "  = " + str(totalpop) + "\n  = " + str(research)
-				
+				money = floor(money)
 				#news stuff
 				$CanvasLayer/News/ScrollContainer/VBoxContainer/Temp/Temp_Data.text = str(temp) + "°F"
 				$CanvasLayer/News/ScrollContainer/VBoxContainer/Food/Food_Data.text = str(foodprod - totalpop) + " Tons"
