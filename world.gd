@@ -9,13 +9,13 @@ var totalpop = 0
 var foodprod = 0
 
 var food_modifier = 1.0
-var env_modifier = 0.0
+var env_modifier = 1.0
 var ind_modifier = 1.0
 var tech_modifier = 1.0
 
 var phase = 3
 var food = 0
-var money = 20000
+var money = 2000000
 
 var temp = 60
 var year = 1
@@ -58,7 +58,6 @@ var lostcount = 0
 var lost = false
 
 func _on_resume_game():
-	print("recived emit")
 	frame = 0
 	$Camera2D.position = defaultcenter
 	$Camera2D.zoom = Vector2(defaultzoom, defaultzoom)
@@ -66,7 +65,6 @@ func _on_resume_game():
 	$"Popularity bar".visible =  previousvis[1]
 	$Start.visible = previousvis[2]
 	$TopBar.visible = previousvis[3]
-	
 	
 
 func ElectResults(random = 0):
@@ -153,7 +151,8 @@ func disaster(temp):
 	'''
 	var disasters = ["tornado", "drought", "rain", "fire", "volcano", "disease"]
 	var ran = randi_range(50,300)
-	if ran < temp and randf() <= 1.0 - env_modifier:
+	if ran < temp:
+		print(disasters[randi_range(0,len(disasters)-1)])
 		return disasters[randi_range(0,len(disasters)-1)]
 	else:
 		return('none')
@@ -167,8 +166,12 @@ func _ready():
 	pause_menu.connect("peaceful", Callable(self, "_on_peaceful"))
 	pause_menu.connect("pink", Callable(self, "_on_pink"))
 func _on_peaceful():
-	temp = 0
-	peace = true
+	if not peace:
+		temp = 0
+		peace = true
+	elif peace:
+		temp = 60
+		peace = false
 
 func _on_pink():
 	if not pink:
@@ -665,7 +668,7 @@ func _process(delta: float) -> void:
 				ResetColor()
 				var skill_tree_script = get_node('CanvasLayer/News/SkillTree')
 				food_modifier = 1.0 + skill_tree_script.levels[0] * 0.1
-				env_modifier = skill_tree_script.levels[2] * 0.1
+				env_modifier = 1.0 + skill_tree_script.levels[2] * 0.1
 				ind_modifier = 1.0 + skill_tree_script.levels[1] * 0.1
 				tech_modifier = 1.0 + skill_tree_script.levels[3] * 0.1
 				
@@ -815,7 +818,15 @@ func _process(delta: float) -> void:
 				$Start.visible = false
 				$CanvasLayer/News.hide = false
 				$CanvasLayer/News.text = "Next"
-				temp += 1
+				#temp calculator
+				var new_temp = 0
+				for district in 16:
+					if "meat" in districts[district].product or "oil" in districts[district].product or "factory" in districts[district].product:
+						new_temp += 0.01
+				new_temp += 0.5
+				new_temp /= env_modifier
+				temp += new_temp
+				temp = round(temp * 100) / 100.0
 				phase = 1
 				$TopBar/Variables3/Research
 				if activateresearch:
