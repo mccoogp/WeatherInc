@@ -15,7 +15,8 @@ var tech_modifier = 1.0
 
 var phase = 3
 var food = 0
-var money = 0
+var money = 20000
+
 var temp = 60
 var year = 1
 var factories = 0
@@ -48,6 +49,9 @@ var previousvis = [false, false, false]
 var frame = 0
 var peace = false
 var pink = false
+
+var lostcount = 0
+var lost = false
 
 func _on_resume_game():
 	frame = 0
@@ -89,11 +93,13 @@ func ElectResults(random = 0):
 			var color = Color(0.2, 0.8, 0.2)
 			var tween = create_tween()
 			tween.tween_property(districts[district], "modulate", color, 0.3)
+			totalvotes += districts[district].votes
 		else:
 			var color = Color(0.5, 0.2, 0.6)
 			var tween = create_tween()
 			tween.tween_property(districts[district], "modulate", color, 0.3)
-		totalvotes += districts[district].votes
+
+	
 	return totalvotes
 		
 
@@ -619,220 +625,218 @@ func _process(delta: float) -> void:
 
 			
 	
-
-	if $CanvasLayer/News.clicked == true or spaceclicked == true:
-		spaceclicked = false
-		$CanvasLayer/News.clicked = false
-		phase += 1
-		if phase == 2:
-			$CanvasLayer/News.hide = true
-			if year % 4 == 0:
-				$CanvasLayer/News.text = "Election"
-			else:
+	if lost == false:
+		if $CanvasLayer/News.clicked == true or spaceclicked == true:
+			spaceclicked = false
+			$CanvasLayer/News.clicked = false
+			phase += 1
+			if phase == 2:
+				$CanvasLayer/News.hide = true
+				if year % 4 == 0:
+					$CanvasLayer/News.text = "Election"
+				else:
+					$CanvasLayer/News.text = "Advance"
+				if activateresearch:
+					$CanvasLayer/News/SkillTreeToggle.visible = true
+				
+			if phase == 3:
+				cameracenter =  defaultcenter
+				camerazoom = defaultzoom
+				zoom = -1
+				if year % 4 == 0:
+					var results = ElectResults(5)
+					print(results)
+					if results < 270:
+						print("lose")
+						lost = true
+				else:
+					phase += 1
 				$CanvasLayer/News.text = "Advance"
-			if activateresearch:
-				$CanvasLayer/News/SkillTreeToggle.visible = true
-			
-		if phase == 3:
-			cameracenter =  defaultcenter
-			camerazoom = defaultzoom
-			zoom = -1
-			if year % 4 == 0:
-				print(ElectResults(5))
+			if phase == 4:
+				ResetColor()
+				var skill_tree_script = get_node('CanvasLayer/News/SkillTree')
+				food_modifier = 1.0 + skill_tree_script.levels[0] * 0.1
+				env_modifier = skill_tree_script.levels[2] * 0.1
+				ind_modifier = 1.0 + skill_tree_script.levels[1] * 0.1
+				tech_modifier = 1.0 + skill_tree_script.levels[3] * 0.1
 				
+				year += 1
+				factories = 0
+				totalpop = 0
+				foodprod = 0
 				
-			else:
-				phase += 1
-			$CanvasLayer/News.text = "Advance"
-		if phase == 4:
-			ResetColor()
-			var skill_tree_script = get_node('CanvasLayer/News/SkillTree')
-			food_modifier = 1.0 + skill_tree_script.levels[0] * 0.5
-			env_modifier = 1.0 + skill_tree_script.levels[2] * 0.5
-			ind_modifier = 1.0 + skill_tree_script.levels[1] * 0.5
-			tech_modifier = 1.0 + skill_tree_script.levels[3] * 0.5
-			
-			year += 1
-			factories = 0
-			totalpop = 0
-			foodprod = 0
-			
-			#disasters
-			for district in 16:
-				var thing = disaster(temp)
-				if peace:
-					thing = "none"
-				if thing == "none":
-					districts[district].disaster = []
-				elif thing == "tornado":
-					districts[district].disaster = ["tornado"]
-					districts[district].product = []
-					districts[district].population *= 0.75
-				
-				elif thing == "drought":
-					if districts[district].water:
-						pass
-					else:
-						districts[district].disaster = ["drought"]
-						if "meat" in districts[district].product:
-							districts[district].product = []
-							districts[district].population *= 0.75
-						elif "grain" in districts[district].product:
-							districts[district].product = []
-							districts[district].population *= 0.75
+				#disasters
+				for district in 16:
+					var thing = disaster(temp)
+					if peace:
+						thing = "none"
+					if thing == "none":
+						districts[district].disaster = []
+					elif thing == "tornado":
+						districts[district].disaster = ["tornado"]
+						districts[district].product = []
+						districts[district].population *= 0.75
+					
+					elif thing == "drought":
+						if districts[district].water:
+							pass
 						else:
-							districts[district].population *= 0.75
-				
-				elif thing == "rain":
-					if not districts[district].water:
-						pass
-					else:
-						districts[district].disaster = ["rain"]
-						districts[district].product = []
-						districts[district].population *= 0.75
-				
-				elif thing == "fire":
-					districts[district].disaster = ["fire"]
-					if districts[district].water:
-						districts[district].population *= 0.90
-					else:
-						districts[district].product = []
-						districts[district].population *= 0.75
-				
-				elif thing == "volcano":
-					districts[district].disaster = ["volcano"]
-					districts[district].population *= 0.90
-					var moving = districts[district].population * randf_range(20,60)/100
-					var movement = int(moving / 5)
-					for dist in adjacents[district]:
-						districts[dist].population += movement
-						districts[district].population -= movement
-						
-				elif thing == "disease":
-					districts[district].disaster = ["disease"]
-					if "meat" in districts[district].product:
+							districts[district].disaster = ["drought"]
+							if "meat" in districts[district].product:
+									districts[district].product = []
+									districts[district].population *= 0.65
+							else:
+								districts[district].population *= 0.75
+					elif thing == "rain":
+						if not districts[district].water:
+							pass
+						else:
+							districts[district].disaster = ["rain"]
 							districts[district].product = []
-							districts[district].population *= 0.65
-					else:
-						districts[district].population *= 0.75
+							districts[district].population *= 0.75
 					
+					elif thing == "fire":
+						districts[district].disaster = ["fire"]
+						if districts[district].water:
+							districts[district].population *= 0.90
+						else:
+							districts[district].product = []
+							districts[district].population *= 0.75
+					
+					elif thing == "volcano":
+						districts[district].disaster = ["volcano"]
+						districts[district].population *= 0.90
+						var moving = districts[district].population * randf_range(20,60)/100
+						var movement = int(moving / 5)
+						for dist in adjacents[district]:
+							districts[dist].population += movement
+							districts[district].population -= movement
 							
-			
-			#taxes
-			for district in 16:
-				if districts[district].newtax > 100:
-					districts[district].newtax = 100
-				if districts[district].tax < districts[district].newtax:
-					for a in range(int((districts[district].newtax-districts[district].tax)/0.5)):
-						popularity_down(districts[district])
-				if districts[district].tax > districts[district].newtax:
-					for a in range(int((districts[district].tax-districts[district].newtax)/0.5)):
-						popularity_up(districts[district])		
-				districts[district].tax = districts[district].newtax
-			
-			#production	
-			for district in 16:
-				if "oil" in districts[district].product:
-					energyprod +=  districts[district].population * districts[district].setup * ind_modifier * 0.1
-					money += energyprod * districts[district].tax
-					districts[district].setup = 1
-					
-			for district in 16:
-				totalpop += districts[district].population
-				if "grain" in districts[district].product:
-					var district_foodprod = 1.5 * districts[district].population * food_modifier
-					foodprod += district_foodprod
-					money += district_foodprod * districts[district].tax * 0.1
+					elif thing == "disease":
+						districts[district].disaster = ["disease"]
+						
+									
 				
-				if "meat" in districts[district].product or "fish" in districts[district].product:
-					var district_foodprod = 3  * districts[district].population * districts[district].setup
-					foodprod += district_foodprod
-					money += district_foodprod * districts[district].tax * 0.1
-					districts[district].setup = 1
+				#taxes
+				for district in 16:
+					if districts[district].newtax > 100:
+						districts[district].newtax = 100
+					if districts[district].tax < districts[district].newtax:
+						for a in range(int((districts[district].newtax-districts[district].tax)/0.5)):
+							popularity_down(districts[district])
+					if districts[district].tax > districts[district].newtax:
+						for a in range(int((districts[district].tax-districts[district].newtax)/0.5)):
+							popularity_up(districts[district])		
+					districts[district].tax = districts[district].newtax
 				
-				if "factory" in districts[district].product:
-					factories += 1
-					activatefact = true
-					districts[district].setup = 1
-					money += districts[district].population * districts[district].tax * 0.5
+				#production	
+				for district in 16:
+					if "oil" in districts[district].product:
+						energyprod +=  districts[district].population * districts[district].setup * ind_modifier * 0.1
+						money += energyprod * districts[district].tax
+						districts[district].setup = 1
+						
+				for district in 16:
+					totalpop += districts[district].population
+					if "grain" in districts[district].product:
+						var district_foodprod = 1.5 * districts[district].population * food_modifier
+						foodprod += district_foodprod
+						money += district_foodprod * districts[district].tax * 0.1
 					
-				if "research" in districts[district].product:
-					districts[district].setup = 1
-					research += 1
-					money += districts[district].population * districts[district].tax * 0.25
-					activateresearch = true
-			
-			
-			food += foodprod
-			if food >= totalpop * 1.2:
-				food -= totalpop * 1.2
+					if "meat" in districts[district].product or "fish" in districts[district].product:
+						var district_foodprod = 3  * districts[district].population * districts[district].setup
+						foodprod += district_foodprod
+						money += district_foodprod * districts[district].tax * 0.1
+						districts[district].setup = 1
+					
+					if "factory" in districts[district].product:
+						factories += 1
+						activatefact = true
+						districts[district].setup = 1
+						money += districts[district].population * districts[district].tax * 0.5
+						
+					if "research" in districts[district].product:
+						districts[district].setup = 1
+						research += 1
+						money += districts[district].population * districts[district].tax * 0.25
+						activateresearch = true
+				
+				
+				food += foodprod
+				if food >= totalpop * 1.2:
+					food -= totalpop * 1.2
+					for district in 16:
+						districts[district].population *= randf_range(100,110)/100
+						districts[district].popularity += (100-districts[district].popularity)* randf_range(0,1)/10
+				elif food >= totalpop:
+					food -= totalpop
+				else:
+					for district in 16:
+						districts[district].population *= food/totalpop
+						districts[district].popularity *=  randf_range(food/totalpop,1)
+					food = 0
+				food /= 2
+				food = floor(food)
+				
+				$CanvasLayer/News/SkillTreeToggle.visible = false
+				totalpop = 0
 				for district in 16:
-					districts[district].population *= randf_range(100,110)/100
-					districts[district].popularity += (100-districts[district].popularity)* randf_range(0,1)/10
-			elif food >= totalpop:
-				food -= totalpop
-			else:
+					for dist in adjacents[district]:
+						var moving = districts[district].population * randf_range(0,5)/100
+						districts[dist].population += moving
+						districts[district].population -= moving
 				for district in 16:
-					districts[district].population *= food/totalpop
-					districts[district].popularity *=  randf_range(food/totalpop,1)
-				food = 0
-			food /= 2
-			food = floor(food)
-			
-			$CanvasLayer/News/SkillTreeToggle.visible = false
-			totalpop = 0
-			for district in 16:
-				for dist in adjacents[district]:
-					var moving = districts[district].population * randf_range(0,5)/100
-					districts[dist].population += moving
-					districts[district].population -= moving
-			for district in 16:
-				districts[district].population = float(int(districts[district].population))
-				totalpop += districts[district].population
-			$TopBar/Variables3.text = "  = " + str(totalpop) 
-			
-			var estimate = GenPopularity(10)
-			$AudioStreamPlayer.pitch_scale = estimate / 35
-
-			$"Popularity bar/ColorRect".size.x = estimate
-			$"Popularity bar/ColorRect2".size.x = 100 - estimate
-			$"Popularity bar/ColorRect2".position.x = 49 + 2*estimate
-			
-			
-			$TopBar/Variables.visible = true
-			$TopBar/TopMenu.visible = true
-			$TopBar/Variables.visible = true
-			$TopBar/Variables2.visible = true
-			$TopBar/Variables3.visible = true
-			#$Label4.visible = true
-			$"Popularity bar".visible = true
-			$Start.visible = false
-			$CanvasLayer/News.hide = false
-			$CanvasLayer/News.text = "Next"
-			
-			
-			#temp calculator
-			var new_temp = 0
-			for district in 16:
-				if "meat" in districts[district].product or "oil" in districts[district].product or "factory" in districts[district].product:
-					new_temp += 0.01
-			new_temp += 0.5
-			new_temp /= env_modifier
-			temp += new_temp
-			temp = round(temp * 100) / 100.0
-			
-			
-			
-			phase = 1
-			$TopBar/Variables3/Research
-			if activateresearch:
-				$TopBar/Variables3/Research.visible = true
-				$TopBar/Variables3.text = "  = " + str(totalpop) + "\n  = " + str(research)
-			
-			#news stuff
-			$CanvasLayer/News/ScrollContainer/TextureRect/VBoxContainer/Production_title/Temp.text = "Average surface\ntempurature: " + str(temp) + "°F"
-			if foodprod >= totalpop:
-				$CanvasLayer/News/ScrollContainer/TextureRect/VBoxContainer/Production_title/Food_calc.text = str(foodprod) + "\n-" + str(totalpop) + "\n________\n+" + str(foodprod - totalpop)
-			else:
-				$CanvasLayer/News/ScrollContainer/TextureRect/VBoxContainer/Production_title/Food_calc.text = str(foodprod) + "\n-" + str(totalpop) + "\n________\n-" + str(foodprod - totalpop)
-			$CanvasLayer/News.show()
+					districts[district].population = float(int(districts[district].population))
+					totalpop += districts[district].population
+				$TopBar/Variables3.text = "  = " + str(totalpop) 
+				
+				var estimate = GenPopularity(10)
+				$"Popularity bar/ColorRect".size.x = estimate
+				$"Popularity bar/ColorRect2".size.x = 100 - estimate
+				$"Popularity bar/ColorRect2".position.x = 49 + 2*estimate
+				
+				
+				$TopBar/Variables.visible = true
+				$TopBar/TopMenu.visible = true
+				$TopBar/Variables.visible = true
+				$TopBar/Variables2.visible = true
+				$TopBar/Variables3.visible = true
+				#$Label4.visible = true
+				$"Popularity bar".visible = true
+				$Start.visible = false
+				$CanvasLayer/News.hide = false
+				$CanvasLayer/News.text = "Next"
+				#temp calculator
+				var new_temp = 0
+				for district in 16:
+					if "meat" in districts[district].product or "oil" in districts[district].product or "factory" in districts[district].product:
+						new_temp += 0.01
+				new_temp += 0.5
+				new_temp /= env_modifier
+				temp += new_temp
+				temp = round(temp * 100) / 100.0
+				phase = 1
+				$TopBar/Variables3/Research
+				if activateresearch:
+					$TopBar/Variables3/Research.visible = true
+					$TopBar/Variables3.text = "  = " + str(totalpop) + "\n  = " + str(research)
+				
+				#news stuff
+				$CanvasLayer/News/ScrollContainer/TextureRect/VBoxContainer/Production_title/Temp.text = "Average surface\ntempurature: " + str(temp) + "°F"
+				if foodprod >= totalpop:
+					$CanvasLayer/News/ScrollContainer/TextureRect/VBoxContainer/Production_title/Food_calc.text = str(foodprod) + "\n-" + str(totalpop) + "\n________\n+" + str(foodprod - totalpop)
+				else:
+					$CanvasLayer/News/ScrollContainer/TextureRect/VBoxContainer/Production_title/Food_calc.text = str(foodprod) + "\n-" + str(totalpop) + "\n________\n-" + str(foodprod - totalpop)
+				$CanvasLayer/News.show()
+	else:
+		$TopBar.visible = false
+		$"Popularity bar".visible = false
+		$CanvasLayer.visible = false
+		$LoseMenu.visible = true
+		lostcount += 1
+		if lostcount > 100:
+			print("lost it")
+			while $ColorRect.color[3] < 0.3:
+				await get_tree().create_timer(0.1).timeout
+				$ColorRect.color[3] += 0.001
+			get_tree().paused = true
