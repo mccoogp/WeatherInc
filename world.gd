@@ -46,6 +46,8 @@ var activateresearch = false
 
 var previousvis = [false, false, false]
 var frame = 0
+var peace = false
+var pink = false
 
 func _on_resume_game():
 	print("recived emit")
@@ -150,6 +152,23 @@ func disaster(temp):
 func _ready():
 	var pause_menu = $Pause
 	pause_menu.connect("resume_game", Callable(self, "_on_resume_game"))
+	pause_menu.connect("peaceful", Callable(self, "_on_peaceful"))
+	pause_menu.connect("pink", Callable(self, "_on_pink"))
+func _on_peaceful():
+	temp = 0
+	peace = true
+
+func _on_pink():
+	if not pink:
+		var pink_color = Color(1.0, 0.4, 0.7, 1.0)
+		var tween = create_tween()
+		tween.tween_property(self, "modulate", pink_color, 0.3)
+		pink = true
+	else:
+		var pink_color = Color(1,1,1,1)
+		var tween = create_tween()
+		tween.tween_property(self, "modulate", pink_color, 0.3)
+		pink = false
 
 
 func _input(event):
@@ -633,6 +652,8 @@ func _process(delta: float) -> void:
 			#disasters
 			for district in 16:
 				var thing = disaster(temp)
+				if peace:
+					thing = "none"
 				if thing == "none":
 					districts[district].disaster = []
 				elif thing == "tornado":

@@ -48,6 +48,22 @@ offset_bottom = 121.0
 focus_mode = 0
 text = "↓"
 
+[node name="peaceful" type="Button" parent="."]
+offset_left = 93.0
+offset_top = 140.0
+offset_right = 215.0
+offset_bottom = 171.0
+text = "Peaceful Mode"
+
+[node name="pink" type="Button" parent="."]
+offset_left = 224.0
+offset_top = 140.0
+offset_right = 392.0
+offset_bottom = 171.0
+text = "Toggle pink mode"
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="vol_up" to="." method="_on_vol_up_pressed"]
 [connection signal="pressed" from="vol_down" to="." method="_on_vol_down_pressed"]
+[connection signal="pressed" from="peaceful" to="." method="_on_peaceful_pressed"]
+[connection signal="pressed" from="pink" to="." method="_on_pink_pressed"]
