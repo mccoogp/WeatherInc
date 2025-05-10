@@ -313,7 +313,7 @@ func _input(event):
 							$TopBar/LeftMenu/Industry/Label3.text = ""
 							$TopBar/LeftMenu.extras[0] = 0
 							$TopBar/LeftMenu/Industry/Label2.text = ""
-							$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].tax) + "%"
+							$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax) + "%\nUse arrow keys\n to edit"
 						else:
 							$TopBar/LeftMenu/Industry/Sprite2D.texture = load("res://icons/" + posprod[curprod] + ".png")
 							$TopBar/LeftMenu/Industry/Label.text = "Industry:
@@ -424,14 +424,13 @@ func _input(event):
 					#taxes are changed here, to either increase or decrease revenue
 					if Input.is_key_pressed(KEY_UP):
 						districts[zoom].newtax += 0.5
-						$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax) + "%"
+						$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax) + "%\nUse arrow keys\n to edit\nTab to close"
 					if Input.is_key_pressed(KEY_DOWN):
 						districts[zoom].newtax -= 0.5
 						if districts[zoom].newtax < 0:
 							districts[zoom].newtax = 0
 
-						$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax) + "%"		
-					if curprod > 0:
+							$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax) + "%\nUse arrow keys\n to edit\nTab to close"
 						#codes what happens when something is already owned in the production menu
 						if Input.is_key_pressed(KEY_X):
 							if posprod[curprod] in districts[zoom].product:
@@ -716,7 +715,7 @@ func _process(delta: float) -> void:
 			$TopBar/LeftMenu.visible = true
 			$DistrictMenu.position = $Camera2D.position + Vector2(-479, -184)/$Camera2D.zoom.x   
 			$DistrictMenu.scale = Vector2(0.15,0.15)/$Camera2D.zoom.x
-			$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax) + "%"
+			$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax) + "%\nUse arrow keys\n to edit\nTab to close"
 			$TopBar/LeftMenu/DistrictPopulation/Label.text = str(districts[zoom].population)
 			var estimate = districts[zoom].popularity
 			$TopBar/LeftMenu/DistrictPopularity/ColorRect.size.x = estimate
