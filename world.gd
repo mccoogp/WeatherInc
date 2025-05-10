@@ -752,6 +752,7 @@ func _process(delta: float) -> void:
 					if results < 270:
 						print("lose")
 						lost = true
+						$LoseMenu/Label2.text = "The results are in, and while your campaign resonated with some, \nyou have failed to be re-elected. \nAlthough your presidency has ended after " + str(year/2) + " years, your leadership has not gone unnoticed. \nthe people of Ennustoya will not forget your name: Connor."
 				else:
 					phase += 1
 				$CanvasLayer/News.text = "Advance"
@@ -951,7 +952,7 @@ func _process(delta: float) -> void:
 		$TopBar.visible = false
 		$"Popularity bar".visible = false
 		$CanvasLayer.visible = false
-		$loseMenu.text += "\nYears survived: " + str(year)
+		#$loseMenu.text += "\nYears survived: " + str(year)
 		$LoseMenu.visible = true
 		lostcount += 1
 		if lostcount > 100:
