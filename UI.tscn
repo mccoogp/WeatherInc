@@ -1,16 +1,22 @@
-[gd_scene load_steps=14 format=3 uid="uid://s2poj2l4nlfc"]
+[gd_scene load_steps=17 format=3 uid="uid://s2poj2l4nlfc"]
 
 [ext_resource type="Script" path="res://scroll_container.gd" id="1_esmcc"]
 [ext_resource type="Texture2D" uid="uid://d37hrhx7v44rg" path="res://tan background.jpg" id="1_iok06"]
 [ext_resource type="Script" path="res://news.gd" id="1_kqrqo"]
 [ext_resource type="LabelSettings" uid="uid://bw83k6s3dh6ys" path="res://labels/title.tres" id="2_i62pv"]
 [ext_resource type="Script" path="res://update_btn.gd" id="3_gt6nm"]
+[ext_resource type="Theme" uid="uid://bx8rqgpo0au6f" path="res://themes/news.tres" id="4_cbdac"]
 [ext_resource type="Texture2D" uid="uid://dj424tw2qv7j0" path="res://icons/grain.png" id="4_dw5ri"]
 [ext_resource type="Texture2D" uid="uid://d4hn8p3qer7pl" path="res://icons/research.png" id="5_g0iih"]
+[ext_resource type="FontFile" uid="uid://bdw8tj5ekkyoi" path="res://m5x7.ttf" id="6_tkmg7"]
 [ext_resource type="Texture2D" uid="uid://blgwak8ty3to5" path="res://icons/oil.png" id="6_wc150"]
 [ext_resource type="Theme" uid="uid://bs33wb320xbd8" path="res://themes/ui_button.tres" id="8_y2hmj"]
 [ext_resource type="PackedScene" uid="uid://ca2ikrfjlamsp" path="res://skill_tree.tscn" id="10_2dcy7"]
 [ext_resource type="Texture2D" uid="uid://dl2d0u1g1a8t7" path="res://icons/wide_btn.png" id="10_4nyke"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fe4eg"]
+font = ExtResource("6_tkmg7")
+font_size = 32
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yleyt"]
 
@@ -56,6 +62,7 @@ expand_mode = 5
 layout_mode = 2
 offset_right = 600.0
 offset_bottom = 390.0
+theme = ExtResource("4_cbdac")
 
 [node name="Label" type="Label" parent="ScrollContainer/TextureRect/VBoxContainer"]
 layout_mode = 2
@@ -65,8 +72,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="ScrollContainer/TextureRect/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 text = "On December 15, an explosion at a chemical plant injured 20 workers. They demand compensation from the plant."
+label_settings = SubResource("LabelSettings_fe4eg")
 vertical_alignment = 1
 autowrap_mode = 2
 
