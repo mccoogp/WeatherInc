@@ -66,19 +66,30 @@ func load_skill_description(name) -> void:
 func buy_skill(name) -> void:
 	var level = int(name[-1])
 	var category = skill_dict[name.split('_')[0]]
+	
+	var energy_cost = 1000 * pow(level, 2)
+	var research_cost = pow(level, 2)
+
 	if levels[category] + 1 > level:
-		print("already bought")
+		print("Already bought")
 	elif levels[category] + 1 < level:
-		print("need prerequisite upgrade")
+		print("Need prerequisite upgrade")
 	else:
-		if find_parent('world').energyprod - 1000 * (level ^ 2) >= 0 and find_parent('world').research - level >= 0:
+		var world = find_parent('world')
+		if world.energyprod >= energy_cost and world.research >= research_cost:
 			levels[category] += 1
-			find_parent('world').energyprod -=  1000 * (level ^ 2)
-			find_parent('world').research -= level
-			print("bought", name)
+			world.energyprod -= energy_cost
+			world.research -= research_cost
+			print("Bought", name)
+			print("Cost: Energy =", energy_cost, "| Research =", research_cost)
+			if name.begins_with("en_"):
+				find_parent("world").temp -= 5.0
 		else:
-			print("not enough money")
-		
+			print("Not enough resources.")
+			print("Required -> Energy:", energy_cost, "| Research:", research_cost)
+			print("You have -> Energy:", world.energyprod, "| Research:", world.research)
+
+			
 		
 func _on_buy_button_pressed() -> void:
 	if skill_box.visible:

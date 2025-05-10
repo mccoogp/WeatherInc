@@ -51,15 +51,15 @@ text = "↓"
 [node name="peaceful" type="Button" parent="."]
 offset_left = 93.0
 offset_top = 140.0
-offset_right = 215.0
+offset_right = 241.0
 offset_bottom = 171.0
-text = "Peaceful Mode"
+text = "Toggle Peaceful"
 
 [node name="pink" type="Button" parent="."]
-offset_left = 224.0
-offset_top = 140.0
-offset_right = 392.0
-offset_bottom = 171.0
+offset_left = 248.0
+offset_top = 139.0
+offset_right = 415.0
+offset_bottom = 170.0
 text = "Toggle pink mode"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

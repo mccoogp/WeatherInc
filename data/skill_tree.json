@@ -2,83 +2,163 @@
   "Skills": {
 	"ag_1": {
 	  "name": "Agriculture Upgrade I",
-	  "description": "Basic crop rotation techniques improve soil health and boost crop output by 10%."
+	  "description": "Basic crop rotation techniques improve soil health. Increases food productivity by 50% total.\nCost:\nEnergy: 1000\nResearch: 1",
+	  "cost": {
+		"energy": 1000,
+		"research": 1
+	  }
 	},
 	"ag_2": {
 	  "name": "Agriculture Upgrade II",
-	  "description": "Advanced seeding methods increase planting efficiency and expand harvestable land. Crop output rises by 15%."
+	  "description": "Advanced seeding methods expand harvestable land. Increases food productivity by 50% total.\nCost:\nEnergy: 4000\nResearch: 4",
+	  "cost": {
+		"energy": 4000,
+		"research": 4
+	  }
 	},
 	"ag_3": {
 	  "name": "Agriculture Upgrade III",
-	  "description": "Enhanced fertilization and pest control reduce crop loss and accelerate growth cycles. Crop output increases by 20%."
+	  "description": "Fertilization and pest control reduce loss and accelerate growth. Increases food productivity by 50% total.\nCost:\nEnergy: 9000\nResearch: 9",
+	  "cost": {
+		"energy": 9000,
+		"research": 9
+	  }
 	},
 	"ag_4": {
 	  "name": "Agriculture Upgrade IV",
-	  "description": "Mechanized farming equipment significantly improves large-scale planting and harvesting efficiency. Crop output increases by 25%."
+	  "description": "Mechanized farming boosts efficiency and speed. Increases food productivity by 50% total.\nCost:\nEnergy: 16000\nResearch: 16",
+	  "cost": {
+		"energy": 16000,
+		"research": 16
+	  }
 	},
 	"ag_5": {
 	  "name": "Agriculture Upgrade V",
-	  "description": "Genetically optimized crops and precision agriculture maximize yields and resource use. Crop output is boosted by 30%."
+	  "description": "Genetically optimized crops maximize yields. Increases food productivity by 50% total.\nCost:\nEnergy: 25000\nResearch: 25",
+	  "cost": {
+		"energy": 25000,
+		"research": 25
+	  }
 	},
 	"in_1": {
 	  "name": "Industry Upgrade I",
-	  "description": "Basic manufacturing techniques improve production speed and reduce material waste by 5%."
+	  "description": "Basic manufacturing techniques improve production speed and reduce material waste by 5%.\nCost:\nEnergy: 1000\nResearch: 1",
+	  "cost": {
+		"energy": 1000,
+		"research": 1
+	  }
 	},
 	"in_2": {
 	  "name": "Industry Upgrade II",
-	  "description": "Introduction of assembly line processes increases factory efficiency. Production output rises by 10%."
+	  "description": "Introduction of assembly line processes increases factory efficiency. Production output rises by 10%.\nCost:\nEnergy: 4000\nResearch: 4",
+	  "cost": {
+		"energy": 4000,
+		"research": 4
+	  }
 	},
 	"in_3": {
 	  "name": "Industry Upgrade III",
-	  "description": "Automation and robotics reduce labor costs and speed up manufacturing. Production output increases by 15%."
+	  "description": "Automation and robotics reduce labor costs and speed up manufacturing. Production output increases by 15%.\nCost:\nEnergy: 9000\nResearch: 9",
+	  "cost": {
+		"energy": 9000,
+		"research": 9
+	  }
 	},
 	"in_4": {
 	  "name": "Industry Upgrade IV",
-	  "description": "Advanced supply chain management optimizes resource flow and minimizes downtime. Production output rises by 20%."
+	  "description": "Advanced supply chain management optimizes resource flow and minimizes downtime. Production output rises by 20%.\nCost:\nEnergy: 16000\nResearch: 16",
+	  "cost": {
+		"energy": 16000,
+		"research": 16
+	  }
 	},
 	"in_5": {
 	  "name": "Industry Upgrade V",
-	  "description": "Cutting-edge smart factories integrate AI-driven optimization, maximizing industrial efficiency. Production output increases by 25%."
+	  "description": "Cutting-edge smart factories integrate AI-driven optimization, maximizing industrial efficiency. Production output increases by 25%.\nCost:\nEnergy: 25000\nResearch: 25",
+	  "cost": {
+		"energy": 25000,
+		"research": 25
+	  }
 	},
 	"en_1": {
 	  "name": "Environment Upgrade I",
-	  "description": "Basic conservation practices reduce pollution and improve land sustainability by 5%."
+	  "description": "Basic conservation reduces pollution. Decreases global temperature by 5°C and slows the rate of temperature increase.\nCost:\nEnergy: 1000\nResearch: 1",
+	  "cost": {
+		"energy": 1000,
+		"research": 1
+	  }
 	},
 	"en_2": {
 	  "name": "Environment Upgrade II",
-	  "description": "Introduction of renewable energy sources decreases reliance on fossil fuels. Environmental impact reduced by 10%."
+	  "description": "Renewable energy reduces fossil fuel use. Decreases global temperature by 5°C and slows the rate of temperature increase.\nCost:\nEnergy: 4000\nResearch: 4",
+	  "cost": {
+		"energy": 4000,
+		"research": 4
+	  }
 	},
 	"en_3": {
 	  "name": "Environment Upgrade III",
-	  "description": "Advanced recycling and waste management systems minimize resource waste. Environmental impact reduced by 15%."
+	  "description": "Recycling and waste management minimize resource waste. Decreases global temperature by 5°C and slows the rate of temperature increase.\nCost:\nEnergy: 9000\nResearch: 9",
+	  "cost": {
+		"energy": 9000,
+		"research": 9
+	  }
 	},
 	"en_4": {
 	  "name": "Environment Upgrade IV",
-	  "description": "Widespread reforestation and habitat restoration programs improve biodiversity. Environmental impact reduced by 20%."
+	  "description": "Reforestation and habitat restoration improve biodiversity. Decreases global temperature by 5°C and slows the rate of temperature increase.\nCost:\nEnergy: 16000\nResearch: 16",
+	  "cost": {
+		"energy": 16000,
+		"research": 16
+	  }
 	},
 	"en_5": {
 	  "name": "Environment Upgrade V",
-	  "description": "Sustainable infrastructure and closed-loop systems ensure long-term environmental balance. Environmental impact reduced by 25%."
+	  "description": "Sustainable infrastructure ensures long-term environmental balance. Decreases global temperature by 5°C and slows the rate of temperature increase.\nCost:\nEnergy: 25000\nResearch: 25",
+	  "cost": {
+		"energy": 25000,
+		"research": 25
+	  }
 	},
 	"te_1": {
 	  "name": "Technology Upgrade I",
-	  "description": "Basic research facilities improve innovation speed and unlock simple technological advancements."
+	  "description": "Basic research facilities improve innovation speed and unlock simple technological advancements.\nCost:\nEnergy: 1000\nResearch: 1",
+	  "cost": {
+		"energy": 1000,
+		"research": 1
+	  }
 	},
 	"te_2": {
 	  "name": "Technology Upgrade II",
-	  "description": "Computing advancements accelerate research and enable complex data analysis. Research output increases by 10%."
+	  "description": "Computing advancements accelerate research and enable complex data analysis. Research output increases by 10%.\nCost:\nEnergy: 4000\nResearch: 4",
+	  "cost": {
+		"energy": 4000,
+		"research": 4
+	  }
 	},
 	"te_3": {
 	  "name": "Technology Upgrade III",
-	  "description": "Advanced materials and electronics open new engineering possibilities. Research and production efficiency rise by 15%."
+	  "description": "Advanced materials and electronics open new engineering possibilities. Research and production efficiency rise by 15%.\nCost:\nEnergy: 9000\nResearch: 9",
+	  "cost": {
+		"energy": 9000,
+		"research": 9
+	  }
 	},
 	"te_4": {
 	  "name": "Technology Upgrade IV",
-	  "description": "Artificial intelligence and machine learning revolutionize design and discovery. Research output increases by 20%."
+	  "description": "Artificial intelligence revolutionizes design and discovery. Research output increases by 20%.\nCost:\nEnergy: 16000\nResearch: 16",
+	  "cost": {
+		"energy": 16000,
+		"research": 16
+	  }
 	},
 	"te_5": {
 	  "name": "Technology Upgrade V",
-	  "description": "Breakthrough innovations in nanotechnology and quantum computing redefine technological capabilities. Research output increases by 25%."
+	  "description": "Nanotechnology and quantum computing redefine tech capabilities. Research output increases by 25%.\nCost:\nEnergy: 25000\nResearch: 25",
+	  "cost": {
+		"energy": 25000,
+		"research": 25
+	  }
 	}
   }
 }
