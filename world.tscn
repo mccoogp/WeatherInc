@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://dgo4cwa032h0v"]
+[gd_scene load_steps=60 format=3 uid="uid://dgo4cwa032h0v"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_3gon6"]
 [ext_resource type="PackedScene" uid="uid://cacfd62pudml6" path="res://district.tscn" id="2_41llr"]
@@ -44,6 +44,7 @@
 [ext_resource type="Texture2D" uid="uid://dsc86vr60qvhl" path="res://4caster Art/menu/menu.png" id="26_3urtx"]
 [ext_resource type="Texture2D" uid="uid://d4hn8p3qer7pl" path="res://icons/research.png" id="35_rjike"]
 [ext_resource type="AudioStream" uid="uid://ctej4kw1e8hlc" path="res://Masato Video Game Music.mp3" id="44_33rck"]
+[ext_resource type="Texture2D" uid="uid://bmf70fyck27gt" path="res://4caster Art/new map/Screenshot 2025-05-10 at 10.04.55 AM.png" id="45_nkw7o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_afd1u"]
 line_spacing = -20.0
@@ -262,7 +263,7 @@ texture_filter = 1
 position = Vector2(613.095, 261.905)
 scale = Vector2(67, 67)
 DistrictNumber = 10
-product = ["research"]
+product = ["meat"]
 center = Vector2(629, 290)
 zoom = 3.2
 image = ExtResource("13_23l0j")
@@ -747,7 +748,6 @@ offset_top = 127.0
 offset_right = 1018.0
 offset_bottom = 183.0
 scale = Vector2(1.68, 1.68)
-focus_mode = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/News"]
 texture_filter = 1
@@ -845,7 +845,7 @@ offset_bottom = 219.0
 text = "The results are in, and while your campaign resonated with some, 
 you have failed to be re-elected.
 Although your presidency has ended, your leadership has not gone unnoticed.
-he people of Ennustoya will not forget your name: Connor."
+the people of Ennustoya will not forget your name: Connor."
 label_settings = SubResource("LabelSettings_v6b3y")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -854,6 +854,13 @@ offset_top = -1179.0
 offset_right = 2228.0
 offset_bottom = 1579.0
 color = Color(1, 0, 0, 0)
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer2"]
+position = Vector2(549, 323)
+scale = Vector2(0.63, 0.63)
+texture = ExtResource("45_nkw7o")
 
 [connection signal="button_down" from="Pause/Button2" to="." method="_on_more_info_button_down"]
 

@@ -5,9 +5,11 @@ extends Node2D
 
 
 @export var districts: Array[Node2D] = []
+#starter stuff
 var totalpop = 0
 var foodprod = 0
 
+#tech variables
 var food_modifier = 1.0
 var env_modifier = 1.0
 var ind_modifier = 1.0
@@ -15,8 +17,9 @@ var tech_modifier = 1.0
 
 var phase = 3
 var food = 0
-var money = 2000000
+var money = 25000
 
+#turn changing
 var temp = 60
 var year = 1
 var factories = 0
@@ -24,7 +27,7 @@ var energyprod = 0
 var research = 0
 var research_text = ""
 
-	
+#camera stuff
 var adjacents = {0: [1,4,6], 1: [0,4,2], 2: [1,3,4,5], 3: [2,5,10], 4: [0,1,2,5,6,7,8], 5: [2,3,4,8,9,10], 6: [0,4,7,11], 7: [4,6,8,11,12,13], 8: [4,5,7,9,13,14], 9: [5,8,10,14], 10: [3,5,9,14,15], 11:[6,7,12], 12: [11,7,13], 13: [12,7,8,14,15], 14: [8,9,10,13,15], 15: [10,13,14]}
 
 var zoom = -1
@@ -40,10 +43,12 @@ var frameinfo = Vector2(-7450, 250)
 
 var spaceclicked = false
 
+#production variables
 var posprod = ["none", "grain", "meat", "fish", "factory", "oil", "research"]
 var curprod = 0
 var checkprod = false
 
+#changing bool
 var activatefact = false
 var activateresearch = false
 
@@ -59,6 +64,9 @@ var lostcount = 0
 var lost = false
 
 func _on_resume_game():
+	'''
+	triggers when teh pause menu is closed and makes everything reappear
+	'''
 	frame = 0
 	$Camera2D.position = defaultcenter
 	$Camera2D.zoom = Vector2(defaultzoom, defaultzoom)
@@ -69,6 +77,37 @@ func _on_resume_game():
 	
 
 func ElectResults(random = 0):
+	'''
+	calculates your popularity in every district and checks if you win, districts turn to green or purple depending on wether you won them or not creating an eleectoral map
+	FUNCTION ElectResults(random = 0):
+	SET total_population TO 0
+	SET populations TO empty list
+
+	FOR each district index FROM 0 TO 15:
+		ADD district's population TO total_population
+		ADD [district_population, index] TO populations
+		SET district's votes TO 2
+
+	FOR 504 iterations:
+		SORT populations BY size ascending
+		INCREASE vote count of district with largest remaining pop
+		DECREASE that district's pop proportionally
+		RE-SORT populations
+
+	SET district_nodes TO list of all district UI nodes
+	SET total_votes TO 0
+
+	FOR each district index FROM 0 TO 15:
+		CALCULATE popularity with randomness
+		IF popularity > 50:
+			SET district color TO green
+			INCREASE total_votes BY district's vote count
+		ELSE:
+			SET district color TO purple
+
+	RETURN total_votes
+
+	'''
 	var totalpopulation = 0
 	var populations = []
 
@@ -109,6 +148,19 @@ func ElectResults(random = 0):
 		
 
 func GenPopularity(random = 0):
+	'''
+	caluclates popularity with a bit of randomness included
+	FUNCTION GenPopularity(random = 0):
+	SET total_population TO 0
+	SET weighted_popularity_sum TO 0
+
+	FOR each district index FROM 0 TO 15:
+		ADD district's population TO total_population
+		ADD (district population × (popularity + randomness)) TO weighted_popularity_sum
+
+	RETURN weighted_popularity_sum / total_population
+
+	'''
 	var totalpopulation = 0
 	var popularity = 0
 	for district in 16:
@@ -117,6 +169,15 @@ func GenPopularity(random = 0):
 	return popularity/totalpopulation
 	
 func ResetColor():
+	'''
+	resets the district color change that occuers in the caluclate popularity section in the election
+	FUNCTION ResetColor():
+	SET district_nodes TO list of all district UI nodes
+
+	FOR each district index FROM 0 TO 15:
+		SET district's UI color TO white over 1 second
+	'''
+	
 	var district_nodes = [$District, $District2, $District3, $District4,
 	$District5, $District6, $District7, $District8,
 	$District9, $District10, $District11, $District12,
@@ -166,15 +227,24 @@ func _ready():
 	pause_menu.connect("resume_game", Callable(self, "_on_resume_game"))
 	pause_menu.connect("peaceful", Callable(self, "_on_peaceful"))
 	pause_menu.connect("pink", Callable(self, "_on_pink"))
+	await get_tree().create_timer(1).timeout
+	for i in 10:
+		await get_tree().create_timer(0.1).timeout
+		$CanvasLayer2/Sprite2D.modulate[3] -= 0.1
+	
 func _on_peaceful():
+	'''
+	when peaceful mode is selected the peace begins, stopping all disasters
+	'''
 	if not peace:
-		temp = 0
 		peace = true
 	elif peace:
-		temp = 60
 		peace = false
 
 func _on_pink():
+	'''
+	makes everything pink when the pink button is pressed
+	'''
 	if not pink:
 		var pink_color = Color(1.0, 0.4, 0.7, 1.0)
 		var tween = create_tween()
@@ -188,8 +258,11 @@ func _on_pink():
 
 
 func _input(event):
+	#all of the input code
+	
+	
 	if Input.is_key_pressed(KEY_ESCAPE) and $CanvasLayer/News/SkillTree.visible == false:
-				
+				#opens the pause menu
 				$Camera2D.position = frame2pos
 				$Camera2D.zoom = Vector2(1,1)
 				if frame == 0:
@@ -208,10 +281,12 @@ func _input(event):
 			
 	
 	if frame == 0:
+		#frame 0 is the standard frame
 		if phase == 2:
 			if zoom == -1:
 				curprod = 0
 				for district in 16:
+					#checks if every district is clicked so it knows where to zoom in if you click a district
 					if districts[district].clicked == true and $CanvasLayer/News.skillclicked == false:
 						zoom = district
 						cameracenter = districts[district].center
@@ -220,6 +295,7 @@ func _input(event):
 
 			else:
 				if event is InputEventKey and event.pressed:
+					#creates function for the district menus when you click the arrow keys
 					if Input.is_key_pressed(KEY_RIGHT):
 						curprod += 1
 					if Input.is_key_pressed(KEY_LEFT):
@@ -229,7 +305,7 @@ func _input(event):
 							curprod = len(posprod)
 						if curprod == len(posprod):
 							curprod = 0
-						
+						#sets the requirements for what is needed to build a certain industry
 						if curprod == 0:
 							$TopBar/LeftMenu/Industry/Sprite2D.texture = null
 							$TopBar/LeftMenu/Industry/Label.text = "Industry:
@@ -344,6 +420,8 @@ func _input(event):
 									$TopBar/LeftMenu.extras[0] += 3
 								else:
 									$TopBar/LeftMenu/Industry/Label2.text = ""
+					
+					#taxes are changed here, to either increase or decrease revenue
 					if Input.is_key_pressed(KEY_UP):
 						districts[zoom].newtax += 0.5
 						$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax) + "%"
@@ -354,6 +432,7 @@ func _input(event):
 
 						$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax) + "%"		
 					if curprod > 0:
+						#codes what happens when something is already owned in the production menu
 						if Input.is_key_pressed(KEY_X):
 							if posprod[curprod] in districts[zoom].product:
 								if checkprod == false:
@@ -450,6 +529,7 @@ func _input(event):
 										$TopBar/LeftMenu/Industry/Label2.text = ""
 										
 						if Input.is_key_pressed(KEY_ENTER):
+							#this builds the production after checking to see if you have the required resources
 							if len(districts[zoom].product) == 0:
 								var changed = false
 								
@@ -502,6 +582,9 @@ func _input(event):
 									
 								
 				if event is InputEventKey and event.pressed:
+					
+					#tab and backspace goto the start screen
+					
 					if Input.is_key_pressed(KEY_BACKSPACE):
 						cameracenter =  defaultcenter
 						camerazoom = defaultzoom
@@ -538,6 +621,7 @@ func _input(event):
 							
 		if phase == 2 or phase == 3:
 			if zoom == -1:
+				#adds functionality of buttons changing your view
 				if event is InputEventKey and event.pressed:
 					if Input.is_key_pressed(KEY_W):
 						defaultcenter.y -= 30/defaultzoom
@@ -591,6 +675,9 @@ func _input(event):
 		
 
 func _process(delta: float) -> void:
+	
+	#updates ongoing stats that update
+	
 	$TopBar/Variables.text = "  = " + str(food) + "\n  = " + str(money)
 	$TopBar/Variables2.text = "   = " + str(factories) + "\n   = " + str(energyprod)
 	if activateresearch:
@@ -640,6 +727,9 @@ func _process(delta: float) -> void:
 			
 	
 	if lost == false:
+		
+		#runs the next phase buttons
+		
 		if $CanvasLayer/News.clicked == true or spaceclicked == true:
 			spaceclicked = false
 			$CanvasLayer/News.clicked = false
@@ -666,11 +756,17 @@ func _process(delta: float) -> void:
 					if results < 270:
 						print("lose")
 						lost = true
+						$LoseMenu/Label2.text = "The results are in, and while your campaign resonated with some, \nyou have failed to be re-elected. \nAlthough your presidency has ended after " + str(year/2) + " years, your leadership has not gone unnoticed. \nthe people of Ennustoya will not forget your name: Connor."
 				else:
 					phase += 1
 				$CanvasLayer/News.text = "Advance"
+				
+				
+				
 			if phase == 4:
 				var research_text = ""
+				
+				#every end of phase thing is calulated and math is done to see production and disasters etc
 				
 				ResetColor()
 				var skill_tree_script = get_node('CanvasLayer/News/SkillTree')
@@ -683,6 +779,7 @@ func _process(delta: float) -> void:
 				factories = 0
 				totalpop = 0
 				foodprod = 0
+				research = 0
 				
 				#disasters
 				for district in 16:
@@ -695,11 +792,13 @@ func _process(delta: float) -> void:
 						districts[district].disaster = ["tornado"]
 						districts[district].product = []
 						districts[district].population *= 0.75
+						popularity_down(districts[district])
 					
 					elif thing == "drought":
 						if districts[district].water:
 							pass
 						else:
+							popularity_down(districts[district])
 							districts[district].disaster = ["drought"]
 							if "meat" in districts[district].product:
 									districts[district].product = []
@@ -708,8 +807,11 @@ func _process(delta: float) -> void:
 								districts[district].population *= 0.75
 					elif thing == "rain":
 						if not districts[district].water:
-							pass
+							popularity_down(districts[district])
+							districts[district].disaster = ["rain"]
+							districts[district].population *= 0.75
 						else:
+							popularity_down(districts[district])
 							districts[district].disaster = ["rain"]
 							districts[district].product = []
 							districts[district].population *= 0.75
@@ -718,11 +820,14 @@ func _process(delta: float) -> void:
 						districts[district].disaster = ["fire"]
 						if districts[district].water:
 							districts[district].population *= 0.90
+							popularity_down(districts[district])
 						else:
 							districts[district].product = []
 							districts[district].population *= 0.75
+							popularity_down(districts[district])
 					
 					elif thing == "volcano":
+						popularity_down(districts[district])
 						districts[district].disaster = ["volcano"]
 						districts[district].population *= 0.90
 						var moving = districts[district].population * randf_range(20,60)/100
@@ -732,6 +837,7 @@ func _process(delta: float) -> void:
 							districts[district].population -= movement
 							
 					elif thing == "disease":
+						popularity_down(districts[district])
 						districts[district].disaster = ["disease"]
 						districts[district].population *= 0.60
 						
@@ -876,6 +982,7 @@ func _process(delta: float) -> void:
 		$TopBar.visible = false
 		$"Popularity bar".visible = false
 		$CanvasLayer.visible = false
+		#$loseMenu.text += "\nYears survived: " + str(year)
 		$LoseMenu.visible = true
 		lostcount += 1
 		if lostcount > 100:
