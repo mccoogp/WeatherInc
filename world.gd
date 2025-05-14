@@ -21,7 +21,7 @@ var money = 25000
 
 #turn changing
 var temp = 60
-var year = 1
+var year = 0
 var factories = 0
 var energyprod = 0
 var research = 0
@@ -1034,9 +1034,9 @@ func _process(delta: float) -> void:
 				totalpop = 0
 				for district in 16:
 					for dist in adjacents[district]:
-						var moving = districts[district].population * randf_range(0,5)/100
-						districts[dist].population += moving
-						districts[district].population -= moving
+						var moving = districts[district].population * randf_range(0,20)/100
+						districts[dist].population += moving * (districts[district].tax/100)
+						districts[district].population -= moving * (districts[district].tax/100)
 				for district in 16:
 					districts[district].population = float(int(districts[district].population))
 					totalpop += districts[district].population
@@ -1099,11 +1099,11 @@ func _process(delta: float) -> void:
 					research_text = "nothing"
 				$CanvasLayer/News/ScrollContainer/VBoxContainer/Research/Research_Data.text = research_text
 				if year % 4 == 0:
-					$CanvasLayer/News/ScrollContainer/VBoxContainer/Year.text = "	You are in an election year"
+					$CanvasLayer/News/ScrollContainer/VBoxContainer/Year.text = "    You are in an election year"
 				elif year % 4 == 3: 
-					$CanvasLayer/News/ScrollContainer/VBoxContainer/Year.text = "    You are " + str(2 - (year%4)/2) + " year away from the next election"
+					$CanvasLayer/News/ScrollContainer/VBoxContainer/Year.text = "    You are " + str((4 - year%4)*0.5) + " year away from the next election"
 				else:
-					$CanvasLayer/News/ScrollContainer/VBoxContainer/Year.text = "    You are " + str(2 - (year%4)/2) + " years away from the next election"
+					$CanvasLayer/News/ScrollContainer/VBoxContainer/Year.text = "    You are " + str((4 - year%4)*0.5) + " years away from the next election"
 				$CanvasLayer/News/ScrollContainer/VBoxContainer/Year.text += "
 				
 				

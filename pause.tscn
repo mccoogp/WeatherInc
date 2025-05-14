@@ -221,9 +221,11 @@ offset_bottom = 341.0
 text = "Your country is divided into multiple districts. Click on a district to view:
     Popularity, Population, Current Industry, and Tax Rate
 Actions in Each District:
-    Build Industry (only one per district) (use left and right arrows):
+    Build Industry (only one per district):
+    Use left and right arrows to change, enter to confirm 
         Grain – Produces food, cheap
         Meat – Produces food, moderate cost
+        Fish – Produces food, coastal only, low-moderate cost
 
     Continued next page    
 	
@@ -242,8 +244,7 @@ label_settings = SubResource("LabelSettings_lcvkh")
 layout_mode = 0
 offset_right = 426.0
 offset_bottom = 341.0
-text = "        Fish – Produces food, coastal only, low-moderate cost
-        Factory – Allows production of other industries, moderate-high cost
+text = "        Factory – Allows production of other industries, moderate-high cost
 	        Oil – Produces energy, high cost
         Research Facility – Produces research points, high cost, requires energy
     Every industry (except for factory) requires a factory to build
