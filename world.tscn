@@ -120,7 +120,7 @@ texture = ExtResource("2_yw1kr")
 
 [node name="Background3" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(416.667, 217.857)
+position = Vector2(420.238, 220.238)
 scale = Vector2(0.720001, 0.716921)
 texture = ExtResource("3_cscas")
 
@@ -710,12 +710,16 @@ hide = true
 skillclicked = true
 
 [node name="ScrollContainer" parent="CanvasLayer/News" index="2"]
-offset_left = -0.480011
-offset_top = 0.231987
-offset_right = 0.479919
+offset_left = 35.52
+offset_top = 0.232002
+offset_right = 36.48
 offset_bottom = -0.231995
 horizontal_scroll_mode = 1
 vertical_scroll_mode = 1
+
+[node name="Disasters" parent="CanvasLayer/News/ScrollContainer/VBoxContainer" index="1"]
+layout_direction = 0
+horizontal_alignment = 1
 
 [node name="Master Node" parent="CanvasLayer/News/SkillTree" index="0"]
 visible = false
@@ -840,6 +844,7 @@ offset_right = 400.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("44_33rck")
+volume_db = 20.0
 autoplay = true
 
 [node name="LoseMenu" type="CanvasLayer" parent="."]

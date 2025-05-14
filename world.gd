@@ -284,7 +284,6 @@ func _input(event):
 		#frame 0 is the standard frame
 		if phase == 2:
 			if zoom == -1:
-				curprod = 0
 				for district in 16:
 					#checks if every district is clicked so it knows where to zoom in if you click a district
 					if districts[district].clicked == true and $CanvasLayer/News.skillclicked == false:
@@ -292,7 +291,127 @@ func _input(event):
 						cameracenter = districts[district].center
 						camerazoom = districts[district].zoom
 						districts[district].clicked = false
+						var industries = ["none", "grain", "meat", "fish", "factory", "oil", "research"]
 						curprod = 0
+						if len(districts[district].product) > 0:
+							for i in len(industries):
+								if industries[i] == districts[district].product[0]:
+									curprod = i
+									print(curprod)
+						if curprod == 0:
+							$TopBar/LeftMenu/Industry/Sprite2D.texture = null
+							$TopBar/LeftMenu/Industry/Label.text = "Industry:
+							None"
+							$TopBar/LeftMenu/Industry/Label3.text = ""
+							$TopBar/LeftMenu.extras[0] = 0
+							$TopBar/LeftMenu/Industry/Label2.text = ""
+							$DistrictMenu/Popularity/Tax_Label.text = "Tax: " + str(districts[zoom].newtax) + "%\nUse arrow keys\n to edit"
+						else:
+							$TopBar/LeftMenu/Industry/Sprite2D.texture = load("res://icons/" + posprod[curprod] + ".png")
+							$TopBar/LeftMenu/Industry/Label.text = "Industry:
+								" + posprod[curprod]
+							$TopBar/LeftMenu/Industry/Label3.text = ""
+							$TopBar/LeftMenu.extras[0] = 0
+							$DistrictMenu/Popularity.extra
+							if posprod[curprod] in districts[zoom].product:
+								$TopBar/LeftMenu/Industry/Label3.text += "
+								Press x to remove"
+								$TopBar/LeftMenu.extras[0] += 1
+								$TopBar/LeftMenu/Industry/Label2.text = ""
+							else:
+								if len(districts[zoom].product) == 0:
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Press enter to confirm"
+									$TopBar/LeftMenu.extras[0] += 1
+								else:
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									No available space"
+									$TopBar/LeftMenu.extras[0] += 1
+								
+								
+								if posprod[curprod] == "fish":
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Requires: Water access"
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Cost: $12,000"
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Requires: 1 factory"
+									if money >= 12000 and districts[zoom].water == true and factories > 0:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+									else:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+									$TopBar/LeftMenu.extras[0] += 4
+								
+								
+								elif posprod[curprod] == "factory":
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Cost: $100,000"
+									if money >= 100000:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+									else:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+									$TopBar/LeftMenu.extras[0] += 2
+								
+								
+								elif posprod[curprod] == "oil":
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Requires: 2 factory"
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Cost: $100,000"
+									if money >= 100000 and factories >= 1:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+									else:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+									$TopBar/LeftMenu.extras[0] += 3
+								
+								
+								elif posprod[curprod] == "grain":
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Cost: $5,000"
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Requires: 1 factory"
+									if money >= 5000 and factories > 0:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+									else:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+									$TopBar/LeftMenu.extras[0] += 3
+								
+								
+								elif posprod[curprod] == "meat":
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Cost: $20,000"
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Requires: 1 factory"
+									if money >= 20000 and factories > 0:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+									else:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+									$TopBar/LeftMenu.extras[0] += 3
+								
+								
+								elif posprod[curprod] == "research":
+									$TopBar/LeftMenu/Industry/Label3.text += "
+									Cost: $300,000
+									Requires 2 factory"
+									if money >= 300000 and factories >= 2:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.GREEN
+									else:
+										$TopBar/LeftMenu/Industry/Label2.text = "Reuirements not met"
+										$TopBar/LeftMenu/Industry/Label2.get_label_settings().font_color = Color.RED
+									$TopBar/LeftMenu.extras[0] += 3
+								else:
+									$TopBar/LeftMenu/Industry/Label2.text = ""
 
 			else:
 				if event is InputEventKey and event.pressed:
@@ -578,6 +697,7 @@ func _input(event):
 								" + posprod[curprod]
 								$TopBar/LeftMenu/Industry/Label3.text = "
 								Press x to remove"
+								$TopBar/LeftMenu/Industry/Label2.text = ""
 								$TopBar/LeftMenu.extras[0] = 1
 								
 							
@@ -659,6 +779,9 @@ func _input(event):
 				$"Popularity bar".visible =  previousvis[1]
 				$Start.visible = previousvis[2]
 				$TopBar.visible = previousvis[3]
+	
+
+		
 	if frame == 5:
 		if Input.is_key_pressed(KEY_SPACE):
 			instructcount +=1
@@ -747,6 +870,9 @@ func _process(delta: float) -> void:
 				
 				
 			if phase == 3:
+				if frame == 3:
+					$CanvasLayer/News/SkillTree.visible = false
+					$CanvasLayer/ColorRect.visible = false
 				cameracenter =  defaultcenter
 				camerazoom = defaultzoom
 				zoom = -1
@@ -962,7 +1088,10 @@ func _process(delta: float) -> void:
 				var disaster_text = ""
 				for district in  16:
 					if districts[district].disaster != []:
-						disaster_text = disaster_text + "District " + str(district) + " has been hit with a " + districts[district].disaster[0] + "!\n" + disaster_descriptions[districts[district].disaster[0]]
+						if disaster_text == "":
+							disaster_text = disaster_text + "District " + str(district) + " has been hit with a " + districts[district].disaster[0] + "!\n" + disaster_descriptions[districts[district].disaster[0]]
+						else:
+							disaster_text = disaster_text + "\nDistrict " + str(district) + " has been hit with a " + districts[district].disaster[0] + "!\n" + disaster_descriptions[districts[district].disaster[0]]
 				if disaster_text == "":
 					disaster_text = "No disasters, Hooray!"
 				$CanvasLayer/News/ScrollContainer/VBoxContainer/Disasters.text = disaster_text
@@ -970,11 +1099,15 @@ func _process(delta: float) -> void:
 					research_text = "nothing"
 				$CanvasLayer/News/ScrollContainer/VBoxContainer/Research/Research_Data.text = research_text
 				if year % 4 == 0:
-					$CanvasLayer/News/ScrollContainer/VBoxContainer/Year.text = "You are in an election year"
+					$CanvasLayer/News/ScrollContainer/VBoxContainer/Year.text = "	You are in an election year"
 				elif year % 4 == 3: 
-					$CanvasLayer/News/ScrollContainer/VBoxContainer/Year.text = "    You are " + str(4 - year%4) + " year away from the next election"
+					$CanvasLayer/News/ScrollContainer/VBoxContainer/Year.text = "    You are " + str(2 - (year%4)/2) + " year away from the next election"
 				else:
-					$CanvasLayer/News/ScrollContainer/VBoxContainer/Year.text = "    You are " + str(4 - year%4) + " years away from the next election"
+					$CanvasLayer/News/ScrollContainer/VBoxContainer/Year.text = "    You are " + str(2 - (year%4)/2) + " years away from the next election"
+				$CanvasLayer/News/ScrollContainer/VBoxContainer/Year.text += "
+				
+				
+				"
 				
 
 				
@@ -992,7 +1125,7 @@ func _process(delta: float) -> void:
 				$ColorRect.color[3] += 0.001
 			get_tree().paused = true
 
-
+	$AudioStreamPlayer.volume_db = -80 + $Pause.volume
 func _on_more_info_button_down() -> void:
 	$Camera2D.position = frameinfo
 	#$Camera2D.zoom = Vector2(0.9, 0.9)

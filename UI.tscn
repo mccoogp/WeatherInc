@@ -72,9 +72,9 @@ anchor_left = 0.24
 anchor_top = 0.191
 anchor_right = 0.76
 anchor_bottom = 0.809
-offset_left = 28.52
+offset_left = 55.52
 offset_top = 16.232
-offset_right = -24.52
+offset_right = 2.47998
 offset_bottom = -20.232
 grow_horizontal = 2
 grow_vertical = 2
@@ -96,6 +96,8 @@ horizontal_alignment = 1
 
 [node name="Disasters" type="Label" parent="ScrollContainer/VBoxContainer"]
 texture_filter = 1
+custom_minimum_size = Vector2(20, 0)
+layout_direction = 1
 layout_mode = 2
 text = "On December 15, an explosion at a chemical plant injured 20 workers. They demand compensation from the plant."
 label_settings = SubResource("LabelSettings_fe4eg")
